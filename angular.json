@@ -100,7 +100,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/",
+            "baseHref": "/tezos-snaps-wallet/",
             "message": "Deploying latest changes"
           }
         }
