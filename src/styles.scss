@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* custom colors */
+$theme-colors: (
+  "primary": #3880ff,
+);
+
+$card-border-color: #fafafa;
+$card-spacer-y: 1.5rem;
+$card-cap-bg: #fff;
+$link-hover-decoration: none;
+
+.card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.panel {
+  box-shadow: none;
+}
+
+.fa-icon {
+  width: 1rem;
+  height: auto;
+}
+
+.custom-select {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";

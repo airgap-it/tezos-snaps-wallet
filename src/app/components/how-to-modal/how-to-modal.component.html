@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">How To Connect</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    The Beacon Debug Wallet can be used to simulate a connection between a
+    wallet and a dApp. All relevant details are exposed and in the Beacon Debug
+    Wallet to simplify testing and debugging.
+  </p>
+  <p class="pb-4">
+    With the Beacon Debug Wallet dApp developer can also view their application
+    from the perspective of specific addresses.
+  </p>
+  <h6 class="pb-2">How To Connect A dApp To The Beacon Debug Wallet</h6>
+  <ol>
+    <li>Go to the dApp you want to establish a connection.</li>
+    <li>
+      Use the functionality on the dApp to open the Beacon dialog. Usually this
+      is a button labelled "Connect Wallet" or "sync".
+    </li>
+    <li>Select "Pair with another device" on the beacon dialog.</li>
+    <li>
+      Hover over the QR code, click on the Copy button, the Beacon Connection
+      code has now been copied to your clipboard.
+    </li>
+    <li>
+      Come Back to the Beacon Debug Wallet and click on the button "Connect To A
+      New dApp"
+    </li>
+    <li>You're now connected an can trigger operations from the dApp. 🎉</li>
+  </ol>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    {{ closeBtnName }}
+  </button>
+</div>

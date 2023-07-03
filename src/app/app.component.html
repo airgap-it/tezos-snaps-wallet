@@ -1,0 +1,223 @@
+<!-- Toolbar -->
+<app-header-item></app-header-item>
+
+<div class="container-fluid px-md-5 pb-3">
+  <h5 class="pb-5">
+    Beacon Debug Wallet is a watch-only wallet for developers to debug
+    <a href="https://walletbeacon.io">Beacon</a> enabled dApps.
+  </h5>
+  <div class="row pb-4">
+    <div class="col-12 col-md-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">Connect dApp</h3>
+          <input type="text" class="form-control" [(ngModel)]="syncCode" />
+          <button
+            type="button"
+            class="btn btn-primary btn-block d-flex justify-content-between"
+            (click)="paste()"
+          >
+            Paste
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-block d-flex justify-content-between mb-5"
+            [disabled]="
+              (accounts$ | async)?.length === 0 || syncCode.length === 0
+            "
+            (click)="connect()"
+          >
+            Connect To A New dApp
+            <img src="./assets/icons/clipboard-regular.svg" class="fa-icon" />
+          </button>
+          <div class="d-flex justify-content-between align-items-center">
+            <h6>How To Connect To A New dApp</h6>
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="openHowToModal()"
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Settings</h3>
+          <!-- <div class="d-flex justify-content-between align-items-center pb-3">
+            <div>
+              <p class="text-muted mb-1">
+                <small>Connected Beacon Node</small>
+              </p>
+              <h6>beacon-node-2.sky.papers.tech</h6>
+            </div>
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="openNodeSelectorModal()"
+            >
+              Change
+            </button>
+          </div> -->
+          <div *ngFor="let node of selectedNodes">
+            <p class="text-muted mb-0">
+              <small>{{ node[0] }}</small>
+            </p>
+            <h6>{{ node[1] }}</h6>
+          </div>
+          <div class="mt-5">
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="openNodeSelectorModal()"
+            >
+              Select Node
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Accounts</h3>
+          <p class="text-muted" *ngIf="(accounts$ | async)?.length === 0">
+            No Accounts, Add An Account First
+          </p>
+          <div
+            class="d-flex justify-content-between align-items-center pb-3"
+            *ngFor="let account of accounts$ | async"
+          >
+            <div>
+              <span class="text-monospace m-0 text-break d-block mr-3">{{
+                account.address
+              }}</span>
+              <span class="badge badge-primary">{{ account.type }}</span>
+              <span class="badge badge-light ml-md-2">{{
+                account.network
+              }}</span>
+              <span *ngIf="account.wallet" class="badge badge-light ml-md-2">{{
+                account.wallet.name
+              }}</span>
+            </div>
+            <button
+              (click)="removeAccount(account)"
+              type="button"
+              class="btn btn-light"
+            >
+              <img src="./assets/icons/trash-can-regular.svg" class="fa-icon" />
+            </button>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary mt-5"
+            (click)="openAccountsOverview()"
+          >
+            Add Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">DApp Peers & Permissions</h3>
+          <p class="text-muted" *ngIf="peersAndPermissions.length === 0">
+            No Peers
+          </p>
+          <div>
+            <accordion [isAnimated]="true">
+              <accordion-group *ngFor="let peer of peersAndPermissions">
+                <div
+                  class="justify-content-between align-items-center d-flex w-100"
+                  accordion-heading
+                >
+                  <h5 class="m-0">
+                    {{ peer[0].name }}
+                    <small>- {{ $any(peer[0])?.relayServer }}</small>
+                  </h5>
+
+                  <button
+                    type="button"
+                    class="btn btn-light"
+                    (click)="removePeer(peer[0])"
+                  >
+                    Disconnect
+                  </button>
+                </div>
+                <div class="pb-3">
+                  <json-formatter [json]="peer[0]"></json-formatter>
+                </div>
+                <div class="pb-5">
+                  <h5>Permissions</h5>
+
+                  <div class="row" *ngFor="let permission of peer[1]">
+                    <div class="col-12 col-md-9">
+                      <json-formatter [json]="permission"></json-formatter>
+                    </div>
+                    <div
+                      class="col-12 col-md-3 d-flex justify-content-end align-items-start"
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-light"
+                        (click)="removePermission(permission)"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <hr />
+                  </div>
+                </div>
+              </accordion-group>
+            </accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Messages</h3>
+          <p class="text-muted" *ngIf="beacon.log.length === 0">
+            No messages so far...
+          </p>
+          <accordion [isAnimated]="true">
+            <accordion-group *ngFor="let item of beacon.log">
+              <div
+                class="justify-content-between d-flex w-100"
+                accordion-heading
+              >
+                <strong>{{ item[1] | titlecase }}</strong>
+
+                <div>
+                  <ng-container *ngIf="item[3].length > 0">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary mx-1"
+                      *ngFor="let actionItem of item[3]"
+                      (click)="action($event, item, actionItem)"
+                    >
+                      {{ actionItem.title }}
+                    </button>
+                  </ng-container>
+                  <span class="badge badge-light ml-3">{{
+                    item[0] | date: "YYYY-MM-dd HH:mm"
+                  }}</span>
+                </div>
+              </div>
+              <json-formatter [json]="item[2]"></json-formatter>
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

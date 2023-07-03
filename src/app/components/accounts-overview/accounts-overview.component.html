@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Add Account</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p class="pb-4">
+    Select one of the following options to add a new account to the Beacon Debug
+    Wallet.
+  </p>
+
+  <div>
+    <h6>Watch-Only Wallet</h6>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="tz1.."
+        aria-label="tz1.."
+        [(ngModel)]="address"
+      />
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="addWatchOnlyWallet()"
+    >
+      Add Watch Only Wallet
+    </button>
+  </div>
+</div>
+
+<hr />
+<div class="modal-body">
+  <div class="pb-3">
+    <h6>Beacon Compatible Wallet</h6>
+    <button type="button" class="btn btn-primary" (click)="addBeaconWallet()">
+      Connect Wallet
+    </button>
+  </div>
+</div>
+<!-- 
+<hr />
+<div class="modal-body">
+  <div>
+    <h6>Mnemonic</h6>
+    <div class="input-group mb-3">
+      <textarea
+        class="form-control"
+        aria-label="Mnemonic"
+        placeholder="ugly opera ..."
+      ></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="addMnemonic()">
+      Add Mnemonic
+    </button>
+  </div>
+</div> -->
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    {{ closeBtnName }}
+  </button>
+</div>
