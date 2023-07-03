@@ -10,12 +10,7 @@ import { NetworkType } from '@airgap/beacon-types';
 export class NodeSelectorModalComponent implements OnInit {
   public customNodeAddress: string = '';
   public customNodeNetwork: NetworkType = NetworkType.MAINNET;
-  public networks: string[] = [
-    NetworkType.MAINNET,
-    NetworkType.GRANADANET,
-    NetworkType.HANGZHOUNET,
-    NetworkType.ITHACANET,
-  ];
+  public networks: string[] = [NetworkType.MAINNET, NetworkType.GHOSTNET];
 
   public nodes: [string, { selected: boolean; url: string }[]][] = [];
 

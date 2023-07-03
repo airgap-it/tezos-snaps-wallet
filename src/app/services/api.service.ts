@@ -15,32 +15,7 @@ const defaultNodes = {
       'https://mainnet-tezos.giganode.io',
     ],
   },
-  [NetworkType.DELPHINET]: {
-    selected: '',
-    all: [],
-  },
-  [NetworkType.EDONET]: {
-    selected: '',
-    all: [],
-  },
-  [NetworkType.FLORENCENET]: {
-    selected: '',
-    all: [],
-  },
-  [NetworkType.GRANADANET]: {
-    selected: 'https://granadanet.api.tez.ie',
-    all: [
-      'https://granadanet.api.tez.ie',
-      'https://granadanet.smartpy.io',
-      'https://rpczero.tzbeta.net',
-      'https://testnet-tezos.giganode.io/',
-    ],
-  },
-  [NetworkType.HANGZHOUNET]: {
-    selected: 'https://hangzhounet.api.tez.ie',
-    all: ['https://hangzhounet.api.tez.ie'],
-  },
-  [NetworkType.ITHACANET]: {
+  [NetworkType.GHOSTNET]: {
     selected: '',
     all: [],
   },
@@ -52,12 +27,7 @@ const defaultNodes = {
 export class ApiService {
   public RPCs: {
     [NetworkType.MAINNET]: { selected: string; all: string[] };
-    [NetworkType.DELPHINET]: { selected: string; all: string[] };
-    [NetworkType.EDONET]: { selected: string; all: string[] };
-    [NetworkType.FLORENCENET]: { selected: string; all: string[] };
-    [NetworkType.GRANADANET]: { selected: string; all: string[] };
-    [NetworkType.HANGZHOUNET]: { selected: string; all: string[] };
-    [NetworkType.ITHACANET]: { selected: string; all: string[] };
+    [NetworkType.GHOSTNET]: { selected: string; all: string[] };
   } = defaultNodes;
 
   constructor(
