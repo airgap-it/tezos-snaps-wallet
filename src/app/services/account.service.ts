@@ -4,8 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 export enum AccountType {
-  WATCH_ONLY = 'watch-only',
-  IN_MEMORY = 'in-memory',
+  METAMASK = 'metamask',
   BEACON = 'beacon',
 }
 
@@ -30,6 +29,8 @@ export class AccountService {
     Account[]
   >([]);
 
+  public hasAccounts: boolean = false;
+
   constructor(private readonly _storage: StorageService) {
     this.accounts$ = this._accounts$.asObservable();
     const accounts: Account[] = JSON.parse(
@@ -37,6 +38,10 @@ export class AccountService {
     );
 
     this._accounts$.next(accounts);
+
+    this.accounts$.subscribe((accounts) => {
+      this.hasAccounts = accounts.length > 0;
+    });
   }
 
   async addOrUpdateAccount(account: Account) {

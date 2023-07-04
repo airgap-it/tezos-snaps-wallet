@@ -27,6 +27,7 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
+    "@metamask/providers": "^11.1.0",
     "@taquito/rpc": "^10.0.0",
     "assert-polyfill": "*",
     "bootstrap": "^4.5.3",

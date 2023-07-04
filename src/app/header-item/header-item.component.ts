@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
 import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
+import { MetamaskService } from '../services/metamask.service';
 
 @Component({
   selector: 'app-header-item',
@@ -9,20 +10,7 @@ import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal
   styleUrls: ['./header-item.component.scss'],
 })
 export class HeaderItemComponent implements OnInit {
-  status = '';
-
-  constructor(public readonly modalService: BsModalService) {}
+  constructor(public readonly metamaskService: MetamaskService) {}
 
   ngOnInit(): void {}
-
-  clearStorage() {
-    const bsModalRef = this.modalService.show(ConfirmModalComponent, {});
-
-    bsModalRef.onHide?.pipe(first()).subscribe((result) => {
-      if (result === 'confirm') {
-        localStorage.clear();
-        window.location.reload();
-      }
-    });
-  }
 }

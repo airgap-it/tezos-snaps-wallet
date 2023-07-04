@@ -12,11 +12,9 @@ import {
   OperationResponseInput,
   SignPayloadResponseInput,
 } from '@airgap/beacon-types';
-import { DAppClient } from '@airgap/beacon-dapp';
 import { WalletClient } from '@airgap/beacon-wallet';
-import { LocalStorage, Serializer } from '@airgap/beacon-core';
+import { Serializer } from '@airgap/beacon-core';
 import { Injectable } from '@angular/core';
-// import * as bs58check from 'bs58check';
 
 import { first } from 'rxjs/operators';
 
@@ -25,6 +23,7 @@ import { Account, AccountService, AccountType } from './account.service';
 import { AccountsSelectionComponent } from '../components/accounts-selection/accounts-selection.component';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
+import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 
 export interface LogAction {
   title: string;
@@ -36,7 +35,6 @@ export interface LogAction {
 })
 export class BeaconService {
   public walletClient: WalletClient;
-  public dAppClient: DAppClient;
 
   log: [Date, string, any, LogAction[]][] = [];
 
@@ -45,44 +43,11 @@ export class BeaconService {
     private readonly modalService: BsModalService,
     private readonly apiService: ApiService
   ) {
-    const storage = new LocalStorage('INCOMING');
     this.walletClient = new WalletClient({
-      name: 'Beacon Debug Wallet',
-      storage,
+      name: 'Tezos Snaps Wallet',
     });
-
-    const storageDApp = new LocalStorage('OUTGOING');
-    this.dAppClient = new DAppClient({
-      name: 'Beacon Debug Wallet',
-      storage: storageDApp,
-    });
-    this.logClient();
 
     this.connect();
-  }
-
-  async logClient() {
-    console.log('DAPP: ---');
-    console.log('DAPP: name', this.dAppClient.name);
-    console.log('DAPP: appUrl', this.dAppClient.appUrl);
-    console.log('DAPP: iconUrl', this.dAppClient.iconUrl);
-    console.log('DAPP: beaconId', await this.dAppClient.beaconId);
-    console.log('DAPP: connectionStatus', this.dAppClient.connectionStatus);
-    console.log('DAPP: getAccounts', await this.dAppClient.getAccounts());
-    console.log('DAPP: blockExplorer', this.dAppClient.blockExplorer);
-    console.log(
-      'DAPP: getOwnAppMetadata',
-      await this.dAppClient.getOwnAppMetadata()
-    );
-    console.log('DAPP: getPeers', await this.dAppClient.getPeers());
-    console.log('DAPP: getAccounts', await this.dAppClient.getAccounts());
-    console.log('DAPP: getColorMode', await this.dAppClient.getColorMode());
-    console.log(
-      'DAPP: preferredNetwork',
-      await this.dAppClient.preferredNetwork
-    );
-    console.log('DAPP: ---');
-    console.log('DAPP: init');
   }
 
   connect() {
@@ -226,13 +191,6 @@ export class BeaconService {
       publicKey: account.publicKey,
     };
 
-    this.log.push([
-      new Date(),
-      `${message.appMetadata.name}: PERMISSION RESPONSE (${account.address})`,
-      response,
-      [],
-    ]);
-
     // Send response back to DApp
     this.walletClient.respond(response as any);
   }
@@ -242,6 +200,8 @@ export class BeaconService {
     message: OperationRequestOutput
   ) {
     const operations: PartialTezosOperation[] = message.operationDetails;
+
+    console.log('RPCs', (this.apiService.RPCs as any)[message.network.type]);
 
     const client = new RpcClient(
       (this.apiService.RPCs as any)[message.network.type].selected
@@ -280,174 +240,59 @@ export class BeaconService {
         chain_id: chainId,
       })
       .then((res) => {
-        this.log.push([
-          new Date(),
-          `${message.appMetadata.name}: RUN OPERATION SUCCESS`,
-          res,
-          this.getSimulateActionButtons(account, message),
-        ]);
         console.log('RUN_OPERATION RESULT', res);
       })
       .catch((err) => {
-        this.log.push([
-          new Date(),
-          `${message.appMetadata.name}: RUN OPERATION ERROR`,
-          err,
-          this.getSimulateActionButtons(account, message, err),
-        ]);
         console.log('RUN_OPERATION ERROR', err);
       })
-      .finally(() => {
-        if (account.type === AccountType.WATCH_ONLY) {
-          // TODO: Show alert, let users decide if he wants to abort (send error) or simulate success (send random hash back)
-        } else if (account.type === AccountType.BEACON) {
-          this.dAppClient
-            .requestOperation({
-              operationDetails: operations,
-            })
-            .then((res) => {
-              console.log('res', res);
-
-              const response: OperationResponseInput = {
-                id: message.id,
-                type: BeaconMessageType.OperationResponse,
-                transactionHash: res.transactionHash,
-              };
-
-              this.log.push([
-                new Date(),
-                `${message.appMetadata.name}: Relayed message back to dApp`,
-                response,
-                [],
-              ]);
-              this.walletClient.respond(response);
-            })
-            .catch((err) => {
-              console.log('BEACON WALLET ERROR', err);
-
-              const response = {
-                type: BeaconMessageType.Error,
-                id: message.id,
-                errorType: BeaconErrorType.ABORTED_ERROR,
-              };
-
-              this.log.push([
-                new Date(),
-                `${message.appMetadata.name}: Relayed error back to dApp`,
-                response,
-                [],
-              ]);
-              this.walletClient.respond(response as any);
-            });
-        } else if (account.type === AccountType.IN_MEMORY) {
-          // TODO: Add in memory signing
-        } else {
-          console.log('ACCOUNT TYPE NOT BEACON');
-        }
-      });
-  }
-
-  private handleSignPayload(
-    account: Account,
-    message: SignPayloadRequestOutput
-  ) {
-    if (account.type === AccountType.WATCH_ONLY) {
-      // TODO
-    } else if (account.type === AccountType.BEACON) {
-      this.dAppClient
-        .requestSignPayload({
-          signingType: message.signingType,
-          payload: message.payload,
-          sourceAddress: message.sourceAddress,
-        })
-        .then((res) => {
-          console.log('res', res);
-
-          const response: SignPayloadResponseInput = {
+      .finally(async () => {
+        console.log('METAMASK SENDING OPERATION REQUEST');
+        let response: OperationResponseInput | any;
+        try {
+          const result = await sendOperationRequest(operations);
+          response = {
             id: message.id,
-            type: BeaconMessageType.SignPayloadResponse,
-            signature: res.signature,
-            signingType: res.signingType,
+            type: BeaconMessageType.OperationResponse,
+            transactionHash: result,
           };
-
-          this.log.push([
-            new Date(),
-            `${message.appMetadata.name}: Relayed message back to dApp`,
-            response,
-            [],
-          ]);
-          this.walletClient.respond(response);
-        })
-        .catch((err) => {
-          console.log('BEACON WALLET ERROR', err);
-
-          const response = {
+        } catch (e) {
+          response = {
             type: BeaconMessageType.Error,
             id: message.id,
             errorType: BeaconErrorType.ABORTED_ERROR,
           };
+        }
 
-          this.log.push([
-            new Date(),
-            `${message.appMetadata.name}: Relayed error back to dApp`,
-            response,
-            [],
-          ]);
-          this.walletClient.respond(response as any);
-        });
-    } else if (account.type === AccountType.IN_MEMORY) {
-      // TODO: Add in memory signing
-    } else {
-      console.log('ACCOUNT TYPE NOT BEACON');
-    }
+        console.log('RESPONSE', response);
+
+        this.walletClient.respond(response);
+      });
   }
 
-  private getSimulateActionButtons(
+  private async handleSignPayload(
     account: Account,
-    message: BeaconRequestOutputMessage,
-    error?: any
+    message: SignPayloadRequestOutput
   ) {
-    if (account.type === AccountType.WATCH_ONLY) {
-      return [
-        {
-          title: 'Send Back Success',
-          action: () => {
-            this.walletClient.respond({
-              type: BeaconMessageType.OperationResponse,
-              id: message.id,
-              transactionHash: 'example-hash',
-            });
-          },
-        },
-        {
-          title: 'Send Back Error',
-          action: () => {
-            const tryFormatError = () => {
-              try {
-                return JSON.parse(error.body);
-              } catch {
-                return error;
-              }
-            };
-            const response = error
-              ? {
-                  type: BeaconMessageType.Error,
-                  id: message.id,
-                  errorType: BeaconErrorType.TRANSACTION_INVALID_ERROR,
-                  errorData: tryFormatError(),
-                }
-              : {
-                  type: BeaconMessageType.Error,
-                  id: message.id,
-                  errorType: BeaconErrorType.ABORTED_ERROR,
-                };
-
-            this.walletClient.respond(response as any);
-          },
-        },
-      ];
-    } else {
-      return [];
+    console.log('METAMASK SIGN REQUEST', message);
+    let response: SignPayloadResponseInput | any;
+    try {
+      const result = await sendSignRequest(message.payload);
+      response = {
+        id: message.id,
+        type: BeaconMessageType.SignPayloadResponse,
+        signature: result,
+        signingType: message.signingType,
+      };
+    } catch (e) {
+      response = {
+        type: BeaconMessageType.Error,
+        id: message.id,
+        errorType: BeaconErrorType.ABORTED_ERROR,
+      };
     }
+
+    this.walletClient.respond(response);
+
+    console.log('METAMASK SIGN RESPONSE', response);
   }
 }

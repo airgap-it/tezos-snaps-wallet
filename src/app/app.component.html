@@ -2,10 +2,6 @@
 <app-header-item></app-header-item>
 
 <div class="container-fluid px-md-5 pb-3">
-  <h5 class="pb-5">
-    Beacon Debug Wallet is a watch-only wallet for developers to debug
-    <a href="https://walletbeacon.io">Beacon</a> enabled dApps.
-  </h5>
   <div class="row pb-4">
     <div class="col-12 col-md-3">
       <div class="card mb-3">
@@ -110,13 +106,6 @@
               <img src="./assets/icons/trash-can-regular.svg" class="fa-icon" />
             </button>
           </div>
-          <button
-            type="button"
-            class="btn btn-primary mt-5"
-            (click)="openAccountsOverview()"
-          >
-            Add Account
-          </button>
         </div>
       </div>
     </div>
@@ -207,7 +196,7 @@
                     </button>
                   </ng-container>
                   <span class="badge badge-light ml-3">{{
-                    item[0] | date: "YYYY-MM-dd HH:mm"
+                    item[0] | date : "YYYY-MM-dd HH:mm"
                   }}</span>
                 </div>
               </div>

@@ -16,8 +16,8 @@ const defaultNodes = {
     ],
   },
   [NetworkType.GHOSTNET]: {
-    selected: '',
-    all: [],
+    selected: 'https://tezos-ghostnet-node-1.diamond.papers.tech',
+    all: ['https://tezos-ghostnet-node-1.diamond.papers.tech'],
   },
 };
 

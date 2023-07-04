@@ -11,6 +11,9 @@ import { NodeSelectorModalComponent } from './components/node-selector-modal/nod
 import { Account, AccountService } from './services/account.service';
 import { ApiService } from './services/api.service';
 import { BeaconService, LogAction } from './services/beacon.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { isFlask } from './utils/metamask';
+import { connectSnap, getSnap, sendGetAccount } from './utils/snap';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +25,7 @@ export class AppComponent implements OnInit {
 
   syncCode: string = '';
 
-  connected: boolean | undefined;
+  connected: boolean = false;
 
   accounts$: Observable<Account[]>;
 
@@ -34,10 +37,28 @@ export class AppComponent implements OnInit {
     public readonly api: ApiService,
     public readonly beacon: BeaconService,
     private readonly accountService: AccountService,
-    private readonly modalService: BsModalService
+    private readonly modalService: BsModalService,
+    private readonly router: Router
   ) {
     this.accounts$ = this.accountService.accounts$;
     this.loadNodes();
+    this.router.events.subscribe(async (event) => {
+      if (event instanceof NavigationEnd) {
+        const url = `https://placeholder.com/${event.url}`;
+        if (url.includes('?type=tzip10&data=')) {
+          console.log('xxx', url);
+
+          // Deeplink handler for beacon
+          const params: URLSearchParams = new URL(url).searchParams;
+          const payload = params.get('data');
+          if (payload) {
+            console.log('ADDING PEER');
+            await this.beacon.addPeer(payload);
+            this.router.navigate(['/']);
+          }
+        }
+      }
+    });
   }
 
   loadNodes() {
