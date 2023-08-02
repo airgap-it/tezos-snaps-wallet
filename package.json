@@ -17,7 +17,6 @@
   "private": true,
   "dependencies": {
     "@airgap/beacon-core": "4.0.4",
-    "@airgap/beacon-dapp": "4.0.4",
     "@airgap/beacon-wallet": "4.0.4",
     "@angular/animations": "~12.1.0",
     "@angular/common": "~12.1.0",

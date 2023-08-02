@@ -12,8 +12,7 @@ import { Account, AccountService } from './services/account.service';
 import { ApiService } from './services/api.service';
 import { BeaconService, LogAction } from './services/beacon.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { isFlask } from './utils/metamask';
-import { connectSnap, getSnap, sendGetAccount } from './utils/snap';
+import { TabSyncService } from './services/tab-sync.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +20,16 @@ import { connectSnap, getSnap, sendGetAccount } from './utils/snap';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  balance: string = '0';
+  address: string = '';
+  operations: {
+    hash: string;
+    amount: number;
+    sender: { address: string };
+    target: { address: string };
+    timestamp: string;
+  }[] = [];
+
   isCollapsed = true;
 
   syncCode: string = '';
@@ -38,7 +47,8 @@ export class AppComponent implements OnInit {
     public readonly beacon: BeaconService,
     private readonly accountService: AccountService,
     private readonly modalService: BsModalService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly tabSyncService: TabSyncService
   ) {
     this.accounts$ = this.accountService.accounts$;
     this.loadNodes();
@@ -57,6 +67,27 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/']);
           }
         }
+      }
+    });
+
+    setInterval(() => {
+      this.loadAccountInfo();
+    }, 10000);
+    this.loadAccountInfo();
+  }
+
+  loadAccountInfo() {
+    this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
+      if (accounts[0]) {
+        this.address = accounts[0].address;
+        this.balance = (await this.api.getBalanceOfAddress(accounts[0].address))
+          .shiftedBy(-6)
+          .toString(10);
+        this.operations = (await this.api.getTransactionHistory(
+          accounts[0].address
+        )) as any;
+        console.log('BALANCE: ', this.balance);
+        console.log('TXs: ', this.operations);
       }
     });
   }

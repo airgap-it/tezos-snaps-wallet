@@ -21,6 +21,12 @@ import { HowToModalComponent } from './components/how-to-modal/how-to-modal.comp
 import { AccountsSelectionComponent } from './components/accounts-selection/accounts-selection.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { LoadingModalComponent } from './components/loading-modal/loading-modal.component';
+import { AccountComponent } from './components/account/account.component';
+import { OperationsComponent } from './components/operations/operations.component';
+import { PermissionModalComponent } from './components/permission-modal/permission-modal.component';
+import { OperationModalComponent } from './components/operation-modal/operation-modal.component';
+import { SignPayloadModalComponent } from './components/sign-payload-modal/sign-payload-modal.component';
+import { NoAccountModalComponent } from './components/no-account-modal/no-account-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,12 @@ import { LoadingModalComponent } from './components/loading-modal/loading-modal.
     AccountsSelectionComponent,
     ConfirmModalComponent,
     LoadingModalComponent,
+    AccountComponent,
+    OperationsComponent,
+    PermissionModalComponent,
+    OperationModalComponent,
+    SignPayloadModalComponent,
+    NoAccountModalComponent,
   ],
   imports: [
     BrowserModule,

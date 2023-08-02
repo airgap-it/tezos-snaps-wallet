@@ -21,9 +21,14 @@ import { first } from 'rxjs/operators';
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
 import { Account, AccountService, AccountType } from './account.service';
 import { AccountsSelectionComponent } from '../components/accounts-selection/accounts-selection.component';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
+import { StorageEvents, TabSyncService } from './tab-sync.service';
+import { PermissionModalComponent } from '../components/permission-modal/permission-modal.component';
+import { OperationModalComponent } from '../components/operation-modal/operation-modal.component';
+import { SignPayloadModalComponent } from '../components/sign-payload-modal/sign-payload-modal.component';
+import { NoAccountModalComponent } from '../components/no-account-modal/no-account-modal.component';
 
 export interface LogAction {
   title: string;
@@ -38,7 +43,10 @@ export class BeaconService {
 
   log: [Date, string, any, LogAction[]][] = [];
 
+  private modalRef: BsModalRef<any> | undefined;
+
   constructor(
+    private readonly tabSyncService: TabSyncService,
     private readonly accountService: AccountService,
     private readonly modalService: BsModalService,
     private readonly apiService: ApiService
@@ -48,6 +56,10 @@ export class BeaconService {
     });
 
     this.connect();
+
+    this.tabSyncService.clear$.subscribe(() => {
+      this.modalRef?.hide();
+    });
   }
 
   connect() {
@@ -104,29 +116,48 @@ export class BeaconService {
             if (message.type === BeaconMessageType.PermissionRequest) {
               if (accounts.length === 0) {
                 console.error('No account found');
-                return;
-              } else if (accounts.length === 1) {
-                this.handlePermissionRequest(accounts[0], message);
-              } else {
                 const initialState: ModalOptions = {
+                  ignoreBackdropClick: true,
+                  keyboard: false,
                   initialState: {
-                    network: message.network,
+                    account: accounts[0],
                   },
                 };
-                const bsModalRef = this.modalService.show(
-                  AccountsSelectionComponent,
+
+                this.modalRef = this.modalService.show(
+                  NoAccountModalComponent,
                   initialState
                 );
 
-                bsModalRef.onHide?.pipe(first()).subscribe((result) => {
-                  if (result && (result as any).isAccount) {
-                    this.handlePermissionRequest(
-                      (result as any).account,
-                      message
-                    );
-                  }
+                this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+                  this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+                  console.log('NOW WE HAVE ACCOUNT!');
                 });
+
+                return;
               }
+              const initialState: ModalOptions = {
+                ignoreBackdropClick: true,
+                keyboard: false,
+                initialState: {
+                  account: accounts[0],
+                },
+              };
+
+              this.modalRef = this.modalService.show(
+                PermissionModalComponent,
+                initialState
+              );
+
+              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+                if (result && result === 'confirm') {
+                  this.handlePermissionRequest(accounts[0], message);
+                } else {
+                  this.sendAbortedError(message);
+                  console.log('DENIED', result);
+                }
+              });
             } else if (message.type === BeaconMessageType.OperationRequest) {
               const account = accounts.find(
                 (acc) => acc.address === message.sourceAddress
@@ -135,7 +166,31 @@ export class BeaconService {
                 console.error('No account found for ' + message.sourceAddress);
                 return;
               }
-              this.handleOperationRequest(account, message);
+              const initialState: ModalOptions = {
+                ignoreBackdropClick: true,
+                keyboard: false,
+                initialState: {
+                  network: message.network,
+                  callback: () => {
+                    console.log('xxxxxxx');
+                  },
+                },
+              };
+
+              this.modalRef = this.modalService.show(
+                OperationModalComponent,
+                initialState
+              );
+
+              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+                if (result && result === 'confirm') {
+                  this.handleOperationRequest(account, message);
+                } else {
+                  this.sendAbortedError(message);
+                  console.log('DENIED', result);
+                }
+              });
             } else if (message.type === BeaconMessageType.SignPayloadRequest) {
               const account = accounts.find(
                 (acc) => acc.address === message.sourceAddress
@@ -144,7 +199,28 @@ export class BeaconService {
                 console.error('No account found for ' + message.sourceAddress);
                 return;
               }
-              this.handleSignPayload(account, message);
+              const initialState: ModalOptions = {
+                ignoreBackdropClick: true,
+                keyboard: false,
+                initialState: {
+                  network: 'test',
+                },
+              };
+
+              this.modalRef = this.modalService.show(
+                SignPayloadModalComponent,
+                initialState
+              );
+
+              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+                if (result && result === 'confirm') {
+                  this.handleSignPayload(account, message);
+                } else {
+                  this.sendAbortedError(message);
+                  console.log('DENIED', result);
+                }
+              });
             } else {
               console.error('Message type not supported');
               console.error('Received: ', message);
@@ -160,6 +236,16 @@ export class BeaconService {
         })
         .catch((error) => console.error('connect error', error));
     }); // Establish P2P connection
+  }
+
+  private async sendAbortedError(message: any) {
+    const response: any = {
+      type: BeaconMessageType.Error,
+      id: message.id,
+      errorType: BeaconErrorType.ABORTED_ERROR,
+    };
+
+    this.walletClient.respond(response);
   }
 
   public async addPeer(text: string) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { connectSnap, getSnap, sendGetAccount } from '../utils/snap';
 import { isFlask } from '../utils/metamask';
 import { AccountService, AccountType } from './account.service';
-import { NetworkType } from '@airgap/beacon-dapp';
+import { NetworkType } from '@airgap/beacon-wallet';
 
 @Injectable({
   providedIn: 'root',

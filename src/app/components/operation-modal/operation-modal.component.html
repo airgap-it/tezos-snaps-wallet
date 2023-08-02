@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Submit Operation</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="decline()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    Do you want to create this transaction? <button (click)="test()"></button>
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="decline()">
+    Decline
+  </button>
+  <button type="button" class="btn btn-primary ml-1" (click)="confirm()">
+    Sign transaction
+  </button>
+</div>

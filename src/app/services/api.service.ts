@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { NetworkType } from '@airgap/beacon-types';
 import { StorageService } from './storage.service';
+import { RpcClient } from '@taquito/rpc';
 
 const defaultNodes = {
   [NetworkType.MAINNET]: {
@@ -90,5 +91,25 @@ export class ApiService {
     (this.RPCs as any)[network].all.push(rpc);
 
     this.selectRpc(network, rpc);
+  }
+
+  public async getBalanceOfAddress(address: string) {
+    const client = new RpcClient(this.RPCs['mainnet'].selected);
+
+    return client.getBalance(address);
+  }
+
+  public async getTransactionHistory(address: string) {
+    // https://api.mainnet.tzkt.io/
+    // https://api.ghostnet.tzkt.io/
+    const operations = await this.http
+      .get(`https://api.tzkt.io/v1/accounts/${address}/operations`)
+      .toPromise();
+
+    return operations;
+  }
+
+  public async getBlockexplorerAddressLink(address: string) {
+    return `https://tzkt.io/${address}`;
   }
 }

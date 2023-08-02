@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Share Account</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="decline()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    Do you want to give permissions for this account? {{ account?.address }}
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="decline()">
+    Decline
+  </button>
+  <button type="button" class="btn btn-primary ml-1" (click)="confirm()">
+    Share
+  </button>
+</div>

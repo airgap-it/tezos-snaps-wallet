@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Operations</h3>
+    <p class="text-muted" *ngIf="operations.length === 0">
+      No operations so far...
+    </p>
+    <accordion [isAnimated]="true">
+      <accordion-group *ngFor="let op of operations">
+        <div class="justify-content-between d-flex w-100" accordion-heading>
+          <strong>{{ op.amount }} mutez</strong>
+
+          <div>
+            <span class="badge badge-light ml-3">{{
+              op.timestamp | date : "YYYY-MM-dd HH:mm"
+            }}</span>
+          </div>
+        </div>
+        <json-formatter [json]="op"></json-formatter>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>

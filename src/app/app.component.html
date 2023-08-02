@@ -2,6 +2,18 @@
 <app-header-item></app-header-item>
 
 <div class="container-fluid px-md-5 pb-3">
+  <div class="row">
+    <div class="col-12">
+      <app-account [balance]="balance" [address]="address"></app-account>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-operations [operations]="operations"></app-operations>
+    </div>
+  </div>
+
   <div class="row pb-4">
     <div class="col-12 col-md-3">
       <div class="card mb-3">
