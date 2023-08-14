@@ -180,45 +180,6 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Messages</h3>
-          <p class="text-muted" *ngIf="beacon.log.length === 0">
-            No messages so far...
-          </p>
-          <accordion [isAnimated]="true">
-            <accordion-group *ngFor="let item of beacon.log">
-              <div
-                class="justify-content-between d-flex w-100"
-                accordion-heading
-              >
-                <strong>{{ item[1] | titlecase }}</strong>
-
-                <div>
-                  <ng-container *ngIf="item[3].length > 0">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary mx-1"
-                      *ngFor="let actionItem of item[3]"
-                      (click)="action($event, item, actionItem)"
-                    >
-                      {{ actionItem.title }}
-                    </button>
-                  </ng-container>
-                  <span class="badge badge-light ml-3">{{
-                    item[0] | date : "YYYY-MM-dd HH:mm"
-                  }}</span>
-                </div>
-              </div>
-              <json-formatter [json]="item[2]"></json-formatter>
-            </accordion-group>
-          </accordion>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <router-outlet></router-outlet>
