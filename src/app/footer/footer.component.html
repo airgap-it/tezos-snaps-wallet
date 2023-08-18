@@ -1,0 +1,20 @@
+<div class="row container">
+  <div
+    class="col-6"
+    style="
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      display: flex;
+    "
+  >
+    <span (click)="showModal('about')">About</span>
+    <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
+    <span (click)="showModal('privacy-policy')">Privacy Policy</span>
+    <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
+    <span (click)="showModal('terms')">Terms of Use</span>
+  </div>
+  <div class="col-6" style="text-align: right">
+    Powered by <u><a href="https://tezos.com">Tezos</a></u>
+  </div>
+</div>
