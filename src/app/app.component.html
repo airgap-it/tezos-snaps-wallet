@@ -1,4 +1,14 @@
-<div *ngIf="!accountService.hasAccounts" class="container-fluid px-md-5 pb-3">
+<div
+  *ngIf="!accountService.hasAccounts"
+  class="containerbox container-fluid px-md-5 pb-3"
+  style="flex-direction: column"
+>
+  <div style="padding-bottom: 80px">
+    <img src="./assets/tezos-logo.svg" /><span class="header pt-1 ml-1"
+      >Snaps Wallet</span
+    >
+  </div>
+  <br />
   <div
     style="
       width: 500px;
@@ -123,6 +133,7 @@
             align-items: center;
             gap: 10px;
             display: inline-flex;
+            cursor: pointer;
           "
         >
           <img
@@ -143,6 +154,7 @@
           </div>
         </div>
         <div
+          (click)="showModal('instructions')"
           style="
             justify-content: flex-start;
             align-items: center;
