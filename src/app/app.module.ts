@@ -27,6 +27,9 @@ import { PermissionModalComponent } from './components/permission-modal/permissi
 import { OperationModalComponent } from './components/operation-modal/operation-modal.component';
 import { SignPayloadModalComponent } from './components/sign-payload-modal/sign-payload-modal.component';
 import { NoAccountModalComponent } from './components/no-account-modal/no-account-modal.component';
+import { FooterComponent } from './footer/footer.component';
+import { TextModalComponent } from './text-modal/text-modal.component';
+import { NftListComponent } from './nft-list/nft-list.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { NoAccountModalComponent } from './components/no-account-modal/no-accoun
     OperationModalComponent,
     SignPayloadModalComponent,
     NoAccountModalComponent,
+    FooterComponent,
+    TextModalComponent,
+    NftListComponent,
   ],
   imports: [
     BrowserModule,

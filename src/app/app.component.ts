@@ -13,6 +13,9 @@ import { ApiService } from './services/api.service';
 import { BeaconService, LogAction } from './services/beacon.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { TabSyncService } from './services/tab-sync.service';
+import { Token } from './types';
+import BigNumber from 'bignumber.js';
+import { MetamaskService } from './services/metamask.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +24,7 @@ import { TabSyncService } from './services/tab-sync.service';
 })
 export class AppComponent implements OnInit {
   balance: string = '0';
+  usdBalance: string = '0';
   address: string = '';
   operations: {
     hash: string;
@@ -29,6 +33,10 @@ export class AppComponent implements OnInit {
     target: { address: string };
     timestamp: string;
   }[] = [];
+
+  price: number = 0;
+  nfts: Token[] = [];
+  tokens: Token[] = [];
 
   isCollapsed = true;
 
@@ -45,7 +53,8 @@ export class AppComponent implements OnInit {
   constructor(
     public readonly api: ApiService,
     public readonly beacon: BeaconService,
-    private readonly accountService: AccountService,
+    public readonly metamaskService: MetamaskService,
+    public readonly accountService: AccountService,
     private readonly modalService: BsModalService,
     private readonly router: Router,
     private readonly tabSyncService: TabSyncService
@@ -70,9 +79,9 @@ export class AppComponent implements OnInit {
       }
     });
 
-    setInterval(() => {
-      this.loadAccountInfo();
-    }, 10000);
+    // setInterval(() => {
+    //   this.loadAccountInfo();
+    // }, 10000);
     this.loadAccountInfo();
   }
 
@@ -88,6 +97,17 @@ export class AppComponent implements OnInit {
         )) as any;
         console.log('BALANCE: ', this.balance);
         console.log('TXs: ', this.operations);
+
+        this.price = await this.api.getXtzPrice();
+        this.nfts = await this.api.getNftBalances(accounts[0].address);
+        this.tokens = await this.api.getTokenBalances(accounts[0].address);
+
+        console.log('NFTs: ', this.nfts);
+        console.log('TOKENs: ', this.tokens);
+
+        this.usdBalance = new BigNumber(this.balance)
+          .times(this.price)
+          .toString(10);
       }
     });
   }
