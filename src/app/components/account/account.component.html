@@ -3,5 +3,9 @@
     <h3 class="card-title">Account</h3>
     <p class="text-muted">Address: {{ address }}</p>
     <p class="text-muted">Balance: {{ balance }} tez</p>
+    <p class="text-muted">${{ usdBalance }}</p>
+    <p *ngFor="let token of tokens">
+      {{ token.token.metadata.name }} {{ token.humanReadableBalance }}
+    </p>
   </div>
 </div>

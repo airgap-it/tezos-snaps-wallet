@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Token } from 'src/app/types';
 
 @Component({
   selector: 'app-account',
@@ -8,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AccountComponent implements OnInit {
   @Input() address: string = '';
   @Input() balance: string = '';
+  @Input() usdBalance: string = '';
+  @Input() tokens: Token[] = [];
 
   constructor() {}
 
