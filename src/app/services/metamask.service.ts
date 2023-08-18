@@ -34,6 +34,10 @@ export class MetamaskService {
       network: NetworkType.MAINNET,
       wallet: { name: 'MetaMask' },
     });
+
+    this.isSnapInstalled().then(
+      (isInstalled) => (this.isConnected = isInstalled)
+    );
   }
 
   async disconnect() {
