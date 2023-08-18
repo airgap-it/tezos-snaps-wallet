@@ -60,4 +60,10 @@ export class AccountService {
     localStorage.setItem('accounts', JSON.stringify(accounts));
     this._accounts$.next(accounts);
   }
+
+  async disconnect() {
+    localStorage.setItem('accounts', JSON.stringify([]));
+    this._accounts$.next([]);
+    this.hasAccounts = false;
+  }
 }
