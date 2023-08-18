@@ -18,3 +18,10 @@ export const isFlask = async () => {
     return false;
   }
 };
+
+export const isMetaMaskInstalled = (): boolean => {
+  if (typeof window.ethereum !== 'undefined') {
+    return window.ethereum.isMetaMask ?? false;
+  }
+  return false;
+};
