@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { NetworkType } from '@airgap/beacon-types';
 import { StorageService } from './storage.service';
 import { RpcClient } from '@taquito/rpc';
+import { Token } from '../types';
+import { DomSanitizer } from '@angular/platform-browser';
+import BigNumber from 'bignumber.js';
 
 const defaultNodes = {
   [NetworkType.MAINNET]: {
@@ -33,7 +36,8 @@ export class ApiService {
 
   constructor(
     public readonly http: HttpClient,
-    private readonly storage: StorageService
+    private readonly storage: StorageService,
+    private domSanitizer: DomSanitizer
   ) {
     try {
       const parsedNodes = JSON.parse(localStorage.getItem('nodes') ?? '');
@@ -111,5 +115,65 @@ export class ApiService {
 
   public async getBlockexplorerAddressLink(address: string) {
     return `https://tzkt.io/${address}`;
+  }
+
+  public async getTokenBalances(address: string): Promise<Token[]> {
+    return this.http
+      .get<Token[]>(
+        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance`
+      )
+      .toPromise()
+      .then((res) =>
+        res.map((item) => {
+          item.token.metadata.sanitizedThumbnailUri = item.token.metadata
+            .thumbnailUri
+            ? this.domSanitizer.bypassSecurityTrustUrl(
+                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
+                  6
+                )}/`
+              )
+            : undefined;
+          item.humanReadableBalance = new BigNumber(item.balance)
+            .shiftedBy(-new BigNumber(item.token.metadata.decimals).toNumber())
+            .toString(10);
+          return item;
+        })
+      );
+  }
+
+  public async getNftBalances(address: string): Promise<Token[]> {
+    return this.http
+      .get<Token[]>(
+        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&account=${address}`
+      )
+      .toPromise()
+      .then((res) =>
+        res.map((item) => {
+          item.token.metadata.sanitizedThumbnailUri = item.token.metadata
+            .displayUri
+            ? this.domSanitizer.bypassSecurityTrustUrl(
+                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.displayUri.slice(
+                  6
+                )}/`
+              )
+            : item.token.metadata.artifactUri
+            ? this.domSanitizer.bypassSecurityTrustUrl(
+                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.artifactUri.slice(
+                  6
+                )}/`
+              )
+            : undefined;
+          return item;
+        })
+      );
+  }
+
+  public async getXtzPrice(): Promise<number> {
+    return this.http
+      .get<{ USD: number }>(
+        `https://min-api.cryptocompare.com/data/price?fsym=XTZ&tsyms=USD`
+      )
+      .toPromise()
+      .then((res) => res.USD);
   }
 }
