@@ -16,7 +16,6 @@ import { TabSyncService } from './services/tab-sync.service';
 import { Token } from './types';
 import BigNumber from 'bignumber.js';
 import { MetamaskService } from './services/metamask.service';
-import { TextModalComponent } from './text-modal/text-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -225,16 +224,5 @@ export class AppComponent implements OnInit {
     ev.stopPropagation();
     item.action();
     logItem[3].length = 0;
-  }
-
-  showModal(type: 'instructions'): void {
-    const initialState: ModalOptions<TextModalComponent> = {
-      initialState: {
-        title: 'header',
-        text: type,
-        closeBtnName: 'Close',
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
   }
 }

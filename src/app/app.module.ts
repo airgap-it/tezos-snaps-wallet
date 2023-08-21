@@ -30,6 +30,7 @@ import { NoAccountModalComponent } from './components/no-account-modal/no-accoun
 import { FooterComponent } from './footer/footer.component';
 import { TextModalComponent } from './text-modal/text-modal.component';
 import { NftListComponent } from './nft-list/nft-list.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NftListComponent } from './nft-list/nft-list.component';
     FooterComponent,
     TextModalComponent,
     NftListComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
