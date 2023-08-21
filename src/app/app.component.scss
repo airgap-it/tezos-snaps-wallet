@@ -23,3 +23,13 @@ json-formatter > div:first-child {
 .header {
   font-size: 24px;
 }
+
+::ng-deep .card {
+  background: #f5f5f7;
+  border-radius: 20px;
+  border: none;
+}
+
+::ng-deep .card-header {
+  border: none;
+}
