@@ -130,6 +130,7 @@ export class AppComponent implements OnInit {
       } catch {}
     });
   }
+
   async connect() {
     const bsModalRef = this.modalService.show(LoadingModalComponent, {});
 
@@ -217,12 +218,5 @@ export class AppComponent implements OnInit {
       initialState
     );
     (bsModalRef.content as any).closeBtnName = 'Close';
-  }
-
-  action(ev: Event, logItem: any, item: LogAction) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    item.action();
-    logItem[3].length = 0;
   }
 }

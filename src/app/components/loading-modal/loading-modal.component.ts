@@ -7,6 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./loading-modal.component.scss'],
 })
 export class LoadingModalComponent implements OnInit {
+  text: string = 'Loading...';
+
   constructor(public readonly bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {}

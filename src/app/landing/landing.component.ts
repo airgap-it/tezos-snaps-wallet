@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MetamaskService } from '../services/metamask.service';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { TextModalComponent } from '../text-modal/text-modal.component';
+import { LoadingModalComponent } from '../components/loading-modal/loading-modal.component';
 
 @Component({
   selector: 'app-landing',
@@ -15,6 +16,26 @@ export class LandingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  async connect() {
+    const bsModalRef = this.showLoadingModal();
+    this.metamaskService.connect().finally(() => {
+      bsModalRef.hide();
+    });
+  }
+
+  showLoadingModal(): BsModalRef<LoadingModalComponent> {
+    const initialState: ModalOptions<LoadingModalComponent> = {
+      initialState: {
+        text: 'Connecting...',
+      },
+    };
+    const bsModalRef = this.modalService.show(
+      LoadingModalComponent,
+      initialState
+    );
+    return bsModalRef;
+  }
 
   showModal(type: 'instructions'): void {
     const initialState: ModalOptions<TextModalComponent> = {
