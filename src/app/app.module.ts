@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 import { HttpClientModule } from '@angular/common/http';
 import { CollapsableJsonComponent } from './collapsable-json/collapsable-json.component';
 
@@ -31,6 +33,8 @@ import { FooterComponent } from './footer/footer.component';
 import { TextModalComponent } from './text-modal/text-modal.component';
 import { NftListComponent } from './nft-list/nft-list.component';
 import { LandingComponent } from './landing/landing.component';
+import { QrModalComponent } from './qr-modal/qr-modal.component';
+import { SendTezModalComponent } from './send-tez-modal/send-tez-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,8 @@ import { LandingComponent } from './landing/landing.component';
     TextModalComponent,
     NftListComponent,
     LandingComponent,
+    QrModalComponent,
+    SendTezModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +70,7 @@ import { LandingComponent } from './landing/landing.component';
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
+    QRCodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -4,43 +4,113 @@
   >
     <a class="navbar-brand d-flex align-items-center" href="#" routerLink=""
       ><img src="./assets/tezos-logo.svg" /><span class="pt-1 ml-1"
-        >Snaps Wallet</span
-      ></a
+        >Tezos Wallet</span
+      ><span class="pt-1 ml-1">for MetaMask</span></a
     >
     <ul class="navbar-nav d-flex align-items-md-center">
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="/" target="_blank"
-          >Link</a
-        >
-      </li> -->
       <li class="ml-md-3">
-        <span class="d-flex align-items-center">
-          <!-- <img
-            src="./assets/icons/circle-check-regular.svg"
-            class="fa-icon mr-2"
-          /> -->
-          <button
-            type="button"
-            class="btn btn-light"
-            (click)="
-              accountService.hasAccounts
-                ? accountService.disconnect()
-                : metamaskService.connect()
+        <div
+          style="
+            height: 40px;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            display: inline-flex;
+          "
+        >
+          <div
+            style="
+              padding-left: 16px;
+              padding-right: 16px;
+              padding-top: 11px;
+              padding-bottom: 11px;
+              background: #f5f5f7;
+              border-radius: 100px;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: flex-start;
+              gap: 10px;
+              display: flex;
             "
           >
-            {{ accountService.hasAccounts ? "Disconnect" : "Connect" }}
-          </button>
+            <div
+              style="
+                justify-content: flex-start;
+                align-items: center;
+                gap: 12px;
+                display: inline-flex;
+              "
+            >
+              <img src="./assets/metamask-logo.svg" class="fa-icon mr-2" />
+              <div
+                style="
+                  justify-content: flex-start;
+                  align-items: center;
+                  gap: 6px;
+                  display: flex;
+                "
+              >
+                <div
+                  style="
+                    color: #1d1d1f;
+                    font-size: 14px;
+                    font-family: Inter;
+                    font-weight: 400;
+                    word-wrap: break-word;
+                  "
+                >
+                  {{ address }}
+                </div>
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      left: 5.33px;
+                      top: 5.33px;
+                      position: absolute;
+                      background: #86868b;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      left: 0.67px;
+                      top: 0.67px;
+                      position: absolute;
+                      background: #86868b;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="ml-md-3" (click)="showQrModal()">
+        <span class="d-flex align-items-center">
+          <img src="./assets/icons/qr-code-icon.svg" class="fa-icon mr-2" />
         </span>
       </li>
-      <!-- <li class="ml-md-3">
-        <span class="d-flex align-items-center">
+      <li class="ml-md-3">
+        <span
+          class="d-flex align-items-center"
+          (click)="
+            accountService.hasAccounts
+              ? accountService.disconnect()
+              : metamaskService.connect()
+          "
+        >
           <img
-            src="./assets/icons/circle-check-regular.svg"
+            src="./assets/icons/trash-can-regular.svg"
             class="fa-icon mr-2"
           />
-          Connected
+
+          {{ accountService.hasAccounts ? "Disconnect" : "Connect" }}
         </span>
-      </li> -->
+      </li>
     </ul>
   </nav>
 </div>
