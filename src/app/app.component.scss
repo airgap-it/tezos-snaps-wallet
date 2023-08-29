@@ -33,3 +33,33 @@ json-formatter > div:first-child {
 ::ng-deep .card-header {
   border: none;
 }
+
+::ng-deep .btn-circle {
+  border-radius: 100px;
+}
+
+::ng-deep modal-container {
+  //   background: rgba(29, 29, 31, 0.1);
+  backdrop-filter: blur(15px);
+
+  .modal-header {
+    border-bottom: none;
+  }
+}
+
+::ng-deep .modal-content {
+  border-radius: 20px;
+  padding: 50px;
+
+  .close {
+    margin-top: -50px;
+    margin-right: -50px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    background: #f5f5f7;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+  }
+}
