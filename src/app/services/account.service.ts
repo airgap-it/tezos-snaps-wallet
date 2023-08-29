@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
+enum StorageKeys {
+  ACCOUNTS = 'accounts',
+}
+
 export enum AccountType {
   METAMASK = 'metamask',
 }
@@ -32,7 +36,7 @@ export class AccountService {
   constructor(private readonly _storage: StorageService) {
     this.accounts$ = this._accounts$.asObservable();
     const accounts: Account[] = JSON.parse(
-      localStorage.getItem('accounts') ?? '[]'
+      localStorage.getItem(StorageKeys.ACCOUNTS) ?? '[]'
     );
 
     this._accounts$.next(accounts);
@@ -47,7 +51,7 @@ export class AccountService {
     if (accounts.every((acc) => acc.address !== account.address)) {
       accounts.push(account);
     }
-    localStorage.setItem('accounts', JSON.stringify(accounts));
+    localStorage.setItem(StorageKeys.ACCOUNTS, JSON.stringify(accounts));
     this._accounts$.next(accounts);
   }
 
@@ -55,12 +59,12 @@ export class AccountService {
     const accounts = this._accounts$.value.filter(
       (acc) => acc.address !== account.address
     );
-    localStorage.setItem('accounts', JSON.stringify(accounts));
+    localStorage.setItem(StorageKeys.ACCOUNTS, JSON.stringify(accounts));
     this._accounts$.next(accounts);
   }
 
   async disconnect() {
-    localStorage.setItem('accounts', JSON.stringify([]));
+    localStorage.setItem(StorageKeys.ACCOUNTS, JSON.stringify([]));
     this._accounts$.next([]);
     this.hasAccounts = false;
   }

@@ -62,32 +62,8 @@ export class BeaconService {
   }
 
   connect() {
+    // Handle incoming messages from beacon and relay it to MetaMask
     this.walletClient.init().then(async () => {
-      console.log('WALLET ---');
-      console.log('WALLET name', this.walletClient.name);
-      console.log('WALLET appUrl', this.walletClient.appUrl);
-      console.log('WALLET iconUrl', this.walletClient.iconUrl);
-      console.log('WALLET beaconId', await this.walletClient.beaconId);
-      console.log(
-        'WALLET connectionStatus',
-        this.walletClient.connectionStatus
-      );
-      console.log('WALLET getAccounts', await this.walletClient.getAccounts());
-      console.log(
-        'WALLET getAppMetadataList',
-        await this.walletClient.getAppMetadataList()
-      );
-      console.log(
-        'WALLET getOwnAppMetadata',
-        await this.walletClient.getOwnAppMetadata()
-      );
-      console.log('WALLET getPeers', await this.walletClient.getPeers());
-      console.log(
-        'WALLET getPermissions',
-        await this.walletClient.getPermissions()
-      );
-      console.log('WALLET ---');
-      console.log('WALLET init');
       this.walletClient
         .connect(async (message) => {
           this.log.push([
