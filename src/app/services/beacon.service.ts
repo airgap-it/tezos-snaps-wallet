@@ -52,7 +52,7 @@ export class BeaconService {
     private readonly apiService: ApiService
   ) {
     this.walletClient = new WalletClient({
-      name: 'Tezos Snaps Wallet',
+      name: 'Tezos Wallet for MetaMask',
     });
 
     this.connect();
