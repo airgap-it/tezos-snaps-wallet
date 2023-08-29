@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { SendTezModalComponent } from 'src/app/components/send-tez-modal/send-tez-modal.component';
-import { Token } from 'src/app/types';
+import { SendTezModalComponent } from '../../modals/send-tez-modal/send-tez-modal.component';
+import { Token } from '../../types';
 
 @Component({
   selector: 'app-account',

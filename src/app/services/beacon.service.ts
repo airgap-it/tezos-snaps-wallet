@@ -25,10 +25,10 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
-import { PermissionModalComponent } from '../components/permission-modal/permission-modal.component';
-import { OperationModalComponent } from '../components/operation-modal/operation-modal.component';
-import { SignPayloadModalComponent } from '../components/sign-payload-modal/sign-payload-modal.component';
-import { NoAccountModalComponent } from '../components/no-account-modal/no-account-modal.component';
+import { PermissionModalComponent } from '../modals/permission-modal/permission-modal.component';
+import { OperationModalComponent } from '../modals/operation-modal/operation-modal.component';
+import { SignPayloadModalComponent } from '../modals/sign-payload-modal/sign-payload-modal.component';
+import { NoAccountModalComponent } from '../modals/no-account-modal/no-account-modal.component';
 
 export interface LogAction {
   title: string;

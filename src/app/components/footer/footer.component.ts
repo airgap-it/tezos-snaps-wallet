@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { HowToModalComponent } from '../how-to-modal/how-to-modal.component';
-import { TextModalComponent } from '../text-modal/text-modal.component';
+import { HowToModalComponent } from '../../modals/how-to-modal/how-to-modal.component';
+import { TextModalComponent } from '../../modals/text-modal/text-modal.component';
 
 @Component({
   selector: 'app-footer',

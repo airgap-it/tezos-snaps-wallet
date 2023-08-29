@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { LoadingModalComponent } from '../components/loading-modal/loading-modal.component';
+import { LoadingModalComponent } from '../modals/loading-modal/loading-modal.component';
 
 export enum StorageEvents {
   PAGE_OPEN_PING = 'evt_page_open_ping',

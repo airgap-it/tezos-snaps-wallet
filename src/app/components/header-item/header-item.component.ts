@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '../../modals/confirm-modal/confirm-modal.component';
 import { MetamaskService } from '../../services/metamask.service';
 import { AccountService } from '../../services/account.service';
-import { QrModalComponent } from '../qr-modal/qr-modal.component';
+import { QrModalComponent } from '../../modals/qr-modal/qr-modal.component';
 
 @Component({
   selector: 'app-header-item',
