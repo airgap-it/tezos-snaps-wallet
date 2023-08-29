@@ -1,11 +1,24 @@
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title">Account</h3>
-    <p class="text-muted">Address: {{ address }}</p>
-    <p class="text-muted">Balance: {{ balance }} tez</p>
+    <h3 class="card-title">Balance</h3>
+    <p class="text-muted">{{ balance }}ꜩ</p>
     <p class="text-muted">${{ usdBalance }}</p>
     <p *ngFor="let token of tokens">
       {{ token.token.metadata.name }} {{ token.humanReadableBalance }}
     </p>
+    <button
+      type="button"
+      class="btn btn-outline-primary btn-circle d-flex justify-content-between"
+      (click)="openLink('https://www.moonpay.com/')"
+    >
+      Buy tez
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary btn-circle d-flex justify-content-between mb-5"
+      (click)="sendTez()"
+    >
+      Send
+    </button>
   </div>
 </div>
