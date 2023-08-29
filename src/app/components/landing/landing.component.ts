@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MetamaskService } from '../services/metamask.service';
+import { MetamaskService } from '../../services/metamask.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { TextModalComponent } from '../text-modal/text-modal.component';
-import { LoadingModalComponent } from '../components/loading-modal/loading-modal.component';
+import { LoadingModalComponent } from '../loading-modal/loading-modal.component';
 
 @Component({
   selector: 'app-landing',

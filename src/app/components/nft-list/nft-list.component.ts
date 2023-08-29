@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Token } from '../types';
+import { Token } from '../../types';
 
 @Component({
   selector: 'app-nft-list',

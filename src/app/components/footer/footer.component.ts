@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { HowToModalComponent } from '../components/how-to-modal/how-to-modal.component';
+import { HowToModalComponent } from '../how-to-modal/how-to-modal.component';
 import { TextModalComponent } from '../text-modal/text-modal.component';
 
 @Component({

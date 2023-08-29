@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CollapsableJsonComponent } from './collapsable-json/collapsable-json.component';
+import { CollapsableJsonComponent } from './components/collapsable-json/collapsable-json.component';
 
 import { DirectivesModule } from './directives/directives.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccountsOverviewComponent } from './components/accounts-overview/accounts-overview.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { HeaderItemComponent } from './header-item/header-item.component';
+import { HeaderItemComponent } from './components/header-item/header-item.component';
 import { NodeSelectorModalComponent } from './components/node-selector-modal/node-selector-modal.component';
 import { HowToModalComponent } from './components/how-to-modal/how-to-modal.component';
 import { AccountsSelectionComponent } from './components/accounts-selection/accounts-selection.component';
@@ -29,12 +29,12 @@ import { PermissionModalComponent } from './components/permission-modal/permissi
 import { OperationModalComponent } from './components/operation-modal/operation-modal.component';
 import { SignPayloadModalComponent } from './components/sign-payload-modal/sign-payload-modal.component';
 import { NoAccountModalComponent } from './components/no-account-modal/no-account-modal.component';
-import { FooterComponent } from './footer/footer.component';
-import { TextModalComponent } from './text-modal/text-modal.component';
-import { NftListComponent } from './nft-list/nft-list.component';
-import { LandingComponent } from './landing/landing.component';
-import { QrModalComponent } from './qr-modal/qr-modal.component';
-import { SendTezModalComponent } from './send-tez-modal/send-tez-modal.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TextModalComponent } from './components/text-modal/text-modal.component';
+import { NftListComponent } from './components/nft-list/nft-list.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { QrModalComponent } from './components/qr-modal/qr-modal.component';
+import { SendTezModalComponent } from './components/send-tez-modal/send-tez-modal.component';
 
 @NgModule({
   declarations: [
