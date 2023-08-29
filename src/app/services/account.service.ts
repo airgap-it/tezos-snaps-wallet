@@ -5,10 +5,8 @@ import { StorageService } from './storage.service';
 
 export enum AccountType {
   METAMASK = 'metamask',
-  BEACON = 'beacon',
 }
 
-// TODO: Convert to class with subclasses for watch-only/beacon/memory
 export interface Account {
   address: string;
   publicKey: string;

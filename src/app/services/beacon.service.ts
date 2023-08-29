@@ -20,7 +20,6 @@ import { first } from 'rxjs/operators';
 
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
 import { Account, AccountService, AccountType } from './account.service';
-import { AccountsSelectionComponent } from '../components/accounts-selection/accounts-selection.component';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';

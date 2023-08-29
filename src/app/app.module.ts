@@ -20,7 +20,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { HeaderItemComponent } from './components/header-item/header-item.component';
 import { NodeSelectorModalComponent } from './modals/node-selector-modal/node-selector-modal.component';
 import { HowToModalComponent } from './modals/how-to-modal/how-to-modal.component';
-import { AccountsSelectionComponent } from './components/accounts-selection/accounts-selection.component';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
 import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
 import { AccountComponent } from './components/account/account.component';
@@ -44,7 +43,6 @@ import { SendTezModalComponent } from './modals/send-tez-modal/send-tez-modal.co
     HeaderItemComponent,
     NodeSelectorModalComponent,
     HowToModalComponent,
-    AccountsSelectionComponent,
     ConfirmModalComponent,
     LoadingModalComponent,
     AccountComponent,
