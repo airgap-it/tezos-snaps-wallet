@@ -1,7 +1,8 @@
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title">NFTs</h3>
-    <div class="grid-container">
+    <h3 class="card-title">Collectibles</h3>
+    <p class="text-muted" *ngIf="nfts.length === 0">No items</p>
+    <div class="grid-container" *ngIf="nfts.length > 0">
       <div class="grid-item" *ngFor="let nft of nfts">
         <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
         <p>{{ nft.token.metadata.name }}</p>
