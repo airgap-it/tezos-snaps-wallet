@@ -95,14 +95,7 @@
         </span>
       </li>
       <li class="ml-md-3">
-        <span
-          class="d-flex align-items-center"
-          (click)="
-            accountService.hasAccounts
-              ? accountService.disconnect()
-              : metamaskService.connect()
-          "
-        >
+        <span class="d-flex align-items-center" (click)="disconnect()">
           <img
             src="./assets/icons/trash-can-regular.svg"
             class="fa-icon mr-2"

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Remove Account</h4>
+  <h4 class="modal-title pull-left">{{ title }}</h4>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -10,11 +10,11 @@
   </button>
 </div>
 <div class="modal-body">
-  <p>Do you want to remove this account?</p>
+  <p>{{ text }}</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" (click)="decline()">Close</button>
   <button type="button" class="btn btn-primary ml-1" (click)="confirm()">
-    Remove Account
+    Confirm
   </button>
 </div>

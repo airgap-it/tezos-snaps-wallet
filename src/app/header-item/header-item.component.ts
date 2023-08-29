@@ -28,7 +28,6 @@ export class HeaderItemComponent implements OnInit {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {
         this.address = accounts[0].address;
-        console.log('ASDLKASDLAKSDLKASD ', this.address);
       }
     });
   }
@@ -42,5 +41,25 @@ export class HeaderItemComponent implements OnInit {
       class: 'modal-dialog-centered',
     };
     const bsModalRef = this.modalService.show(QrModalComponent, initialState);
+  }
+
+  disconnect() {
+    const initialState: ModalOptions<ConfirmModalComponent> = {
+      initialState: {
+        title: 'Disconnect',
+        text: 'Are you sure you want to disconnet from MetaMask?',
+        confirmCallback: () => {
+          this.accountService.hasAccounts
+            ? this.accountService.disconnect()
+            : this.metamaskService.connect();
+        },
+      },
+      class: 'modal-dialog-centered',
+    };
+
+    const bsModalRef = this.modalService.show(
+      ConfirmModalComponent,
+      initialState
+    );
   }
 }

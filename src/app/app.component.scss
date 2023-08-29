@@ -45,6 +45,9 @@ json-formatter > div:first-child {
   .modal-header {
     border-bottom: none;
   }
+  .modal-footer {
+    border-top: none;
+  }
 }
 
 ::ng-deep .modal-content {
