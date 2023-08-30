@@ -40,19 +40,6 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showConfirmModal() {
-    const initialState: ModalOptions<LoadingModalComponent> = {
-      ...this.modalOptions,
-    };
-
-    const bsModalRef = this.modalService.show(
-      ConfirmModalComponent,
-      initialState
-    );
-
-    return bsModalRef;
-  }
-
   showNodeSelectorModal() {
     const initialState: ModalOptions<NodeSelectorModalComponent> = {
       ...this.modalOptions,

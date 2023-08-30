@@ -151,37 +151,26 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async removePeer(peer: PeerInfo) {
-    const bsModalRef = this.modalService.showConfirmModal();
-
-    bsModalRef.onHide?.pipe(first()).subscribe(async (result) => {
-      if (result === 'confirm') {
-        await this.beacon.walletClient.removePeer(peer as any, true);
-        this.getPeers();
-      }
+  async removePeer(ev: MouseEvent, peer: PeerInfo) {
+    ev.stopPropagation();
+    const bsModalRef = this.modalService.showConfirmCallbackModal(async () => {
+      await this.beacon.walletClient.removePeer(peer as any, true);
+      this.getPeers();
     });
   }
 
   async removePermission(permission: PermissionInfo) {
-    const bsModalRef = this.modalService.showConfirmModal();
-
-    bsModalRef.onHide?.pipe(first()).subscribe(async (result) => {
-      if (result === 'confirm') {
-        await this.beacon.walletClient.removePermission(
-          permission.accountIdentifier
-        );
-        this.getPeers();
-      }
+    const bsModalRef = this.modalService.showConfirmCallbackModal(async () => {
+      await this.beacon.walletClient.removePermission(
+        permission.accountIdentifier
+      );
+      this.getPeers();
     });
   }
 
   async removeAccount(account: Account) {
-    const bsModalRef = this.modalService.showConfirmModal();
-
-    bsModalRef.onHide?.pipe(first()).subscribe((result) => {
-      if (result === 'confirm') {
-        this.accountService.removeAccount(account);
-      }
+    const bsModalRef = this.modalService.showConfirmCallbackModal(() => {
+      this.accountService.removeAccount(account);
     });
   }
 
