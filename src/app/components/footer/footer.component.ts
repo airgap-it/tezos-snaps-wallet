@@ -11,7 +11,15 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  showModal(type: 'about' | 'privacy-policy' | 'terms'): void {
-    this.modalService.showXModal();
+  showAboutModal() {
+    this.modalService.showAboutModal();
+  }
+
+  showPrivacyModal() {
+    this.modalService.showPrivacyModal();
+  }
+
+  showTosModal() {
+    this.modalService.showTosModal();
   }
 }

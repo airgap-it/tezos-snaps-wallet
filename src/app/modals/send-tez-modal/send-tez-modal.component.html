@@ -12,22 +12,26 @@
   <h4 class="modal-title">Send tez</h4>
   <div class="text-left">
     <label for="amount"><h5>Amount</h5></label>
-    <input
-      type="input"
-      id="amount"
-      class="form-control"
-      aria-describedby="passwordHelpBlock"
-    />
+    <input [(ngModel)]="amount" type="input" id="amount" class="form-control" />
     <small class="form-text text-muted"> USD: $0.00 </small>
     <small class="form-text text-muted"> Fee: 0.00tz </small>
   </div>
 
   <div class="text-left mt-3">
     <label for="sendTo"><h5>Send To:</h5></label>
-    <input type="input" id="sendTo" class="form-control" />
+    <input
+      [(ngModel)]="recipient"
+      type="input"
+      id="sendTo"
+      class="form-control"
+    />
   </div>
 
-  <button type="button" class="btn btn-primary btn-circle btn-block mt-3">
+  <button
+    (click)="send()"
+    type="button"
+    class="btn btn-primary btn-circle btn-block mt-3"
+  >
     Preview
   </button>
 </div>

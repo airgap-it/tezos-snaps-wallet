@@ -186,13 +186,13 @@ export class AppComponent implements OnInit {
   }
 
   openNodeSelectorModal() {
-    const bsModalRef = this.modalService.openNodeSelectorModal();
+    const bsModalRef = this.modalService.showNodeSelectorModal();
     bsModalRef.onHide?.subscribe(() => {
       this.loadNodes();
     });
   }
 
   openHowToModal() {
-    this.modalService.openHowToModal();
+    this.modalService.showHowToModal();
   }
 }

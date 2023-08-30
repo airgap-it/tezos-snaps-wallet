@@ -13,6 +13,7 @@ import { SignPayloadModalComponent } from '../modals/sign-payload-modal/sign-pay
 import { SendTezModalComponent } from '../modals/send-tez-modal/send-tez-modal.component';
 import { TextModalComponent } from '../modals/text-modal/text-modal.component';
 import { QrModalComponent } from '../modals/qr-modal/qr-modal.component';
+import { Token } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +53,7 @@ export class ModalService {
     return bsModalRef;
   }
 
-  openNodeSelectorModal() {
+  showNodeSelectorModal() {
     const initialState: ModalOptions<NodeSelectorModalComponent> = {
       ...this.modalOptions,
       initialState: {},
@@ -66,7 +67,7 @@ export class ModalService {
     return bsModalRef;
   }
 
-  openHowToModal() {
+  showHowToModal() {
     const initialState: ModalOptions<HowToModalComponent> = {
       ...this.modalOptions,
       initialState: {
@@ -123,7 +124,7 @@ export class ModalService {
       keyboard: false,
       initialState: {
         callback: () => {
-          console.log('xxxxxxx');
+          console.log('callback');
         },
       },
     };
@@ -156,10 +157,9 @@ export class ModalService {
     const initialState: ModalOptions<SendTezModalComponent> = {
       ...this.modalOptions,
       initialState: {
-        recipient: 'tz1',
-        amount: '123',
+        recipient: '',
+        amount: '',
       },
-      class: 'modal-dialog-centered',
     };
 
     const bsModalRef = this.modalService.show(
@@ -181,6 +181,8 @@ export class ModalService {
     };
 
     const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
   }
 
   showQRModal(data: string) {
@@ -192,6 +194,8 @@ export class ModalService {
       },
     };
     const bsModalRef = this.modalService.show(QrModalComponent, initialState);
+
+    return bsModalRef;
   }
 
   showConfirmCallbackModal(confirmCallback: () => void) {
@@ -208,6 +212,8 @@ export class ModalService {
       ConfirmModalComponent,
       initialState
     );
+
+    return bsModalRef;
   }
 
   showInstructionsModal() {
@@ -220,5 +226,68 @@ export class ModalService {
       },
     };
     const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showNFTModal(nft: Token) {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showAboutModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        title: 'About',
+        text: 'text',
+      },
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showPrivacyModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        title: 'Privacy Policy',
+        text: 'text',
+      },
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showTosModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        title: 'Terms of Service',
+        text: 'text',
+      },
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showNotConnectedModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        title: 'Not connected',
+        text: 'text',
+      },
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
   }
 }
