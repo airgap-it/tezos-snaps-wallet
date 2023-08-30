@@ -153,14 +153,14 @@ export class AppComponent implements OnInit {
 
   async removePeer(ev: MouseEvent, peer: PeerInfo) {
     ev.stopPropagation();
-    const bsModalRef = this.modalService.showConfirmCallbackModal(async () => {
+    const bsModalRef = this.modalService.showConfirmModal(async () => {
       await this.beacon.walletClient.removePeer(peer as any, true);
       this.getPeers();
     });
   }
 
   async removePermission(permission: PermissionInfo) {
-    const bsModalRef = this.modalService.showConfirmCallbackModal(async () => {
+    const bsModalRef = this.modalService.showConfirmModal(async () => {
       await this.beacon.walletClient.removePermission(
         permission.accountIdentifier
       );
@@ -169,7 +169,7 @@ export class AppComponent implements OnInit {
   }
 
   async removeAccount(account: Account) {
-    const bsModalRef = this.modalService.showConfirmCallbackModal(() => {
+    const bsModalRef = this.modalService.showConfirmModal(() => {
       this.accountService.removeAccount(account);
     });
   }

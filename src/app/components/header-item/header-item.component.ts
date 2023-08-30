@@ -37,7 +37,7 @@ export class HeaderItemComponent implements OnInit {
   }
 
   disconnect() {
-    this.modalService.showConfirmCallbackModal(() => {
+    this.modalService.showConfirmModal(() => {
       this.accountService.hasAccounts
         ? this.accountService.disconnect()
         : this.metamaskService.connect();

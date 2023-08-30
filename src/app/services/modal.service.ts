@@ -185,7 +185,7 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showConfirmCallbackModal(confirmCallback: () => void) {
+  showConfirmModal(confirmCallback: () => void) {
     const initialState: ModalOptions<ConfirmModalComponent> = {
       ...this.modalOptions,
       initialState: {
