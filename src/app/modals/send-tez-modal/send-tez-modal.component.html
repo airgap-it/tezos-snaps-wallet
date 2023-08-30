@@ -12,9 +12,14 @@
   <h4 class="modal-title">Send tez</h4>
   <div class="text-left">
     <label for="amount"><h5>Amount</h5></label>
-    <input [(ngModel)]="amount" type="input" id="amount" class="form-control" />
-    <small class="form-text text-muted"> USD: $0.00 </small>
-    <small class="form-text text-muted"> Fee: 0.00tz </small>
+    <input
+      [ngModel]="amount"
+      (ngModelChange)="onAmountChanged($event)"
+      type="input"
+      id="amount"
+      class="form-control"
+    />
+    <small class="form-text text-muted"> USD: ${{ usdAmount }} </small>
   </div>
 
   <div class="text-left mt-3">
@@ -31,6 +36,7 @@
     (click)="send()"
     type="button"
     class="btn btn-primary btn-circle btn-block mt-3"
+    [disabled]="amount.length === 0 || recipient.length === 0"
   >
     Preview
   </button>
