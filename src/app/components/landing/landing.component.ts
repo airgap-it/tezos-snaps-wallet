@@ -17,9 +17,15 @@ export class LandingComponent implements OnInit {
 
   async connect() {
     const bsModalRef = this.showLoadingModal();
-    this.metamaskService.connect().finally(() => {
-      bsModalRef.hide();
-    });
+    this.metamaskService
+      .connect()
+      .then(() => {
+        bsModalRef.hide();
+        this.modalService.showConnectedModal();
+      })
+      .catch(async () => {
+        bsModalRef.hide();
+      });
   }
 
   showLoadingModal() {

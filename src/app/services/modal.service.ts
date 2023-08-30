@@ -8,12 +8,12 @@ import { NoAccountModalComponent } from '../modals/no-account-modal/no-account-m
 import { Account } from './account.service';
 import { PermissionModalComponent } from '../modals/permission-modal/permission-modal.component';
 import { OperationModalComponent } from '../modals/operation-modal/operation-modal.component';
-import { Network } from '@airgap/beacon-wallet';
 import { SignPayloadModalComponent } from '../modals/sign-payload-modal/sign-payload-modal.component';
 import { SendTezModalComponent } from '../modals/send-tez-modal/send-tez-modal.component';
 import { TextModalComponent } from '../modals/text-modal/text-modal.component';
 import { QrModalComponent } from '../modals/qr-modal/qr-modal.component';
 import { Token } from '../types';
+import { ConnectedModalComponent } from '../modals/connected-modal/connected-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -287,6 +287,20 @@ export class ModalService {
       },
     };
     const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
+  showConnectedModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {},
+    };
+
+    const bsModalRef = this.modalService.show(
+      ConnectedModalComponent,
+      initialState
+    );
 
     return bsModalRef;
   }

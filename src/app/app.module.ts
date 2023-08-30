@@ -34,6 +34,7 @@ import { NftListComponent } from './components/nft-list/nft-list.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { QrModalComponent } from './modals/qr-modal/qr-modal.component';
 import { SendTezModalComponent } from './modals/send-tez-modal/send-tez-modal.component';
+import { ConnectedModalComponent } from './modals/connected-modal/connected-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { SendTezModalComponent } from './modals/send-tez-modal/send-tez-modal.co
     LandingComponent,
     QrModalComponent,
     SendTezModalComponent,
+    ConnectedModalComponent,
   ],
   imports: [
     BrowserModule,
