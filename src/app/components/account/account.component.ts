@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalOptions } from 'ngx-bootstrap/modal';
 import { SendTezModalComponent } from '../../modals/send-tez-modal/send-tez-modal.component';
 import { Token } from '../../types';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-account',
@@ -14,7 +15,7 @@ export class AccountComponent implements OnInit {
   @Input() usdBalance: string = '';
   @Input() tokens: Token[] = [];
 
-  constructor(public readonly modalService: BsModalService) {}
+  constructor(public readonly modalService: ModalService) {}
 
   ngOnInit(): void {}
 
@@ -23,16 +24,6 @@ export class AccountComponent implements OnInit {
   }
 
   sendTez() {
-    const initialState: ModalOptions<SendTezModalComponent> = {
-      initialState: {
-        recipient: 'tz1',
-        amount: '123',
-      },
-      class: 'modal-dialog-centered',
-    };
-    const bsModalRef = this.modalService.show(
-      SendTezModalComponent,
-      initialState
-    );
+    this.modalService.showSendTezModal();
   }
 }

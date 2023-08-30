@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
-import { ConfirmModalComponent } from '../../modals/confirm-modal/confirm-modal.component';
 import { MetamaskService } from '../../services/metamask.service';
 import { AccountService } from '../../services/account.service';
-import { QrModalComponent } from '../../modals/qr-modal/qr-modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-header-item',
@@ -17,7 +15,7 @@ export class HeaderItemComponent implements OnInit {
   constructor(
     public readonly metamaskService: MetamaskService,
     public readonly accountService: AccountService,
-    public readonly modalService: BsModalService
+    public readonly modalService: ModalService
   ) {
     this.loadAccountInfo();
   }
@@ -33,33 +31,14 @@ export class HeaderItemComponent implements OnInit {
   }
 
   showQrModal() {
-    const initialState: ModalOptions<QrModalComponent> = {
-      initialState: {
-        title: 'Your Account QR Code',
-        qrData: this.address,
-      },
-      class: 'modal-dialog-centered',
-    };
-    const bsModalRef = this.modalService.show(QrModalComponent, initialState);
+    this.modalService.showQRModal(this.address);
   }
 
   disconnect() {
-    const initialState: ModalOptions<ConfirmModalComponent> = {
-      initialState: {
-        title: 'Disconnect',
-        text: 'Are you sure you want to disconnet from MetaMask?',
-        confirmCallback: () => {
-          this.accountService.hasAccounts
-            ? this.accountService.disconnect()
-            : this.metamaskService.connect();
-        },
-      },
-      class: 'modal-dialog-centered',
-    };
-
-    const bsModalRef = this.modalService.show(
-      ConfirmModalComponent,
-      initialState
-    );
+    this.modalService.showConfirmCallbackModal(() => {
+      this.accountService.hasAccounts
+        ? this.accountService.disconnect()
+        : this.metamaskService.connect();
+    });
   }
 }

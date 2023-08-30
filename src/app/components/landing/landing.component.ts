@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MetamaskService } from '../../services/metamask.service';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { TextModalComponent } from '../../modals/text-modal/text-modal.component';
-import { LoadingModalComponent } from '../../modals/loading-modal/loading-modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +10,7 @@ import { LoadingModalComponent } from '../../modals/loading-modal/loading-modal.
 export class LandingComponent implements OnInit {
   constructor(
     public readonly metamaskService: MetamaskService,
-    private readonly modalService: BsModalService
+    private readonly modalService: ModalService
   ) {}
 
   ngOnInit(): void {}
@@ -24,27 +22,11 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  showLoadingModal(): BsModalRef<LoadingModalComponent> {
-    const initialState: ModalOptions<LoadingModalComponent> = {
-      initialState: {
-        text: 'Connecting...',
-      },
-    };
-    const bsModalRef = this.modalService.show(
-      LoadingModalComponent,
-      initialState
-    );
-    return bsModalRef;
+  showLoadingModal() {
+    return this.modalService.showLoadingModal('Connecting...');
   }
 
-  showModal(type: 'instructions'): void {
-    const initialState: ModalOptions<TextModalComponent> = {
-      initialState: {
-        title: 'header',
-        text: type,
-        closeBtnName: 'Close',
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+  showInstructionsModal() {
+    this.modalService.showInstructionsModal();
   }
 }

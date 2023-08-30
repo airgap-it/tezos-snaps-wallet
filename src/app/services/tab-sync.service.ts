@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
 
 export enum StorageEvents {
   PAGE_OPEN_PING = 'evt_page_open_ping',
@@ -13,7 +12,7 @@ export enum StorageEvents {
 export class TabSyncService {
   clear$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private readonly modalService: BsModalService) {
+  constructor() {
     this.setupListener();
   }
 

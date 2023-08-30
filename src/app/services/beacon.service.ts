@@ -20,14 +20,11 @@ import { first } from 'rxjs/operators';
 
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
 import { Account, AccountService, AccountType } from './account.service';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
-import { PermissionModalComponent } from '../modals/permission-modal/permission-modal.component';
-import { OperationModalComponent } from '../modals/operation-modal/operation-modal.component';
-import { SignPayloadModalComponent } from '../modals/sign-payload-modal/sign-payload-modal.component';
-import { NoAccountModalComponent } from '../modals/no-account-modal/no-account-modal.component';
+import { ModalService } from './modal.service';
 
 export interface LogAction {
   title: string;
@@ -47,7 +44,7 @@ export class BeaconService {
   constructor(
     private readonly tabSyncService: TabSyncService,
     private readonly accountService: AccountService,
-    private readonly modalService: BsModalService,
+    private readonly modalService: ModalService,
     private readonly apiService: ApiService
   ) {
     this.walletClient = new WalletClient({
@@ -91,18 +88,8 @@ export class BeaconService {
             if (message.type === BeaconMessageType.PermissionRequest) {
               if (accounts.length === 0) {
                 console.error('No account found');
-                const initialState: ModalOptions = {
-                  ignoreBackdropClick: true,
-                  keyboard: false,
-                  initialState: {
-                    account: accounts[0],
-                  },
-                };
 
-                this.modalRef = this.modalService.show(
-                  NoAccountModalComponent,
-                  initialState
-                );
+                this.modalRef = this.modalService.showNoAccountModal();
 
                 this.modalRef.onHide?.pipe(first()).subscribe((result) => {
                   this.tabSyncService.sendEvent(StorageEvents.CLEAR);
@@ -111,17 +98,9 @@ export class BeaconService {
 
                 return;
               }
-              const initialState: ModalOptions = {
-                ignoreBackdropClick: true,
-                keyboard: false,
-                initialState: {
-                  account: accounts[0],
-                },
-              };
 
-              this.modalRef = this.modalService.show(
-                PermissionModalComponent,
-                initialState
+              this.modalRef = this.modalService.showPermissionModal(
+                accounts[0]
               );
 
               this.modalRef.onHide?.pipe(first()).subscribe((result) => {
@@ -141,21 +120,7 @@ export class BeaconService {
                 console.error('No account found for ' + message.sourceAddress);
                 return;
               }
-              const initialState: ModalOptions = {
-                ignoreBackdropClick: true,
-                keyboard: false,
-                initialState: {
-                  network: message.network,
-                  callback: () => {
-                    console.log('xxxxxxx');
-                  },
-                },
-              };
-
-              this.modalRef = this.modalService.show(
-                OperationModalComponent,
-                initialState
-              );
+              this.modalRef = this.modalService.showOperationModal();
 
               this.modalRef.onHide?.pipe(first()).subscribe((result) => {
                 this.tabSyncService.sendEvent(StorageEvents.CLEAR);
@@ -174,18 +139,8 @@ export class BeaconService {
                 console.error('No account found for ' + message.sourceAddress);
                 return;
               }
-              const initialState: ModalOptions = {
-                ignoreBackdropClick: true,
-                keyboard: false,
-                initialState: {
-                  network: 'test',
-                },
-              };
 
-              this.modalRef = this.modalService.show(
-                SignPayloadModalComponent,
-                initialState
-              );
+              this.modalRef = this.modalService.showSignModal();
 
               this.modalRef.onHide?.pipe(first()).subscribe((result) => {
                 this.tabSyncService.sendEvent(StorageEvents.CLEAR);

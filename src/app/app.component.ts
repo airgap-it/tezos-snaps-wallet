@@ -1,6 +1,5 @@
 import { PeerInfo, PermissionInfo } from '@airgap/beacon-types';
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { AccountsOverviewComponent } from './components/accounts-overview/accounts-overview.component';
@@ -16,6 +15,7 @@ import { TabSyncService } from './services/tab-sync.service';
 import { Token } from './types';
 import BigNumber from 'bignumber.js';
 import { MetamaskService } from './services/metamask.service';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     public readonly beacon: BeaconService,
     public readonly metamaskService: MetamaskService,
     public readonly accountService: AccountService,
-    private readonly modalService: BsModalService,
+    private readonly modalService: ModalService,
     private readonly router: Router,
     private readonly tabSyncService: TabSyncService
   ) {
@@ -132,7 +132,7 @@ export class AppComponent implements OnInit {
   }
 
   async connect() {
-    const bsModalRef = this.modalService.show(LoadingModalComponent, {});
+    const bsModalRef = this.modalService.showLoadingModal();
 
     setTimeout(() => {
       this.beacon.addPeer(this.syncCode).finally(() => bsModalRef.hide());
@@ -152,7 +152,7 @@ export class AppComponent implements OnInit {
   }
 
   async removePeer(peer: PeerInfo) {
-    const bsModalRef = this.modalService.show(ConfirmModalComponent, {});
+    const bsModalRef = this.modalService.showConfirmModal();
 
     bsModalRef.onHide?.pipe(first()).subscribe(async (result) => {
       if (result === 'confirm') {
@@ -163,7 +163,7 @@ export class AppComponent implements OnInit {
   }
 
   async removePermission(permission: PermissionInfo) {
-    const bsModalRef = this.modalService.show(ConfirmModalComponent, {});
+    const bsModalRef = this.modalService.showConfirmModal();
 
     bsModalRef.onHide?.pipe(first()).subscribe(async (result) => {
       if (result === 'confirm') {
@@ -176,7 +176,7 @@ export class AppComponent implements OnInit {
   }
 
   async removeAccount(account: Account) {
-    const bsModalRef = this.modalService.show(ConfirmModalComponent, {});
+    const bsModalRef = this.modalService.showConfirmModal();
 
     bsModalRef.onHide?.pipe(first()).subscribe((result) => {
       if (result === 'confirm') {
@@ -185,38 +185,14 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async openAccountsOverview() {
-    const initialState: ModalOptions = {
-      initialState: {},
-    };
-    const bsModalRef = this.modalService.show(
-      AccountsOverviewComponent,
-      initialState
-    );
-    (bsModalRef.content as any).closeBtnName = 'Close';
-  }
-
   openNodeSelectorModal() {
-    const initialState: ModalOptions = {
-      initialState: {},
-    };
-    const bsModalRef = this.modalService.show(
-      NodeSelectorModalComponent,
-      initialState
-    );
+    const bsModalRef = this.modalService.openNodeSelectorModal();
     bsModalRef.onHide?.subscribe(() => {
       this.loadNodes();
     });
   }
 
   openHowToModal() {
-    const initialState: ModalOptions = {
-      initialState: {},
-    };
-    const bsModalRef = this.modalService.show(
-      HowToModalComponent,
-      initialState
-    );
-    (bsModalRef.content as any).closeBtnName = 'Close';
+    this.modalService.openHowToModal();
   }
 }
