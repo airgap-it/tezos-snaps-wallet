@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -70,6 +72,7 @@ import { ConnectedModalComponent } from './modals/connected-modal/connected-moda
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
     QRCodeModule,
   ],
   providers: [],

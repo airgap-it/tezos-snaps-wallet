@@ -7,6 +7,32 @@
         >Tezos Wallet</span
       ><span class="pt-1 ml-1">for MetaMask</span></a
     >
+    <div class="navbar-brand d-flex align-items-center">
+      <div class="btn-group" dropdown>
+        <button
+          id="button-basic"
+          dropdownToggle
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-basic"
+        >
+          {{ network }} <span class="caret"></span>
+        </button>
+        <ul
+          id="dropdown-basic"
+          *dropdownMenu
+          class="dropdown-menu"
+          role="menu"
+          aria-labelledby="button-basic"
+        >
+          <li role="menuitem">
+            <a class="dropdown-item" (click)="changeNetwork()">{{
+              otherNetwork
+            }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3">
         <div

@@ -11,6 +11,8 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class HeaderItemComponent implements OnInit {
   address: string = '';
+  network: string = 'Mainnet';
+  otherNetwork: string = 'Ghostnet';
 
   constructor(
     public readonly metamaskService: MetamaskService,
@@ -40,5 +42,15 @@ export class HeaderItemComponent implements OnInit {
         ? this.accountService.disconnect()
         : this.metamaskService.connect();
     });
+  }
+
+  changeNetwork() {
+    if (this.network === 'Mainnet') {
+      this.network = 'Ghostnet';
+      this.otherNetwork = 'Mainnet';
+    } else {
+      this.network = 'Mainnet';
+      this.otherNetwork = 'Ghostnet';
+    }
   }
 }
