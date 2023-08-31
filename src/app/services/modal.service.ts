@@ -4,7 +4,7 @@ import { LoadingModalComponent } from '../modals/loading-modal/loading-modal.com
 import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.component';
 import { NodeSelectorModalComponent } from '../modals/node-selector-modal/node-selector-modal.component';
 import { HowToModalComponent } from '../modals/how-to-modal/how-to-modal.component';
-import { NoAccountModalComponent } from '../modals/no-account-modal/no-account-modal.component';
+import { NotConnectedModalComponent } from '../modals/not-connected-modal/not-connected-modal.component';
 import { Account } from './account.service';
 import { PermissionModalComponent } from '../modals/permission-modal/permission-modal.component';
 import { OperationModalComponent } from '../modals/operation-modal/operation-modal.component';
@@ -71,7 +71,7 @@ export class ModalService {
   }
 
   showNoAccountModal() {
-    const initialState: ModalOptions<NoAccountModalComponent> = {
+    const initialState: ModalOptions<NotConnectedModalComponent> = {
       ...this.modalOptions,
       ignoreBackdropClick: true,
       keyboard: false,
@@ -79,7 +79,7 @@ export class ModalService {
     };
 
     const bsModalRef = this.modalService.show(
-      NoAccountModalComponent,
+      NotConnectedModalComponent,
       initialState
     );
 

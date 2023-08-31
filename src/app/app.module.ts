@@ -29,7 +29,7 @@ import { OperationsComponent } from './components/operations/operations.componen
 import { PermissionModalComponent } from './modals/permission-modal/permission-modal.component';
 import { OperationModalComponent } from './modals/operation-modal/operation-modal.component';
 import { SignPayloadModalComponent } from './modals/sign-payload-modal/sign-payload-modal.component';
-import { NoAccountModalComponent } from './modals/no-account-modal/no-account-modal.component';
+import { NotConnectedModalComponent } from './modals/not-connected-modal/not-connected-modal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TextModalComponent } from './modals/text-modal/text-modal.component';
 import { NftListComponent } from './components/nft-list/nft-list.component';
@@ -56,7 +56,7 @@ import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confir
     PermissionModalComponent,
     OperationModalComponent,
     SignPayloadModalComponent,
-    NoAccountModalComponent,
+    NotConnectedModalComponent,
     FooterComponent,
     TextModalComponent,
     NftListComponent,
