@@ -37,6 +37,9 @@ import { LandingComponent } from './components/landing/landing.component';
 import { QrModalComponent } from './modals/qr-modal/qr-modal.component';
 import { SendTezModalComponent } from './modals/send-tez-modal/send-tez-modal.component';
 import { ConnectedModalComponent } from './modals/connected-modal/connected-modal.component';
+import { SendNftModalComponent } from './modals/send-nft-modal/send-nft-modal.component';
+import { ConfirmTxModalComponent } from './modals/confirm-tx-modal/confirm-tx-modal.component';
+import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confirmed-modal.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { ConnectedModalComponent } from './modals/connected-modal/connected-moda
     QrModalComponent,
     SendTezModalComponent,
     ConnectedModalComponent,
+    SendNftModalComponent,
+    ConfirmTxModalComponent,
+    TxConfirmedModalComponent,
   ],
   imports: [
     BrowserModule,

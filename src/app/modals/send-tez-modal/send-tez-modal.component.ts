@@ -2,7 +2,6 @@ import { TezosOperationType } from '@airgap/beacon-wallet';
 import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { ApiService } from 'src/app/services/api.service';
 import { BeaconService } from 'src/app/services/beacon.service';
