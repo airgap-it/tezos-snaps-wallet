@@ -1,15 +1,13 @@
-<div
-  class="containerbox container-fluid px-md-5 pb-3"
-  style="flex-direction: column"
->
-  <div style="padding-bottom: 80px">
-    <img src="./assets/tezos-logo.svg" /><span class="header pt-1 ml-1"
-      >Tezos Wallet</span
-    ><span class="header pt-1 ml-1">for MetaMask</span>
+<div class="containerbox container-fluid px-md-5 pb-3" style="flex-direction: column">
+  <div class="flex-container">
+    <img src="./assets/tezos-logo-main.svg" class="logo" />
+    <div class="mb-10">
+      <span class="header pt-1 ml-1 large">Tezos Wallet</span>
+      <span class="header ml-1 small">for MetaMask</span>
+    </div>
   </div>
   <br />
-  <div
-    style="
+  <div style="
       width: 500px;
       height: 441px;
       padding-left: 90px;
@@ -24,103 +22,61 @@
       align-items: center;
       gap: 30px;
       display: inline-flex;
-    "
-  >
-    <div
-      style="
+    ">
+    <div style="
         justify-content: center;
         align-items: center;
         gap: 10px;
         display: inline-flex;
-      "
-    >
-      <div
-        style="
+      ">
+      <div style="
           color: black;
           font-size: 20px;
           font-weight: 600;
           word-wrap: break-word;
-        "
-      >
+        ">
         🫰
       </div>
-      <div
-        style="
+      <div style="
           color: black;
           font-size: 40px;
           font-weight: 600;
           word-wrap: break-word;
-        "
-      >
+        ">
         🫰
       </div>
-      <div
-        style="
+      <div style="
           color: black;
           font-size: 20px;
           font-weight: 600;
           word-wrap: break-word;
-        "
-      >
+        ">
         🫰
       </div>
     </div>
-    <div
-      style="
+    <div style="
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         gap: 30px;
         display: flex;
-      "
-    >
-      <div
-        style="
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
-          gap: 20px;
-          display: flex;
-        "
-      >
-        <div
-          style="
-            width: 320px;
-            text-align: center;
-            color: black;
-            font-size: 28px;
-            font-weight: 600;
-            word-wrap: break-word;
-          "
-        >
-          Connect to MetaMask Tezos Snaps
+      ">
+      <div class="metamasTextBox">
+        <div class="metamaskTitle">
+          Connect to the Tezos Wallet for MetaMask
         </div>
-        <div
-          style="
-            width: 320px;
-            text-align: center;
-            color: black;
-            font-size: 14px;
-            font-weight: 400;
-            word-wrap: break-word;
-          "
-        >
-          If you do not have the Tezos Snaps installed, you will be prompted to
-          install it.
+        <div class="metamaskSubtitle">
+          If you do not have the Tezos Wallet for MetaMask, you will be prompted to install it.
         </div>
       </div>
-      <div
-        style="
+      <div style="
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
           gap: 30px;
           display: flex;
-        "
-      >
-        <div
-          (click)="connect()"
-          style="
+        ">
+        <div (click)="connect()" style="
             width: 320px;
             padding-left: 24px;
             padding-right: 24px;
@@ -133,45 +89,30 @@
             gap: 10px;
             display: inline-flex;
             cursor: pointer;
-          "
-        >
-          <img
-            style="width: 20px; height: 20px"
-            src="./assets/metamask-logo.svg"
-          />
-          <div
-            style="
-              text-align: center;
-              color: #6219ff;
-              font-size: 16px;
-              font-weight: 600;
-              line-height: 18px;
-              word-wrap: break-word;
-            "
-          >
+          ">
+          <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
+          <div class="metamaskText">
             Connect with MetaMask
           </div>
         </div>
-        <div
-          (click)="showInstructionsModal()"
-          style="
+        <div class="footer">
+          <img src="../assets/icons/FiAlertCircle.svg" class="icon" />
+          <span class="text">Installation Guide</span>
+        </div>
+        <div (click)="showInstructionsModal()" style="
             justify-content: flex-start;
             align-items: center;
             gap: 4px;
             display: inline-flex;
-          "
-        >
-          <div
-            style="
+          ">
+          <div style="
               width: 16px;
               height: 16px;
               justify-content: center;
               align-items: center;
               display: flex;
-            "
-          >
-            <div
-              style="
+            ">
+            <div style="
                 width: 16px;
                 height: 16px;
                 position: relative;
@@ -179,31 +120,34 @@
                 justify-content: flex-start;
                 align-items: flex-start;
                 display: flex;
-              "
-            >
-              <div
-                style="width: 14.67px; height: 14.67px; background: #6219ff"
-              ></div>
-              <div
-                style="width: 1.33px; height: 4px; background: #6219ff"
-              ></div>
-              <div
-                style="width: 1.34px; height: 1.33px; background: #6219ff"
-              ></div>
+              ">
+              <div style="width: 1.33px; height: 4px; background: #6219ff"></div>
+              <div style="width: 1.34px; height: 1.33px; background: #6219ff"></div>
             </div>
           </div>
-          <div
-            style="
-              color: #6219ff;
-              font-size: 14px;
-              font-weight: 400;
-              word-wrap: break-word;
-            "
-          >
-            Installation Guide
-          </div>
+
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="footer-menu">
+    <a href="#" class="footer-link">About</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+      <path d="M1 0V20" stroke="#D2D2D7" />
+    </svg>
+    <a href="#" class="footer-link">Privacy Policy</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+      <path d="M1 0V20" stroke="#D2D2D7" />
+    </svg>
+    <a href="#" class="footer-link">Terms of Use</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+      <path d="M1 0V20" stroke="#D2D2D7" />
+    </svg>
+    <a href="#" class="footer-link">FAQs</a>
+  </div>
+
+  <div class="footerTezos">
+    <span>Powered by <a href="#" style="text-decoration: underline; color: #86868B; ">Tezos</a></span>
   </div>
 </div>
