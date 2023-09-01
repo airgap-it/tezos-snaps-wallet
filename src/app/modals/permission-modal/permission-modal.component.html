@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Share Account</h4>
+  <h4 class="modal-title pull-left">Share Account?</h4>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -11,7 +11,8 @@
 </div>
 <div class="modal-body">
   <p>
-    Do you want to give permissions for this account? {{ account?.address }}
+    Do you want to give "{{ appMetadata?.name }}" permissions for this account?
+    {{ account?.address }}
   </p>
 </div>
 <div class="modal-footer">

@@ -1,3 +1,4 @@
+import { AppMetadata } from '@airgap/beacon-wallet';
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Account } from 'src/app/services/account.service';
@@ -9,6 +10,7 @@ import { Account } from 'src/app/services/account.service';
 })
 export class PermissionModalComponent implements OnInit {
   public account: Account | undefined;
+  public appMetadata: AppMetadata | undefined;
 
   constructor(public bsModalRef: BsModalRef) {}
 

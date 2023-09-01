@@ -14,6 +14,7 @@ import { TextModalComponent } from '../modals/text-modal/text-modal.component';
 import { QrModalComponent } from '../modals/qr-modal/qr-modal.component';
 import { Token } from '../types';
 import { ConnectedModalComponent } from '../modals/connected-modal/connected-modal.component';
+import { AppMetadata } from '@airgap/beacon-wallet';
 
 @Injectable({
   providedIn: 'root',
@@ -86,13 +87,14 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showPermissionModal(account: Account) {
+  showPermissionModal(account: Account, appMetadata: AppMetadata) {
     const initialState: ModalOptions<PermissionModalComponent> = {
       ...this.modalOptions,
       ignoreBackdropClick: true,
       keyboard: false,
       initialState: {
         account,
+        appMetadata,
       },
     };
 
@@ -265,15 +267,21 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showNotConnectedModal() {
-    const initialState: ModalOptions<TextModalComponent> = {
+  showNotConnectedModal(
+    successCallback: () => void,
+    errorCallback: () => void
+  ) {
+    const initialState: ModalOptions<NotConnectedModalComponent> = {
       ...this.modalOptions,
       initialState: {
-        title: 'Not connected',
-        text: 'text',
+        successCallback,
+        errorCallback,
       },
     };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+    const bsModalRef = this.modalService.show(
+      NotConnectedModalComponent,
+      initialState
+    );
 
     return bsModalRef;
   }

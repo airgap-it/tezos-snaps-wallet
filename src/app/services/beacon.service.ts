@@ -57,113 +57,117 @@ export class BeaconService {
       this.modalRef?.hide();
     });
   }
+  async handleMessage(message: BeaconRequestOutputMessage) {
+    this.log.push([
+      new Date(),
+      `${message.appMetadata.name}: INCOMING MESSAGE (${message.type}) ${
+        message.type === BeaconMessageType.OperationRequest
+          ? `${
+              message.operationDetails.length === 1
+                ? `${
+                    (message.operationDetails[0] as any)?.amount
+                  } mutez, Entrypoint: ${
+                    (message.operationDetails[0] as any)?.parameters?.entrypoint
+                  }`
+                : `${message.operationDetails.length} operations`
+            }`
+          : ''
+      }`,
+      message,
+      [],
+    ]);
+    console.log('message', message);
+
+    this.accountService.accounts$.pipe(first()).subscribe((accounts) => {
+      if (message.type === BeaconMessageType.PermissionRequest) {
+        if (accounts.length === 0) {
+          console.error('No account found');
+
+          this.modalRef = this.modalService.showNotConnectedModal(
+            () => {
+              console.log('SUCCESS');
+              this.handleMessage(message);
+            },
+            () => {
+              console.log('ERROR');
+            }
+          );
+
+          return;
+        }
+
+        this.modalRef = this.modalService.showPermissionModal(
+          accounts[0],
+          message.appMetadata
+        );
+
+        this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          if (result && result === 'confirm') {
+            this.handlePermissionRequest(accounts[0], message);
+          } else {
+            this.sendAbortedError(message);
+            console.log('DENIED', result);
+          }
+        });
+      } else if (message.type === BeaconMessageType.OperationRequest) {
+        const account = accounts.find(
+          (acc) => acc.address === message.sourceAddress
+        );
+        if (!account) {
+          console.error('No account found for ' + message.sourceAddress);
+          return;
+        }
+        this.modalRef = this.modalService.showOperationModal();
+
+        this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          if (result && result === 'confirm') {
+            this.handleOperationRequest(account, message);
+          } else {
+            this.sendAbortedError(message);
+            console.log('DENIED', result);
+          }
+        });
+      } else if (message.type === BeaconMessageType.SignPayloadRequest) {
+        const account = accounts.find(
+          (acc) => acc.address === message.sourceAddress
+        );
+        if (!account) {
+          console.error('No account found for ' + message.sourceAddress);
+          return;
+        }
+
+        this.modalRef = this.modalService.showSignModal();
+
+        this.modalRef.onHide?.pipe(first()).subscribe((result) => {
+          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          if (result && result === 'confirm') {
+            this.handleSignPayload(account, message);
+          } else {
+            this.sendAbortedError(message);
+            console.log('DENIED', result);
+          }
+        });
+      } else {
+        console.error('Message type not supported');
+        console.error('Received: ', message);
+
+        const response = {
+          type: BeaconMessageType.Error,
+          id: message.id,
+          errorType: BeaconErrorType.ABORTED_ERROR,
+        };
+        this.walletClient.respond(response as any);
+      }
+    });
+  }
 
   connect() {
     // Handle incoming messages from beacon and relay it to MetaMask
     this.walletClient.init().then(async () => {
       this.walletClient
-        .connect(async (message) => {
-          this.log.push([
-            new Date(),
-            `${message.appMetadata.name}: INCOMING MESSAGE (${message.type}) ${
-              message.type === BeaconMessageType.OperationRequest
-                ? `${
-                    message.operationDetails.length === 1
-                      ? `${
-                          (message.operationDetails[0] as any)?.amount
-                        } mutez, Entrypoint: ${
-                          (message.operationDetails[0] as any)?.parameters
-                            ?.entrypoint
-                        }`
-                      : `${message.operationDetails.length} operations`
-                  }`
-                : ''
-            }`,
-            message,
-            [],
-          ]);
-          console.log('message', message);
-
-          this.accountService.accounts$.pipe(first()).subscribe((accounts) => {
-            if (message.type === BeaconMessageType.PermissionRequest) {
-              if (accounts.length === 0) {
-                console.error('No account found');
-
-                this.modalRef = this.modalService.showNoAccountModal();
-
-                this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-                  this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-                  console.log('NOW WE HAVE ACCOUNT!');
-                });
-
-                return;
-              }
-
-              this.modalRef = this.modalService.showPermissionModal(
-                accounts[0]
-              );
-
-              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-                if (result && result === 'confirm') {
-                  this.handlePermissionRequest(accounts[0], message);
-                } else {
-                  this.sendAbortedError(message);
-                  console.log('DENIED', result);
-                }
-              });
-            } else if (message.type === BeaconMessageType.OperationRequest) {
-              const account = accounts.find(
-                (acc) => acc.address === message.sourceAddress
-              );
-              if (!account) {
-                console.error('No account found for ' + message.sourceAddress);
-                return;
-              }
-              this.modalRef = this.modalService.showOperationModal();
-
-              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-                if (result && result === 'confirm') {
-                  this.handleOperationRequest(account, message);
-                } else {
-                  this.sendAbortedError(message);
-                  console.log('DENIED', result);
-                }
-              });
-            } else if (message.type === BeaconMessageType.SignPayloadRequest) {
-              const account = accounts.find(
-                (acc) => acc.address === message.sourceAddress
-              );
-              if (!account) {
-                console.error('No account found for ' + message.sourceAddress);
-                return;
-              }
-
-              this.modalRef = this.modalService.showSignModal();
-
-              this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-                this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-                if (result && result === 'confirm') {
-                  this.handleSignPayload(account, message);
-                } else {
-                  this.sendAbortedError(message);
-                  console.log('DENIED', result);
-                }
-              });
-            } else {
-              console.error('Message type not supported');
-              console.error('Received: ', message);
-
-              const response = {
-                type: BeaconMessageType.Error,
-                id: message.id,
-                errorType: BeaconErrorType.ABORTED_ERROR,
-              };
-              this.walletClient.respond(response as any);
-            }
-          });
-        })
+        .connect(this.handleMessage.bind(this))
         .catch((error) => console.error('connect error', error));
     }); // Establish P2P connection
   }
