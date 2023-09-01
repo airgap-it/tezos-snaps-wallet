@@ -10,7 +10,7 @@ import { ModalService } from 'src/app/services/modal.service';
 export class LandingComponent implements OnInit {
   constructor(
     public readonly metamaskService: MetamaskService,
-    private readonly modalService: ModalService
+    public readonly modalService: ModalService
   ) {}
 
   ngOnInit(): void {}
