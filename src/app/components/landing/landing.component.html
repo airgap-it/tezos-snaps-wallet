@@ -1,158 +1,42 @@
-<div
-  class="containerbox container-fluid px-md-5 pb-3"
-  style="flex-direction: column"
->
+<div class="containerbox container-fluid px-md-5 pb-3" style="flex-direction: column">
   <div class="flex-container">
     <img src="./assets/tezos-logo-main.svg" class="logo" />
     <div class="mb-10">
-      <span class="header pt-1 ml-1 large">Tezos Wallet</span>
-      <span class="header ml-1 small">for MetaMask</span>
+      <span class="header pt-1 ml-1 large">Tezos Wallet Explorer</span>
+      <span class="header ml-1 small">powered by MetaMask</span>
     </div>
   </div>
   <br />
-  <div
-    style="
-      width: 500px;
-      height: 441px;
-      padding-left: 90px;
-      padding-right: 90px;
-      padding-top: 60px;
-      padding-bottom: 60px;
-      background: white;
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-      border-radius: 30px;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 30px;
-      display: inline-flex;
-    "
-  >
-    <div
-      style="
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        display: inline-flex;
-      "
-    >
-      <div
-        style="
-          color: black;
-          font-size: 20px;
-          font-weight: 600;
-          word-wrap: break-word;
-        "
-      >
-        🫰
-      </div>
-      <div
-        style="
-          color: black;
-          font-size: 40px;
-          font-weight: 600;
-          word-wrap: break-word;
-        "
-      >
-        🫰
-      </div>
-      <div
-        style="
-          color: black;
-          font-size: 20px;
-          font-weight: 600;
-          word-wrap: break-word;
-        "
-      >
-        🫰
-      </div>
+  <div class="imageBox">
+    <div class="d-flex justify-content-center" style="width: 40px; height: 40px;">
+      <img src="../assets/matamask-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%;">
+      <img src="../assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px;">
+      <img src="../assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; margin-left: 20px">
     </div>
-    <div
-      style="
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 30px;
-        display: flex;
-      "
-    >
+    <div class="textBox">
       <div class="metamasTextBox">
         <div class="metamaskTitle">
-          Connect to the Tezos Wallet for MetaMask
+          Tezos Wallet Explorer, powered by MetaMask
         </div>
         <div class="metamaskSubtitle">
-          If you do not have the Tezos Wallet for MetaMask, you will be prompted
-          to install it.
+          If you don't have Tezos Wallet Explorer for MetaMask, you can install it on the next screen.
         </div>
       </div>
-      <div
-        style="
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
-          gap: 30px;
-          display: flex;
-        "
-      >
-        <div
-          (click)="connect()"
-          style="
-            width: 320px;
-            padding-left: 24px;
-            padding-right: 24px;
-            padding-top: 16px;
-            padding-bottom: 16px;
-            border-radius: 100px;
-            border: 0.5px #d2d2d7 solid;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            display: inline-flex;
-            cursor: pointer;
-          "
-        >
+      <div class="metamaskContainer">
+        <div (click)="connect()" class="metamaskModal">
           <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
           <div class="metamaskText">Connect with MetaMask</div>
         </div>
-        <div class="footer">
-          <img src="../assets/icons/FiAlertCircle.svg" class="icon" />
-          <span class="text">Installation Guide</span>
-        </div>
-        <div
-          (click)="showInstructionsModal()"
-          style="
-            justify-content: flex-start;
-            align-items: center;
-            gap: 4px;
-            display: inline-flex;
-          "
-        >
-          <div
-            style="
-              width: 16px;
-              height: 16px;
-              justify-content: center;
-              align-items: center;
-              display: flex;
-            "
-          >
-            <div
-              style="
-                width: 16px;
-                height: 16px;
-                position: relative;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                display: flex;
-              "
-            >
-              <div
-                style="width: 1.33px; height: 4px; background: #6219ff"
-              ></div>
-              <div
-                style="width: 1.34px; height: 1.33px; background: #6219ff"
-              ></div>
+
+      </div>
+
+
+      <div (click)="showInstructionsModal()" class="containerModal">
+        <div class="instructionsModal">
+          <div class="instructionsBox">
+            <div class="footer">
+              <img src="../assets/icons/FiAlertCircle.svg" class="icon" />
+              <span class="text">Installation Guide</span>
             </div>
           </div>
         </div>
@@ -161,53 +45,23 @@
   </div>
 
   <div class="footer-menu">
-    <a href="#" (click)="modalService.showAboutModal()" class="footer-link"
-      >About</a
-    >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="2"
-      height="20"
-      viewBox="0 0 2 20"
-      fill="none"
-    >
+    <a href="#" (click)="modalService.showAboutModal()" class="footer-link">About</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link"
-      >Privacy Policy</a
-    >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="2"
-      height="20"
-      viewBox="0 0 2 20"
-      fill="none"
-    >
+    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link">Privacy Policy</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showTosModal()" class="footer-link"
-      >Terms of Use</a
-    >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="2"
-      height="20"
-      viewBox="0 0 2 20"
-      fill="none"
-    >
+    <a href="#" (click)="modalService.showTosModal()" class="footer-link">Terms of Use</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showFaqModal()" class="footer-link"
-      >FAQs</a
-    >
+    <a href="#" (click)="modalService.showFaqModal()" class="footer-link">FAQs</a>
   </div>
 
   <div class="footerTezos">
-    <span
-      >Powered by
-      <a href="#" style="text-decoration: underline; color: #86868b"
-        >Tezos</a
-      ></span
-    >
+    <span>Powered by
+      <a href="#" style="text-decoration: underline; color: #86868b">MetaMask Snaps</a></span>
   </div>
 </div>
