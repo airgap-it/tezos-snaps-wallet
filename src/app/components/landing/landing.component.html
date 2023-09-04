@@ -1,4 +1,7 @@
-<div class="containerbox container-fluid px-md-5 pb-3" style="flex-direction: column">
+<div
+  class="containerbox container-fluid px-md-5 pb-3"
+  style="flex-direction: column"
+>
   <div class="flex-container">
     <img src="./assets/tezos-logo-main.svg" class="logo" />
     <div class="mb-10">
@@ -8,10 +11,25 @@
   </div>
   <br />
   <div class="imageBox">
-    <div class="d-flex justify-content-center" style="width: 40px; height: 40px;">
-      <img src="../assets/matamask-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%;">
-      <img src="../assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px;">
-      <img src="../assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; margin-left: 20px">
+    <div
+      class="d-flex justify-content-center"
+      style="width: 40px; height: 40px"
+    >
+      <img
+        src="../assets/matamask-logo-sm.svg"
+        alt="SVG Image"
+        style="width: 100%; height: 100%"
+      />
+      <img
+        src="../assets/icons/close.svg"
+        alt="SVG Image"
+        style="width: 20px; height: 100%; margin-left: 20px"
+      />
+      <img
+        src="../assets/tezos-logo-sm.svg"
+        alt="SVG Image"
+        style="width: 100%; height: 100%; margin-left: 20px"
+      />
     </div>
     <div class="textBox">
       <div class="metamasTextBox">
@@ -19,7 +37,8 @@
           Tezos Wallet Explorer, powered by MetaMask
         </div>
         <div class="metamaskSubtitle">
-          If you don't have Tezos Wallet Explorer for MetaMask, you can install it on the next screen.
+          If you don't have Tezos Wallet Explorer for MetaMask, you can install
+          it on the next screen.
         </div>
       </div>
       <div class="metamaskContainer">
@@ -27,9 +46,7 @@
           <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
           <div class="metamaskText">Connect with MetaMask</div>
         </div>
-
       </div>
-
 
       <div (click)="showInstructionsModal()" class="containerModal">
         <div class="instructionsModal">
@@ -45,23 +62,53 @@
   </div>
 
   <div class="footer-menu">
-    <a href="#" (click)="modalService.showAboutModal()" class="footer-link">About</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="modalService.showAboutModal()" class="footer-link"
+      >About</a
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link">Privacy Policy</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link"
+      >Privacy Policy</a
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showTosModal()" class="footer-link">Terms of Use</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="modalService.showTosModal()" class="footer-link"
+      >Terms of Use</a
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showFaqModal()" class="footer-link">FAQs</a>
+    <a href="#" (click)="modalService.showFaqModal()" class="footer-link"
+      >FAQs</a
+    >
   </div>
 
   <div class="footerTezos">
-    <span>Powered by
-      <a href="#" style="text-decoration: underline; color: #86868b">MetaMask Snaps</a></span>
+    <span
+      >Powered by
+      <a href="#" style="text-decoration: underline; color: #86868b"
+        >MetaMask Snaps</a
+      ></span
+    >
   </div>
 </div>
