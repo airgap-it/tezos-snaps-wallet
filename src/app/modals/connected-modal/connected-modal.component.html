@@ -1,5 +1,6 @@
+
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Connected To MetaMask</h4>
+  <h2 class="modalTitle modal-title pull-left ">Connected To MetaMask</h2>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -9,15 +10,26 @@
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
+<div class="modalContainer">
 <div class="modal-body">
-  <p>Account: {{ address }}</p>
+  <p  class="inputTitle">Network:</p>
+  <div class="inputBox">
+    <p class="inputText">Tezos Wallet Explorer Mainnet</p></div>
+  <p class="inputTitle">Account:</p>
+  <div class="inputBox">
+    <p class="inputText">{{ address }}</p></div>
+    <div class="infoInputBox">
+      <img src="../assets/icons/FiAlertCircleRed.svg" alt="SVG Image" style="width: 20px; height: 20px;">
+      <p class="infoInputText">This account was generated with your MetaMask Secret Recovery Phrase.</p>
+    </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" style="width: fit-content;">
   <button
     type="button"
-    class="btn btn-block btn-primary"
+    class="button btn btn-block btn-primary"
     (click)="bsModalRef.hide()"
   >
     Got it!
   </button>
+</div>
 </div>
