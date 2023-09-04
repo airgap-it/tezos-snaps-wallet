@@ -1,3 +1,11 @@
+.cardBox{
+  width: 950px;
+  height: auto;
+  border-radius: 20px;
+  background: var(--Netural-1, #F5F5F7);
+  margin-left: 80px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;

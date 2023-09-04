@@ -8,11 +8,11 @@
       display: flex;
     "
   >
-    <span (click)="showAboutModal()">About</span>
+    <span (click)="modalService.showAboutModal()">About</span>
     <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
-    <span (click)="showPrivacyModal()">Privacy Policy</span>
+    <span (click)="modalService.showPrivacyModal()">Privacy Policy</span>
     <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
-    <span (click)="showTosModal()">Terms of Use</span>
+    <span (click)="modalService.showTosModal()">Terms of Use</span>
   </div>
   <div class="col-6" style="text-align: right">
     Powered by <u><a href="https://tezos.com">Tezos</a></u>

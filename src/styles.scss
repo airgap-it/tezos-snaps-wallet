@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 /* custom colors */
 $theme-colors: (
   "primary": #6219ff,
@@ -13,6 +15,7 @@ $link-hover-decoration: none;
 .card {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
 .panel {
   box-shadow: none;
 }
