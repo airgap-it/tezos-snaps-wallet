@@ -38,4 +38,8 @@ export class LandingComponent implements OnInit {
   showInstructionsModal() {
     this.modalService.showInstructionsModal();
   }
+
+  openLink(link: string) {
+    window.open(link, '_blank');
+  }
 }

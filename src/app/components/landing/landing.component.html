@@ -78,9 +78,7 @@
     >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link"
-      >Privacy Policy</a
-    >
+    <a href="#" (click)="openLink('#')" class="footer-link">Privacy Policy</a>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="2"
@@ -90,9 +88,7 @@
     >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showTosModal()" class="footer-link"
-      >Terms of Use</a
-    >
+    <a href="#" (click)="openLink('#')" class="footer-link">Terms of Use</a>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="2"
@@ -102,7 +98,12 @@
     >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showFaqModal()" class="footer-link"
+    <a
+      href="#"
+      (click)="
+        openLink('https://github.com/airgap-it/tezos-metamask-snap/wiki/FAQs')
+      "
+      class="footer-link"
       >FAQs</a
     >
   </div>
