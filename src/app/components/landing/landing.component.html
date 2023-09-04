@@ -26,9 +26,12 @@
         </div>
       </div>
       <div *ngIf="isMetaMaskInstalled" class="metamaskContainer">
-        <div (click)="connect()" class="metamaskModal">
+        <div *ngIf="!isLoading" (click)="connect()" class="metamaskModal">
           <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
           <div class="metamaskText">Connect with MetaMask</div>
+        </div>
+        <div *ngIf="isLoading" class="spinner-border mr-3" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
       </div>
 
@@ -50,15 +53,34 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showPrivacyModal()" class="footer-link">Privacy Policy</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="openLink('#')" class="footer-link">Privacy Policy</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showTosModal()" class="footer-link">Terms of Use</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="openLink('#')" class="footer-link">Terms of Use</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="modalService.showFaqModal()" class="footer-link">FAQs</a>
+    <a
+      href="#"
+      (click)="
+        openLink('https://github.com/airgap-it/tezos-metamask-snap/wiki/FAQs')
+      "
+      class="footer-link"
+      >FAQs</a
+    >
   </div>
 
   <div class="footerTezos">
