@@ -1,0 +1,31 @@
+.button {
+    width: 100px;
+    height: 40px;
+    padding: 0px 24px 0px 24px;
+    gap: 10px;
+    background-color: #0F61FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    /* Add a hover effect */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #0079FF;
+}
+
+.btn.btn-outline-primary.btn-circle {
+    border-color: #0F61FF;
+    color: #0F61FF;
+  }
+  
+  .btn.btn-outline-primary.btn-circle:hover {
+    border-color: #0F61FF;
+    background-color: #0F61FF;
+    color: #fff;
+  }
