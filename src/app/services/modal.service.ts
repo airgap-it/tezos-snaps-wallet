@@ -232,8 +232,8 @@ export class ModalService {
     const initialState: ModalOptions<TextModalComponent> = {
       ...this.modalOptions,
       initialState: {
-        title: 'About',
-        text: 'text',
+        title: 'About Tezos Wallet Explorer',
+        text: `Text`,
       },
     };
     const bsModalRef = this.modalService.show(TextModalComponent, initialState);
