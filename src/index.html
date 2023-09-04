@@ -2,10 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Tezos Wallet for MetaMask</title>
+    <title>Tezos Wallet Explorer powered by MetaMask</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S8THT2JH89"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S8THT2JH89");
+    </script>
   </head>
   <body>
     <app-root></app-root>

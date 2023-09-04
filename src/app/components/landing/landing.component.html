@@ -8,10 +8,11 @@
   </div>
   <br />
   <div class="imageBox">
-    <div class="d-flex justify-content-center" style="width: 40px; height: 40px;">
-      <img src="../assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; ">
-      <img src="../assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px;">
-      <img src="../assets/matamask-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; margin-left: 20px">
+    <div class="d-flex justify-content-center" style="width: 40px; height: 40px">
+      <img src="./assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; " />
+      <img src="./assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px" />
+
+      <img src="./assets/matamask-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; margin-left: 20px" />
     </div>
     <div class="textBox">
       <div class="metamasTextBox">
@@ -19,23 +20,23 @@
           Tezos Wallet Explorer, powered by MetaMask
         </div>
         <div class="metamaskSubtitle">
-          If you don't have Tezos Wallet Explorer for MetaMask, you can install it on the next screen.
+          <span *ngIf="!isMetaMaskInstalled">You need to install MetaMask. You can download it
+            <a href="https://metamask.io/download/">here</a>. </span><span *ngIf="isMetaMaskInstalled">Connect your
+            MetaMask to access the Tezos Wallet Explorer.</span>
         </div>
       </div>
-      <div class="metamaskContainer">
+      <div *ngIf="isMetaMaskInstalled" class="metamaskContainer">
         <div (click)="connect()" class="metamaskModal">
           <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
           <div class="metamaskText">Connect with MetaMask</div>
         </div>
-
       </div>
-
 
       <div (click)="showInstructionsModal()" class="containerModal">
         <div class="instructionsModal">
           <div class="instructionsBox">
             <div class="footer">
-              <img src="../assets/icons/FiAlertCircle.svg" class="icon" />
+              <img src="./assets/icons/FiAlertCircle.svg" class="icon" />
               <span class="text">Installation Guide</span>
             </div>
           </div>
@@ -62,6 +63,6 @@
 
   <div class="footerTezos">
     <span>Powered by
-      <a href="#" style="text-decoration: underline; color: #86868b">MetaMask Snaps</a></span>
+      <a href="https://metamask.io/snaps/" style="text-decoration: underline; color: #86868b">MetaMask Snaps</a></span>
   </div>
 </div>

@@ -10,9 +10,7 @@
 </div>
 <div class="modal-body">
   <h4 class="modal-title pull-left">{{ title }}</h4>
-  <p>
-    {{ text }}
-  </p>
+  <p [innerHTML]="text"></p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
