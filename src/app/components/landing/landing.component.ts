@@ -10,6 +10,7 @@ import { isMetaMaskInstalled } from 'src/app/utils/metamask';
 })
 export class LandingComponent implements OnInit {
   isMetaMaskInstalled: boolean = isMetaMaskInstalled();
+  isLoading: boolean = false;
 
   constructor(
     public readonly metamaskService: MetamaskService,
@@ -19,20 +20,18 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {}
 
   async connect() {
-    const bsModalRef = this.showLoadingModal();
+    if (this.isLoading) {
+      return;
+    }
+    this.isLoading = true;
     this.metamaskService
       .connect()
       .then(() => {
-        bsModalRef.hide();
         this.modalService.showConnectedModal();
       })
-      .catch(async () => {
-        bsModalRef.hide();
+      .finally(async () => {
+        this.isLoading = false;
       });
-  }
-
-  showLoadingModal() {
-    return this.modalService.showLoadingModal('Connecting...');
   }
 
   showInstructionsModal() {

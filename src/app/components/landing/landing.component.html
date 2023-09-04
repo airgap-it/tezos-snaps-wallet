@@ -46,9 +46,12 @@
         </div>
       </div>
       <div *ngIf="isMetaMaskInstalled" class="metamaskContainer">
-        <div (click)="connect()" class="metamaskModal">
+        <div *ngIf="!isLoading" (click)="connect()" class="metamaskModal">
           <img class="metamaskLogo" src="./assets/metamask-logo.svg" />
           <div class="metamaskText">Connect with MetaMask</div>
+        </div>
+        <div *ngIf="isLoading" class="spinner-border mr-3" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
       </div>
 
