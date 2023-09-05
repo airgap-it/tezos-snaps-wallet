@@ -24,15 +24,37 @@
       <div class="card-body" (click)="openLink('https://tzkt.io/' + op.hash)">
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column">
+            <img
+              *ngIf="op?.target?.address === address"
+              src="./assets/icons/MdOutlineCallReceived.svg"
+              alt="Received"
+              style="width: 16px; height: 16px; margin-left: 4px"
+            />
+            <img
+              *ngIf="op?.target?.address !== address"
+              src="./assets/icons/MdOutlineCallReceived.svg"
+              alt="Sent"
+              style="
+                width: 16px;
+                height: 16px;
+                margin-left: 4px;
+                transform: rotate(180deg);
+              "
+            />
+
             <p class="text-amount">{{ op.amount / 1000000 }} tez</p>
             <div class="d-flex justify-content-between align-items-center">
-              <span class="text-address"
+              <span *ngIf="op?.target?.address === address" class="text-address"
                 ><strong>from:</strong>
+                {{ op.sender.address | shortenString }}</span
+              >
+              <span *ngIf="op?.target?.address !== address" class="text-address"
+                ><strong>to:</strong>
                 {{ op.sender.address | shortenString }}</span
               >
               <img
                 src="./assets/icons/FiCopy.svg"
-                alt="SVG Image"
+                alt="Copy"
                 style="width: 16px; height: 16px; margin-left: 4px"
               />
             </div>
@@ -48,14 +70,12 @@
             <div class="d-flex align-items-center">
               <img
                 src="./assets/icons/MdOutlineCheckCircle.svg"
-                alt="SVG Image"
+                alt="Checked"
                 style="width: 16px; height: 16px; margin-left: 4px"
               />
             </div>
           </div>
         </div>
-
-        <!-- <json-formatter [json]="op"></json-formatter> -->
       </div>
     </div>
   </div>

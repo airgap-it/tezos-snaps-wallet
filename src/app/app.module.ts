@@ -13,7 +13,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { HttpClientModule } from '@angular/common/http';
 import { CollapsableJsonComponent } from './components/collapsable-json/collapsable-json.component';
 
-import { DirectivesModule } from './directives/directives.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccountsOverviewComponent } from './components/accounts-overview/accounts-overview.component';
@@ -78,7 +77,6 @@ import { TimeagoModule } from 'ngx-timeago';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DirectivesModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
