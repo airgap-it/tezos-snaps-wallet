@@ -1,15 +1,35 @@
-.cardBox{
-  width: 950px;
-  height: auto;
+.cardBox {
+  width: 100%; 
+  max-width: 950px; 
+  min-height: 713px;
   border-radius: 20px;
-  background: var(--Netural-1, #F5F5F7);
-  margin-left: 80px;
+  background: var(--Netural-1, #F5F5F7); 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-sizing: border-box; 
+  box-shadow: none;
+  margin-left: 4.5rem;
 }
+
+@media (max-width: 768px) {
+  .cardBox {
+    max-width: 100%;
+    margin-left: 0; 
+  }
+}
+
+.centered-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+  margin: 3rem;
+}
+
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  //   background-color: #2196f3;
   padding: 10px;
 }
 .grid-item {

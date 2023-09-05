@@ -1,20 +1,12 @@
-<div class="row container">
-  <div
-    class="col-6"
-    style="
-      justify-content: flex-start;
-      align-items: center;
-      gap: 30px;
-      display: flex;
-    "
-  >
+<div class="row container custom-footer justify-content-center">
+  <div class="col-6 d-flex align-items-center gap-3">
     <span (click)="modalService.showAboutModal()">About</span>
-    <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
+    <div class="separator"></div>
     <span (click)="modalService.showPrivacyModal()">Privacy Policy</span>
-    <div style="width: 0px; height: 20px; border: 0.5px #d2d2d7 solid"></div>
+    <div class="separator"></div>
     <span (click)="modalService.showTosModal()">Terms of Use</span>
   </div>
-  <div class="col-6" style="text-align: right">
+  <div class="col-6 text-right">
     Powered by <u><a href="https://tezos.com">Tezos</a></u>
   </div>
 </div>

@@ -1,0 +1,128 @@
+.addressBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  background: #f5f5f7;
+  border-radius: 100px;
+  height: 40px;
+}
+
+
+.large {
+  font-size: 24px;
+  display: block;
+}
+
+.small {
+  font-size: 12px;
+  display: block;
+  color: #6E6E73;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.buttonContainer {
+  margin-left: 3rem;
+}
+
+.textAddress {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1d1d1f;
+  word-wrap: break-word;
+}
+
+.buttonNetwork {
+  background-color: #F5F5F7;
+  color: #1D1D1F;
+  border: none;
+  width: 110px;
+  height: 40px;
+  padding: 11px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.buttonContainer button,
+.buttonContainer a {
+  outline: none !important; 
+  box-shadow: none;
+  border: none;
+}
+
+.buttonContainer button:hover,
+.buttonContainer a:hover {
+  border: none; 
+  box-shadow: none;
+  background-color: #0F61FF;
+  color: #FFFFFF;
+}
+
+.buttonContainer:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.buttonContainer:not(:hover) button {
+  background-color: #F5F5F7; 
+  color: #1D1D1F;
+}
+
+.custom-dropdown-toggle::after {
+  content: none;
+}
+
+.custom-dropdown-toggle {
+  background-color: #F5F5F7;
+  color: #1D1D1F;
+  border: none;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 100px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out; 
+}
+
+.custom-dropdown-toggle:focus {
+  outline: none;
+}
+
+.custom-dropdown-toggle:hover {
+  background-color: #0F61FF;
+  color: #FFFFFF;
+}
+
+.dropdown-menu-container {
+  position: relative;
+}
+
+.dropdown-menu.custom-dropdown-menu {
+  right: auto;
+  left: calc(-100% + 40px);
+  position: absolute;
+}

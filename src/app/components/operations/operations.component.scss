@@ -1,0 +1,19 @@
+.no-shadow {
+    box-shadow: none; 
+  }
+
+  .cardBox {
+    width: 100%; 
+    min-width: 580px; 
+    min-height: 519px;
+    border-radius: 20px;
+    background: var(--Netural-1, #F5F5F7); 
+    box-shadow: none;
+  }
+  
+  @media (max-width: 768px) {
+    .cardBox {
+      max-width: 100%;
+      margin-left: 0; 
+    }
+  }
