@@ -25,8 +25,8 @@
 
 .card-container {
     width: 520px;
-    height: auto;
-    padding: 20px;
+    max-height: 87px;
+    
     border-radius: 10px;
     gap: 10px;
     margin: 20px auto;
@@ -39,6 +39,10 @@
     color: #fff;
 }
 
+.text-box {
+    padding-top: 32px;
+}
+
 .timestamp {
     font-family: Inter;
     font-size: 14px;
@@ -46,5 +50,24 @@
     line-height: 17px;
     letter-spacing: 0em;
     text-align: right;
+    color: #6E6E73;
+}
+
+.text-amount {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.text-address {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
     color: #6E6E73;
 }

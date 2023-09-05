@@ -6,14 +6,11 @@
       <img src="./assets/icons/Vector.svg" alt="SVG Image" style="width: 250px; height: 100%; " />
     </div>
     <div class="grid-container" *ngIf="nfts.length > 0">
-      <div
-        class="grid-item"
-        *ngFor="let nft of nfts"
-        (click)="showNFTModal(nft)"
-      >
+      <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
         <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
         <p>{{ nft.token.metadata.name }}</p>
       </div>
+      
     </div>
   </div>
 </div>
