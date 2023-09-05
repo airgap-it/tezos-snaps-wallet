@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 /* custom colors */
 $theme-colors: (
@@ -46,3 +46,5 @@ body {
   font-weight: 300;
   word-wrap: break-word;
 }
+
+@import "ngx-toastr/toastr-bs4-alert";

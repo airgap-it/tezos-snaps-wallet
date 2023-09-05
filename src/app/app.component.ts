@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   address: string = '';
   operations: {
     hash: string;
+    type: 'transaction' | string;
     amount: number;
     sender: { address: string };
     target: { address: string };
