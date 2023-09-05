@@ -1,15 +1,49 @@
 .cardBox {
-    width: 580px;
-    height: auto;
-    border-radius: 20px;
-    background: var(--Netural-1, #F5F5F7);
+  width: 100%;
+  min-width: 580px;
+  height: auto;
+  border-radius: 20px;
+  background: var(--Netural-1, #F5F5F7);
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .cardBox {
+    max-width: 100%;
+    margin-left: 0;
+  }
 }
 
 .cardBalance {
-    color: var(--Black, #1D1D1F);
-    font-family: Inter;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 26px;
+  color: var(--Black, #1D1D1F);
+  font-family: Inter;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+
+.btn.btn-primary.btn-circle {
+  height: 40px;
+  width: 88px;
+  background-color: #0F61FF;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn.btn-primary.btn-circle:hover {
+  background-color: #0079FF;
+  border: none;
+}
+
+.btn.btn-outline-primary.btn-circle {
+  color: #0F61FF;
+  border-color: #0F61FF;
+}
+
+.btn.btn-outline-primary.btn-circle:hover {
+  background-color: #0F61FF;
+  color: #fff;
 }
