@@ -1,0 +1,31 @@
+<span *ngIf="nft">
+  <div class="image-container">
+    <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
+  </div>
+  <p class="text-name">{{ nft.token.metadata.name }}</p>
+  <p class="text-name">{{ nft.token.metadata.description }}</p>
+  <a
+    href="#"
+    (click)="
+      openLink(
+        'https://tzkt.io/' +
+          nft.token.contract.address +
+          '/tokens/' +
+          nft.token.tokenId +
+          '/transfers'
+      )
+    "
+    >View on tzkt</a
+  >
+  <a
+    href="#"
+    (click)="
+      openLink(
+        'https://better-call.dev/mainnet/' +
+          nft.token.contract.address +
+          '/operations'
+      )
+    "
+    >View contract</a
+  >
+</span>

@@ -41,6 +41,7 @@ import { SendNftModalComponent } from './modals/send-nft-modal/send-nft-modal.co
 import { ConfirmTxModalComponent } from './modals/confirm-tx-modal/confirm-tx-modal.component';
 import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confirmed-modal.component';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
+import { NftModalComponent } from './modals/nft-modal/nft-modal.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ShortenStringPipe } from './pipes/shorten-string.pipe';
     ConfirmTxModalComponent,
     TxConfirmedModalComponent,
     ShortenStringPipe,
+    NftModalComponent,
   ],
   imports: [
     BrowserModule,
