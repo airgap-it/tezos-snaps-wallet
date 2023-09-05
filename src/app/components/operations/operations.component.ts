@@ -27,4 +27,8 @@ export class OperationsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  openLink(link: string) {
+    window.open(link, '_blank');
+  }
 }

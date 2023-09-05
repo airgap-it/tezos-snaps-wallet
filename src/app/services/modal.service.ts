@@ -15,6 +15,7 @@ import { QrModalComponent } from '../modals/qr-modal/qr-modal.component';
 import { Token } from '../types';
 import { ConnectedModalComponent } from '../modals/connected-modal/connected-modal.component';
 import { AppMetadata } from '@airgap/beacon-wallet';
+import { NftModalComponent } from '../modals/nft-modal/nft-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -220,10 +221,13 @@ export class ModalService {
   }
 
   showNFTModal(nft: Token) {
-    const initialState: ModalOptions<TextModalComponent> = {
+    const initialState: ModalOptions<NftModalComponent> = {
       ...this.modalOptions,
+      initialState: {
+        nft,
+      },
     };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+    const bsModalRef = this.modalService.show(NftModalComponent, initialState);
 
     return bsModalRef;
   }

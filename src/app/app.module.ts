@@ -13,7 +13,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { HttpClientModule } from '@angular/common/http';
 import { CollapsableJsonComponent } from './components/collapsable-json/collapsable-json.component';
 
-import { DirectivesModule } from './directives/directives.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccountsOverviewComponent } from './components/accounts-overview/accounts-overview.component';
@@ -41,6 +40,8 @@ import { SendNftModalComponent } from './modals/send-nft-modal/send-nft-modal.co
 import { ConfirmTxModalComponent } from './modals/confirm-tx-modal/confirm-tx-modal.component';
 import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confirmed-modal.component';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
+import { NftModalComponent } from './modals/nft-modal/nft-modal.component';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [
@@ -69,19 +70,20 @@ import { ShortenStringPipe } from './pipes/shorten-string.pipe';
     ConfirmTxModalComponent,
     TxConfirmedModalComponent,
     ShortenStringPipe,
+    NftModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DirectivesModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     QRCodeModule,
+    TimeagoModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
