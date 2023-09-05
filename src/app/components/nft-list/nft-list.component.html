@@ -7,10 +7,12 @@
     </div>
     <div class="grid-container" *ngIf="nfts.length > 0">
       <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
-        <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
-        <p>{{ nft.token.metadata.name }}</p>
+        <div class="image-container">
+          <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
+        </div>
+        <p class="text-name">{{ nft.token.metadata.name }}</p>
       </div>
-      
+
     </div>
   </div>
 </div>
