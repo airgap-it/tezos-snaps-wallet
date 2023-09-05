@@ -22,19 +22,19 @@
 
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3">
-       
-            <div class="addressBox">
-              <img src="./assets/icons/Avatar.svg" alt="SVG Image" style="width: 18px; height: 18px; " />
-              <div class="addressBox">
-                <div class="textAddress">
-                  {{ address | shortenString }}
-                </div>
-                <img src="./assets/icons/FiCopy.svg" alt="SVG Image" style="width: 16px; height: 16px; " />
-              </div>
+
+        <div class="addressBox">
+          <img src="./assets/icons/Avatar.svg" alt="SVG Image" style="width: 18px; height: 18px; " />
+          <div class="addressBox">
+            <div class="textAddress">
+              {{ address | shortenString }}
             </div>
-         
+            <img src="./assets/icons/FiCopy.svg" alt="SVG Image" style="width: 16px; height: 16px; " />
+          </div>
+        </div>
+
       </li>
-      <li class="ml-md-3" (click)="showQrModal()">
+      <li class="ml-md-3 qr-code" (click)="showQrModal()">
         <span class="d-flex align-items-center">
           <img src="./assets/icons/qr-code-icon.svg" class="fa-icon mr-2" />
         </span>
