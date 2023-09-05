@@ -65,14 +65,14 @@
 
 .buttonContainer button,
 .buttonContainer a {
-  outline: none !important; 
+  outline: none !important;
   box-shadow: none;
   border: none;
 }
 
 .buttonContainer button:hover,
 .buttonContainer a:hover {
-  border: none; 
+  border: none;
   box-shadow: none;
   background-color: #0F61FF;
   color: #FFFFFF;
@@ -85,7 +85,7 @@
 }
 
 .buttonContainer:not(:hover) button {
-  background-color: #F5F5F7; 
+  background-color: #F5F5F7;
   color: #1D1D1F;
 }
 
@@ -105,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease-in-out; 
+  transition: background-color 0.3s ease-in-out;
 }
 
 .custom-dropdown-toggle:focus {
@@ -125,4 +125,13 @@
   right: auto;
   left: calc(-100% + 40px);
   position: absolute;
+}
+
+@media (max-width: 768px) {
+
+  .buttonContainer,
+  .addressBox,
+  .qr-code img {
+    display: none;
+  }
 }

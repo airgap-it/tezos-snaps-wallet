@@ -5,7 +5,7 @@
 
 <div *ngIf="accountService.hasAccounts" class="container-fluid px-md-5 pb-3">
   <div class="row">
-    <div class="col-4">
+    <div class="col-md-4">
       <div class="card no-shadow mb-3">
         <app-account
           [balance]="balance"
@@ -142,13 +142,20 @@
         </div>
       </div> -->
     </div>
-    <div class="col-8">
+    <div class="col-md-8">
       <app-nft-list [nfts]="nfts"></app-nft-list>
     </div>
+    
   </div>
-  <div class="footer-container d-flex justify-content-center align-items-center">
-    <app-footer></app-footer>
-  </div>
+  
+  
+</div>
+
+<div>
+  <app-footer></app-footer>
 </div>
 
 <router-outlet></router-outlet>
+
+
+
