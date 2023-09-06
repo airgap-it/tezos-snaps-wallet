@@ -7,155 +7,19 @@
   <div class="row">
     <div class="col-md-4">
       <div class="card no-shadow mb-3">
-        <app-account
-          [balance]="balance"
-          [usdBalance]="usdBalance"
-          [address]="address"
-          [tokens]="tokens"
-        ></app-account>
+        <app-account [balance]="balance" [usdBalance]="usdBalance" [address]="address" [tokens]="tokens"></app-account>
       </div>
       <div class="card no-shadow mb-3">
         <app-operations [operations]="operations"></app-operations>
       </div>
-      <!-- <div class="card no-shadow mb-3">
-        <div class="card-body">
-          <h3 class="card-title">Connect dApp</h3>
-          <input type="text" class="form-control" [(ngModel)]="syncCode" />
-          <button
-            type="button"
-            class="btn btn-primary btn-block d-flex justify-content-between"
-            (click)="paste()"
-          >
-            Paste
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary btn-block d-flex justify-content-between mb-5"
-            [disabled]="
-              (accounts$ | async)?.length === 0 || syncCode.length === 0
-            "
-            (click)="connect()"
-          >
-            Connect To A New dApp
-            <img src="./assets/icons/clipboard-regular.svg" class="fa-icon" />
-          </button>
-          <div class="d-flex justify-content-between align-items-center">
-            <h6>How To Connect To A New dApp</h6>
-            <button
-              type="button"
-              class="btn btn-light"
-              (click)="openHowToModal()"
-            >
-              Learn More
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="card no-shadow mb-3">
-        <div class="card-body">
-          <h3 class="card-title">Settings</h3>
-          <div class="d-flex justify-content-between align-items-center pb-3">
-            <div>
-              <p class="text-muted mb-1">
-                <small>Connected Beacon Node</small>
-              </p>
-              <h6>beacon-node-2.sky.papers.tech</h6>
-            </div>
-            <button
-              type="button"
-              class="btn btn-light"
-              (click)="openNodeSelectorModal()"
-            >
-              Change
-            </button>
-          </div>
-          <div *ngFor="let node of selectedNodes">
-            <p class="text-muted mb-0">
-              <small>{{ node[0] }}</small>
-            </p>
-            <h6>{{ node[1] }}</h6>
-          </div>
-          <div class="mt-5">
-            <button
-              type="button"
-              class="btn btn-light"
-              (click)="openNodeSelectorModal()"
-            >
-              Select Node
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="card no-shadow">
-        <div class="card-body">
-          <h3 class="card-title">DApp Peers & Permissions</h3>
-          <p class="text-muted" *ngIf="peersAndPermissions.length === 0">
-            No Peers
-          </p>
-          <div>
-            <accordion [isAnimated]="true">
-              <accordion-group *ngFor="let peer of peersAndPermissions">
-                <div
-                  class="justify-content-between align-items-center d-flex w-100"
-                  accordion-heading
-                >
-                  <h5 class="m-0">
-                    {{ peer[0].name }}
-                    <small>- {{ $any(peer[0])?.relayServer }}</small>
-                  </h5>
-
-                  <button
-                    type="button"
-                    class="btn btn-light"
-                    (click)="removePeer($event, peer[0])"
-                  >
-                    Disconnect
-                  </button>
-                </div>
-                <div class="pb-3">
-                  <json-formatter [json]="peer[0]"></json-formatter>
-                </div>
-                <div class="pb-5">
-                  <h5>Permissions</h5>
-
-                  <div class="row" *ngFor="let permission of peer[1]">
-                    <div class="col-12 col-md-9">
-                      <json-formatter [json]="permission"></json-formatter>
-                    </div>
-                    <div
-                      class="col-12 col-md-3 d-flex justify-content-end align-items-start"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-light"
-                        (click)="removePermission(permission)"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                    <hr />
-                  </div>
-                </div>
-              </accordion-group>
-            </accordion>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="col-md-8">
       <app-nft-list [nfts]="nfts"></app-nft-list>
     </div>
-    
   </div>
-  
-  
 </div>
-
 <div>
   <app-footer></app-footer>
 </div>
 
 <router-outlet></router-outlet>
-
-
-

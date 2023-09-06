@@ -1,26 +1,29 @@
 .cardBox {
   width: 100%;
-  min-width: 580px;
-  height: auto;
   border-radius: 20px;
   background: var(--Netural-1, #F5F5F7);
   box-shadow: none;
+  box-sizing: border-box; 
 }
 
-@media (max-width: 768px) {
-  .cardBox {
-    max-width: 100%;
-    margin-left: 0;
-  }
+.card-title {
+font-family: Inter;
+font-size: 20px;
+font-weight: 600;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+
 }
+
 
 .cardBalance {
   color: var(--Black, #1D1D1F);
   font-family: Inter;
   font-size: 28px;
-  font-style: normal;
   font-weight: 600;
   line-height: 26px;
+  text-align: center; 
 }
 
 
@@ -31,6 +34,10 @@
   color: #fff;
   border: none;
   transition: background-color 0.3s ease-in-out;
+  border-radius: 20px; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .btn.btn-primary.btn-circle:hover {
@@ -38,12 +45,67 @@
   border: none;
 }
 
+
 .btn.btn-outline-primary.btn-circle {
   color: #0F61FF;
   border-color: #0F61FF;
+  background-color: transparent; 
 }
 
 .btn.btn-outline-primary.btn-circle:hover {
   background-color: #0F61FF;
   color: #fff;
 }
+
+/* Large screens */
+@media (min-width: 769px) {
+  .btn.btn-primary.btn-circle,
+  .btn.btn-outline-primary.btn-circle {
+    height: 40px;
+    width: 88px;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .btn.btn-primary.btn-circle:hover {
+    background-color: #0079FF;
+  }
+}
+
+/* Medium screens and below */
+@media (max-width: 768px) {
+  .cardBox {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cardBalance {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .btn.btn-primary.btn-circle,
+  .btn.btn-outline-primary.btn-circle {
+    width: auto;
+    font-size: 14px;
+    height: 100%;
+    margin: 5px 0;
+  }
+
+  .btn.btn-primary.btn-circle:hover {
+    background-color: #0079FF;
+  }
+}
+
+/* Medium screens and below */
+@media (max-width: 1300px) {
+ 
+  .cardBalance {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+}
+
+

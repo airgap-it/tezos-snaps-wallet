@@ -8,13 +8,30 @@
   padding: 5px;
   box-sizing: border-box;
   box-shadow: none;
-  margin-left: 4.5rem;
+  margin-left: 10px;
 }
+
+.card-title {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  
+  }
 
 @media (max-width: 768px) {
   .cardBox {
-    min-width: 580px;
+    
+    max-width: 100%; /* Allow the card to take full width on small screens */
     margin-left: 0;
+    padding: 20px; /* Add some padding to create space between elements */
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Full width columns on small screens */
+    gap: 20px; /* Increase the gap between grid items */
   }
 }
 
