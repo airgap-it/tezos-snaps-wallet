@@ -24,6 +24,7 @@ import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
 import { ModalService } from './modal.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface LogAction {
   title: string;
@@ -44,10 +45,11 @@ export class BeaconService {
     private readonly tabSyncService: TabSyncService,
     private readonly accountService: AccountService,
     private readonly modalService: ModalService,
-    private readonly apiService: ApiService
+    private readonly apiService: ApiService,
+    private readonly toastService: ToastrService
   ) {
     this.walletClient = new WalletClient({
-      name: 'Tezos Wallet Explorer for MetaMask',
+      name: 'MetaMask',
     });
 
     this.connect();
@@ -117,16 +119,19 @@ export class BeaconService {
           console.error('No account found for ' + message.sourceAddress);
           return;
         }
-        this.modalRef = this.modalService.showOperationModal();
 
-        this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-          if (result && result === 'confirm') {
-            this.handleOperationRequest(account, message);
-          } else {
-            this.sendAbortedError(message);
-            console.log('DENIED', result);
+        const toast = this.toastService.success(
+          'Operation request received',
+          'Success',
+          {
+            closeButton: true,
+            timeOut: 0,
+            positionClass: 'toast-bottom-center',
           }
+        );
+        this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+        this.handleOperationRequest(account, message).finally(() => {
+          toast.toastRef.close();
         });
       } else if (message.type === BeaconMessageType.SignPayloadRequest) {
         const account = accounts.find(
@@ -137,16 +142,18 @@ export class BeaconService {
           return;
         }
 
-        this.modalRef = this.modalService.showSignModal();
-
-        this.modalRef.onHide?.pipe(first()).subscribe((result) => {
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-          if (result && result === 'confirm') {
-            this.handleSignPayload(account, message);
-          } else {
-            this.sendAbortedError(message);
-            console.log('DENIED', result);
+        const toast = this.toastService.success(
+          'Sign request received',
+          'Success',
+          {
+            closeButton: true,
+            timeOut: 0,
+            positionClass: 'toast-bottom-center',
           }
+        );
+        this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+        this.handleSignPayload(account, message).finally(() => {
+          toast.toastRef.close();
         });
       } else {
         console.error('Message type not supported');
