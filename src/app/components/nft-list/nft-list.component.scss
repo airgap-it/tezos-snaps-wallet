@@ -21,20 +21,6 @@
 
 }
 
-@media (max-width: 768px) {
-  .cardBox {
-
-    max-width: 100%;
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  .grid-container {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    gap: 20px;
-  }
-}
-
 .centered-image {
   display: flex;
   justify-content: center;
@@ -93,4 +79,17 @@
   letter-spacing: 0em;
   text-align: left;
   padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .cardBox {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 10px;
+  }
 }
