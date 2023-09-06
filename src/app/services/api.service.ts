@@ -107,7 +107,7 @@ export class ApiService {
     // https://api.mainnet.tzkt.io/
     // https://api.ghostnet.tzkt.io/
     const operations = await this.http
-      .get(`https://api.tzkt.io/v1/accounts/${address}/operations?limit=20`)
+      .get(`https://api.tzkt.io/v1/accounts/${address}/operations?limit=10`)
       .toPromise();
 
     return operations;
