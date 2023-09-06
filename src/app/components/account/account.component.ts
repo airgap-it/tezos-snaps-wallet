@@ -17,9 +17,8 @@ export class AccountComponent implements OnChanges {
   tezDecimalAmount: string = '0';
 
   constructor(public readonly modalService: ModalService) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     const balance: string = changes.balance?.currentValue;
