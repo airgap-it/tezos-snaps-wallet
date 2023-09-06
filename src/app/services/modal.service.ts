@@ -206,20 +206,6 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showInstructionsModal() {
-    const initialState: ModalOptions<TextModalComponent> = {
-      ...this.modalOptions,
-      initialState: {
-        title: 'header',
-        text: 'text',
-        closeBtnName: 'Close',
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
-
-    return bsModalRef;
-  }
-
   showNFTModal(nft: Token) {
     const initialState: ModalOptions<NftModalComponent> = {
       ...this.modalOptions,

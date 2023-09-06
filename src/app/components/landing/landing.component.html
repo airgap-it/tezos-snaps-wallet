@@ -1,4 +1,7 @@
-<div class="containerbox container-fluid px-md-5 pb-3" style="flex-direction: column">
+<div
+  class="containerbox container-fluid px-md-5 pb-3"
+  style="flex-direction: column"
+>
   <div class="flex-container">
     <img src="./assets/tezos-logo-main.svg" class="logo" />
     <div class="mb-10">
@@ -8,11 +11,26 @@
   </div>
   <br />
   <div class="imageBox">
-    <div class="d-flex justify-content-center" style="width: 40px; height: 40px">
-      <img src="./assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; " />
-      <img src="./assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px" />
+    <div
+      class="d-flex justify-content-center"
+      style="width: 40px; height: 40px"
+    >
+      <img
+        src="./assets/tezos-logo-sm.svg"
+        alt="SVG Image"
+        style="width: 100%; height: 100%"
+      />
+      <img
+        src="./assets/icons/close.svg"
+        alt="SVG Image"
+        style="width: 20px; height: 100%; margin-left: 20px"
+      />
 
-      <img src="./assets/matamask-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%; margin-left: 20px" />
+      <img
+        src="./assets/matamask-logo-sm.svg"
+        alt="SVG Image"
+        style="width: 100%; height: 100%; margin-left: 20px"
+      />
     </div>
     <div class="textBox">
       <div class="metamasTextBox">
@@ -20,9 +38,12 @@
           Tezos Wallet Explorer, powered by MetaMask
         </div>
         <div class="metamaskSubtitle">
-          <span *ngIf="!isMetaMaskInstalled">You need to install MetaMask. You can download it
-            <a href="https://metamask.io/download/">here</a>. </span><span *ngIf="isMetaMaskInstalled">Connect your
-            MetaMask to access the Tezos Wallet Explorer.</span>
+          <span *ngIf="!isMetaMaskInstalled"
+            >You need to install MetaMask. You can download it
+            <a href="https://metamask.io/download/">here</a>. </span
+          ><span *ngIf="isMetaMaskInstalled"
+            >Connect your MetaMask to access the Tezos Wallet Explorer.</span
+          >
         </div>
       </div>
       <div *ngIf="isMetaMaskInstalled" class="metamaskContainer">
@@ -35,7 +56,12 @@
         </div>
       </div>
 
-      <div (click)="showInstructionsModal()" class="containerModal">
+      <div
+        (click)="
+          openLink('https://github.com/airgap-it/tezos-metamask-snap/wiki/')
+        "
+        class="containerModal"
+      >
         <div class="instructionsModal">
           <div class="instructionsBox">
             <div class="footer">
@@ -49,8 +75,16 @@
   </div>
 
   <div class="footer-menu">
-    <a href="#" (click)="modalService.showAboutModal()" class="footer-link">About</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20" fill="none">
+    <a href="#" (click)="modalService.showAboutModal()" class="footer-link"
+      >About</a
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="20"
+      viewBox="0 0 2 20"
+      fill="none"
+    >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
     <a href="#" (click)="openLink('#')" class="footer-link">Privacy Policy</a>
@@ -84,7 +118,13 @@
   </div>
 
   <div class="footerTezos">
-    <span>Powered by
-      <a href="https://metamask.io/snaps/" style="text-decoration: underline; color: #86868b">MetaMask Snaps</a></span>
+    <span
+      >Powered by
+      <a
+        href="https://metamask.io/snaps/"
+        style="text-decoration: underline; color: #86868b"
+        >MetaMask Snaps</a
+      ></span
+    >
   </div>
 </div>
