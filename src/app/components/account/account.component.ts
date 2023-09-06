@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalOptions } from 'ngx-bootstrap/modal';
-import { SendTezModalComponent } from '../../modals/send-tez-modal/send-tez-modal.component';
 import { Token } from '../../types';
 import { ModalService } from 'src/app/services/modal.service';
 
