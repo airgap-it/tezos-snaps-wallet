@@ -1,19 +1,24 @@
-json-formatter > div:first-child {
+json-formatter>div:first-child {
   padding: 8px;
 }
+
 .json-formatter-row {
   background-color: var(--ion-color-light);
   font-size: 0.7rem;
 }
+
 .json-formatter-row .json-formatter-toggler:after {
   content: "+" !important;
 }
+
 .json-formatter-row .json-formatter-toggler {
   vertical-align: initial !important;
 }
+
 .json-formatter-row .json-formatter-key {
   color: #000 !important;
 }
+
 .json-formatter-row .json-formatter-string,
 .json-formatter-row .json-formatter-stringifiable {
   color: #3880ff !important;
@@ -45,6 +50,7 @@ json-formatter > div:first-child {
   .modal-header {
     border-bottom: none;
   }
+
   .modal-footer {
     border-top: none;
   }
@@ -68,7 +74,5 @@ json-formatter > div:first-child {
 }
 
 .no-shadow {
-  box-shadow: none; 
+  box-shadow: none;
 }
-
-
