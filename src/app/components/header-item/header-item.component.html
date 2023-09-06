@@ -31,24 +31,15 @@
 
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3">
-       
+
         <div class="addressBox" (click)="copyToClipboard()">
-          <img
-            src="./assets/icons/Avatar.svg"
-            alt="SVG Image"
-            style="width: 18px; height: 18px"
-          />
+          <img src="./assets/icons/Avatar.svg" alt="SVG Image" style="width: 18px; height: 18px" />
           <div class="addressBox">
             <div class="textAddress">
               {{ address | shortenString }}
             </div>
-            <img
-              (click)="copyToClipboard()"
-              class="copy-button"
-              src="./assets/icons/FiCopy.svg"
-              alt="SVG Image"
-              style="width: 16px; height: 16px"
-            />
+            <img (click)="copyToClipboard()" class="copy-button" src="./assets/icons/FiCopy.svg" alt="SVG Image"
+              style="width: 16px; height: 16px" />
           </div>
         </div>
       </li>
@@ -60,21 +51,13 @@
         </button>
 
       </li>
-      <li class="ml-md-3" style="position: relative">
-        <div class="btn-group dropdown-menu-container" dropdown style="position: relative">
-          <button id="button-basic" dropdownToggle type="button"
-            class="btn btn-circle dropdown-toggle custom-dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="./assets/icons/FiMenu.svg" alt="SVG Image" style="width: 20px; height: 20px" />
-          </button>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu custom-dropdown-menu dropdown-menu-left"
-            role="menu" aria-labelledby="button-basic">
-            <li role="menuitem">
-              <a class="dropdown-item" (click)="disconnect()">{{
-                accountService.hasAccounts ? "Disconnect" : "Connect"
-                }}</a>
-            </li>
-          </ul>
+      <li class="ml-md-3">
+        <div class="addressBox">
+          <span class="d-flex align-items-center" (click)="disconnect()">
+            <img src="./assets/icons/FiLogOut.svg" class="fa-icon mr-2" />
+
+            {{ accountService.hasAccounts ? "Disconnect" : "Connect" }}
+          </span>
         </div>
       </li>
     </ul>
