@@ -1,7 +1,7 @@
 .cardBox {
   width: 100%;
   border-radius: 20px;
-  background: var(--Netural-1, #F5F5F7);
+  background: var(--Netural-1, #f5f5f7);
   box-shadow: none;
   box-sizing: border-box;
 }
@@ -13,12 +13,10 @@
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-
 }
 
-
 .cardBalance {
-  color: var(--Black, #1D1D1F);
+  color: var(--Black, #1d1d1f);
   font-family: Inter;
   font-size: 28px;
   font-weight: 600;
@@ -26,11 +24,14 @@
   text-align: center;
 }
 
+.cardBalanceDecimal {
+  font-size: 20px;
+}
 
 .btn.btn-primary.btn-circle {
   height: 40px;
   width: 88px;
-  background-color: #0F61FF;
+  background-color: #0f61ff;
   color: #fff;
   border: none;
   transition: background-color 0.3s ease-in-out;
@@ -41,10 +42,9 @@
 }
 
 .btn.btn-primary.btn-circle:hover {
-  background-color: #0079FF;
+  background-color: #0079ff;
   border: none;
 }
-
 
 .btn.btn-outline-primary.btn-circle {
   color: #0F61FF;
@@ -53,7 +53,7 @@
 }
 
 .btn.btn-outline-primary.btn-circle:hover {
-  background-color: #0F61FF;
+  background-color: #0f61ff;
   color: #fff;
 }
 
@@ -69,7 +69,7 @@
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079FF;
+    background-color: #0079ff;
   }
 }
 
@@ -95,16 +95,16 @@
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079FF;
+    background-color: #0079ff;
   }
 }
 
 /* Medium screens and below */
 @media (max-width: 1300px) {
-
   .cardBalance {
     font-size: 18px;
     line-height: 18px;
   }
 
 }
+

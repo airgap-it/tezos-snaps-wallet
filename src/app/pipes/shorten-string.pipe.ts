@@ -12,10 +12,10 @@ export class ShortenStringPipe implements PipeTransform {
 
     let result = value;
     if (
-      value.length >= 15 &&
+      value.length >= 13 &&
       (args.ifMatches === undefined || result.match(args.ifMatches))
     ) {
-      result = `${value.substr(0, 8)}...${value.substr(-5)}`;
+      result = `${value.substr(0, 7)}...${value.substr(-4)}`;
     }
 
     return result;

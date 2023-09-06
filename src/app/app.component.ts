@@ -108,6 +108,7 @@ export class AppComponent implements OnInit {
 
         this.usdBalance = new BigNumber(this.balance)
           .times(this.price)
+          .decimalPlaces(2)
           .toString(10);
       }
     });

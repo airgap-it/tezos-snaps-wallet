@@ -6,31 +6,50 @@
         <span class="header pt-1 ml-1 large">Tezos Wallet Explorer</span>
         <span class="header ml-1 small">powered by MetaMask</span>
       </div>
-
+      <!-- // Re-enable once switching network is available.
       <div class="btn-group buttonContainer" dropdown>
         <button id="button-basic" dropdownToggle type="button"
           class="btn btn-primary btn-circle dropdown-toggle buttonNetwork" aria-controls="dropdown-basic">
           {{ network }} <span class="caret"></span>
         </button>
         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <ul
+          id="dropdown-basic"
+          *dropdownMenu
+          class="dropdown-menu"
+          role="menu"
+          aria-labelledby="button-basic"
+        >
           <li role="menuitem">
             <a class="dropdown-item" (click)="changeNetwork()">{{
               otherNetwork
               }}</a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
 
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3">
         <div class="addressBox" (click)="copyToClipboard()">
           <img src="./assets/icons/Avatar.svg" alt="SVG Image" style="width: 18px; height: 18px" />
+        <div class="addressBox">
+          <img
+            src="./assets/icons/Avatar.svg"
+            alt="SVG Image"
+            style="width: 18px; height: 18px"
+          />
           <div class="addressBox">
             <div class="textAddress">
               {{ address | shortenString }}
             </div>
-            <img src="./assets/icons/FiCopy.svg" alt="SVG Image" style="width: 16px; height: 16px" />
+            <img
+              (click)="copyToClipboard()"
+              class="copy-button"
+              src="./assets/icons/FiCopy.svg"
+              alt="SVG Image"
+              style="width: 16px; height: 16px"
+            />
           </div>
         </div>
       </li>

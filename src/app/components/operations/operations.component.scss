@@ -1,88 +1,94 @@
-
 .no-shadow {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-
 .cardBox {
-    width: 100%;
-    border-radius: 20px;
-    background: var(--Netural-1, #F5F5F7);
-    box-shadow: none;
+  width: 100%;
+  border-radius: 20px;
+  background: var(--Netural-1, #f5f5f7);
+  box-shadow: none;
 }
 
 .card-title {
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .card-container {
-    border-radius: 10px;
-    gap: 10px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  gap: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 @media (min-width: 768px) {
-    .cardBox {
-        max-width: 580px;
-        margin: 0 auto;
-    }
+  .cardBox {
+    max-width: 580px;
+    margin: 0 auto;
+  }
 
-    .card-container {
-        max-width: 520px;
-        margin: 20px auto 0;
-    }
+  .card-container {
+    max-width: 520px;
+    margin: 20px auto 0;
+  }
 }
 
+.copy-button {
+  cursor: pointer;
+}
 
 .explorer-link {
-    color: #0F61FF;
-    margin-right: 4px;
+  color: #0f61ff;
+  margin-right: 4px;
 }
-
 
 .badge-light {
-    background-color: #0079FF;
-    color: #fff;
+  background-color: #0079ff;
+  color: #fff;
 }
 
-
 .text-box {
-    padding-top: 32px;
+  padding-top: 32px;
 }
 
 .timestamp {
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: right;
-    color: #6E6E73;
-    cursor: pointer;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #6e6e73;
+  cursor: pointer;
+}
+
+.timestamp:hover {
+  text-decoration: underline;
 }
 
 .text-amount {
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .text-address {
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #6E6E73;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #6e6e73;
+}
+
+.explorer-link:hover {
+  text-decoration: underline;
 }

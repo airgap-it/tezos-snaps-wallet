@@ -210,9 +210,13 @@ export class ModalService {
     const initialState: ModalOptions<TextModalComponent> = {
       ...this.modalOptions,
       initialState: {
-        title: 'header',
-        text: 'text',
-        closeBtnName: 'Close',
+        title: 'Installation Instructions',
+        text: `<ol>
+        <li>To get started make sure you have MetaMask chrome extension installed and then go to the Tezos Wallet powered by Metamask here.</li>
+        <li>Connect with MetaMask</li>
+        <li>Accept the connection in MetaMask</li>
+        <li>Approve and install the Tezos snap</li>
+        </ol>`,
       },
     };
     const bsModalRef = this.modalService.show(TextModalComponent, initialState);

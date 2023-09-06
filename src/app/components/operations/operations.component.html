@@ -8,11 +8,11 @@
         <a href="https://tzkt.io/{{ address }}" class="explorer-link"
           >View in Explorer</a
         >
-        <img
+        <!-- <img
           src="./assets/icons/FiExternalLink.svg"
           alt="SVG Image"
           style="width: 16px; height: 16px"
-        />
+        /> -->
       </div>
     </div>
 
@@ -21,7 +21,7 @@
     </p>
 
     <div class="card card-container mt-3" *ngFor="let op of operations">
-      <div class="card-body" (click)="openLink('https://tzkt.io/' + op.hash)">
+      <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
           <div *ngIf="op.type !== 'transaction'" class="d-flex flex-column">
             {{
@@ -62,17 +62,7 @@
               <p class="text-amount">{{ op.amount / 1000000 }} tez</p>
             </div>
 
-            <div
-              class="d-flex justify-content-between align-items-center"
-              (click)="
-                copyAddressToClipboard(
-                  $event,
-                  op?.target?.address === address
-                    ? op.sender.address
-                    : op.target.address
-                )
-              "
-            >
+            <div class="d-flex justify-content-between align-items-center">
               <span *ngIf="op?.target?.address === address" class="text-address"
                 ><strong>from:</strong>
                 {{ op?.sender?.address ?? "" | shortenString }}</span
@@ -82,6 +72,15 @@
                 {{ op?.target?.address ?? "" | shortenString }}</span
               >
               <img
+                (click)="
+                  copyAddressToClipboard(
+                    $event,
+                    op?.target?.address === address
+                      ? op.sender.address
+                      : op.target.address
+                  )
+                "
+                class="copy-button"
                 src="./assets/icons/FiCopy.svg"
                 alt="Copy"
                 style="width: 16px; height: 16px; margin-left: 4px"
@@ -91,7 +90,7 @@
           <div
             class="d-flex justify-content-between align-items-center text-box"
           >
-            <div>
+            <div (click)="openLink('https://tzkt.io/' + op.hash)">
               <span class="ml-3 timestamp">{{
                 op.timestamp | timeago : "live"
               }}</span>

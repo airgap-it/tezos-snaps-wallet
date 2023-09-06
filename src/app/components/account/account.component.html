@@ -1,16 +1,37 @@
 <div class="card cardBox">
   <div class="card-body">
     <h2 class="card-title">Balance</h2>
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div
+      class="d-flex flex-column flex-md-row justify-content-between align-items-center"
+    >
       <div>
-        <p class="cardBalance">{{ balance }} ꜩ</p>
+        <p class="cardBalance">
+          {{ tezMainAmount }}.<span class="cardBalanceDecimal"
+            >{{ tezDecimalAmount }} ꜩ</span
+          >
+        </p>
         <p class="text-muted">${{ usdBalance }}</p>
       </div>
-      <div class="d-flex justify-content-center align-items-center mt-3 mt-md-0">
-        <button type="button" class="btn btn-outline-primary btn-circle mr-2" (click)="openLink('https://www.moonpay.com/')">
+      <div
+        class="d-flex justify-content-center align-items-center mt-3 mt-md-0"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-circle mr-2"
+          (click)="
+            openLink(
+              'https://widget.wert.io/default/widget/?commodity=XTZ%3ATezos&address=' +
+                address
+            )
+          "
+        >
           Buy tez
         </button>
-        <button type="button" class="btn btn-primary btn-circle" (click)="sendTez()">
+        <button
+          type="button"
+          class="btn btn-primary btn-circle"
+          (click)="sendTez()"
+        >
           Send
         </button>
       </div>
