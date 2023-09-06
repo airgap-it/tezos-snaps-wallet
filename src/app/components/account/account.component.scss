@@ -1,59 +1,59 @@
 .cardBox {
   width: 100%;
   border-radius: 20px;
-  background: var(--Netural-1, #F5F5F7);
+  background: var(--Netural-1, #f5f5f7);
   box-shadow: none;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .card-title {
-font-family: Inter;
-font-size: 20px;
-font-weight: 600;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: left;
-
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
-
 .cardBalance {
-  color: var(--Black, #1D1D1F);
+  color: var(--Black, #1d1d1f);
   font-family: Inter;
   font-size: 28px;
   font-weight: 600;
   line-height: 26px;
-  text-align: center; 
+  text-align: center;
 }
 
+.cardBalanceDecimal {
+  font-size: 20px;
+}
 
 .btn.btn-primary.btn-circle {
   height: 40px;
   width: 88px;
-  background-color: #0F61FF;
+  background-color: #0f61ff;
   color: #fff;
   border: none;
   transition: background-color 0.3s ease-in-out;
-  border-radius: 20px; 
+  border-radius: 20px;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .btn.btn-primary.btn-circle:hover {
-  background-color: #0079FF;
+  background-color: #0079ff;
   border: none;
 }
 
-
 .btn.btn-outline-primary.btn-circle {
-  color: #0F61FF;
-  border-color: #0F61FF;
-  background-color: transparent; 
+  color: #0f61ff;
+  border-color: #0f61ff;
+  background-color: transparent;
 }
 
 .btn.btn-outline-primary.btn-circle:hover {
-  background-color: #0F61FF;
+  background-color: #0f61ff;
   color: #fff;
 }
 
@@ -68,7 +68,7 @@ text-align: left;
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079FF;
+    background-color: #0079ff;
   }
 }
 
@@ -94,18 +94,14 @@ text-align: left;
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079FF;
+    background-color: #0079ff;
   }
 }
 
 /* Medium screens and below */
 @media (max-width: 1300px) {
- 
   .cardBalance {
     font-size: 18px;
     line-height: 18px;
   }
-
 }
-
-

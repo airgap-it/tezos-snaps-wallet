@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Token } from '../../types';
 import { ModalService } from 'src/app/services/modal.service';
 
@@ -7,15 +13,26 @@ import { ModalService } from 'src/app/services/modal.service';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnChanges {
   @Input() address: string = '';
   @Input() balance: string = '';
   @Input() usdBalance: string = '';
   @Input() tokens: Token[] = [];
 
-  constructor(public readonly modalService: ModalService) {}
+  tezMainAmount: string = '0';
+  tezDecimalAmount: string = '0';
 
-  ngOnInit(): void {}
+  constructor(public readonly modalService: ModalService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const balance: string = changes.balance?.currentValue;
+    if (balance) {
+      [this.tezMainAmount, this.tezDecimalAmount] = balance.split('.');
+    }
+  }
 
   openLink(link: string) {
     window.open(link, '_blank');
