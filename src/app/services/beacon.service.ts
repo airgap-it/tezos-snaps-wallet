@@ -1,5 +1,4 @@
 import {
-  NetworkType,
   BeaconMessageType,
   BeaconErrorType,
   PermissionRequestOutput,
@@ -48,7 +47,7 @@ export class BeaconService {
     private readonly apiService: ApiService
   ) {
     this.walletClient = new WalletClient({
-      name: 'Tezos Wallet for MetaMask',
+      name: 'Tezos Wallet Explorer for MetaMask',
     });
 
     this.connect();
