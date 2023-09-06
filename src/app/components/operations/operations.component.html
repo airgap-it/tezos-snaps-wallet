@@ -62,17 +62,7 @@
               <p class="text-amount">{{ op.amount / 1000000 }} tez</p>
             </div>
 
-            <div
-              class="d-flex justify-content-between align-items-center"
-              (click)="
-                copyAddressToClipboard(
-                  $event,
-                  op?.target?.address === address
-                    ? op.sender.address
-                    : op.target.address
-                )
-              "
-            >
+            <div class="d-flex justify-content-between align-items-center">
               <span *ngIf="op?.target?.address === address" class="text-address"
                 ><strong>from:</strong>
                 {{ op?.sender?.address ?? "" | shortenString }}</span
@@ -82,6 +72,15 @@
                 {{ op?.target?.address ?? "" | shortenString }}</span
               >
               <img
+                (click)="
+                  copyAddressToClipboard(
+                    $event,
+                    op?.target?.address === address
+                      ? op.sender.address
+                      : op.target.address
+                  )
+                "
+                class="copy-button"
                 src="./assets/icons/FiCopy.svg"
                 alt="Copy"
                 style="width: 16px; height: 16px; margin-left: 4px"
