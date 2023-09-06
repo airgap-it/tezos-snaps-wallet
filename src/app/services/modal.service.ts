@@ -206,6 +206,24 @@ export class ModalService {
     return bsModalRef;
   }
 
+  showInstructionsModal() {
+    const initialState: ModalOptions<TextModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        title: 'Installation Instructions',
+        text: `<ol>
+        <li>To get started make sure you have MetaMask chrome extension installed and then go to the Tezos Wallet powered by Metamask here.</li>
+        <li>Connect with MetaMask</li>
+        <li>Accept the connection in MetaMask</li>
+        <li>Approve and install the Tezos snap</
+        </ol>`,
+      },
+    };
+    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
+
+    return bsModalRef;
+  }
+
   showNFTModal(nft: Token) {
     const initialState: ModalOptions<NftModalComponent> = {
       ...this.modalOptions,
