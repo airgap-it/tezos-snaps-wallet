@@ -1,0 +1,49 @@
+.nft-info {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.image-container {
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+.text-container {
+    flex: 1;
+    text-align: left;
+}
+
+.text-name {
+    font-weight: bold;
+}
+
+
+.custom-link {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #0F61FF;
+    text-decoration: none;
+}
+
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+
+
+.link-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 1px;
+    margin-bottom: 1px;
+}
