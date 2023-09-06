@@ -37,7 +37,7 @@
 
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3">
-        <div class="addressBox" (click)="copyToClipboard()">
+        <div class="addressBox">
           <img
             src="./assets/icons/Avatar.svg"
             alt="SVG Image"
@@ -48,6 +48,8 @@
               {{ address | shortenString }}
             </div>
             <img
+              (click)="copyToClipboard()"
+              class="copy-button"
               src="./assets/icons/FiCopy.svg"
               alt="SVG Image"
               style="width: 16px; height: 16px"

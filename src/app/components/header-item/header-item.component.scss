@@ -12,7 +12,6 @@
   height: 40px;
 }
 
-
 .large {
   font-size: 24px;
   display: block;
@@ -21,7 +20,7 @@
 .small {
   font-size: 12px;
   display: block;
-  color: #6E6E73;
+  color: #6e6e73;
 }
 
 .flex-container {
@@ -50,8 +49,8 @@
 }
 
 .buttonNetwork {
-  background-color: #F5F5F7;
-  color: #1D1D1F;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
   border: none;
   width: 110px;
   height: 40px;
@@ -74,8 +73,8 @@
 .buttonContainer a:hover {
   border: none;
   box-shadow: none;
-  background-color: #0F61FF;
-  color: #FFFFFF;
+  background-color: #0f61ff;
+  color: #ffffff;
 }
 
 .buttonContainer:focus {
@@ -85,8 +84,8 @@
 }
 
 .buttonContainer:not(:hover) button {
-  background-color: #F5F5F7;
-  color: #1D1D1F;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
 }
 
 .custom-dropdown-toggle::after {
@@ -94,8 +93,8 @@
 }
 
 .custom-dropdown-toggle {
-  background-color: #F5F5F7;
-  color: #1D1D1F;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
   border: none;
   width: 40px;
   height: 40px;
@@ -113,8 +112,8 @@
 }
 
 .custom-dropdown-toggle:hover {
-  background-color: #0F61FF;
-  color: #FFFFFF;
+  background-color: #0f61ff;
+  color: #ffffff;
 }
 
 .dropdown-menu-container {
@@ -128,10 +127,17 @@
 }
 
 @media (max-width: 768px) {
-
   .buttonContainer,
   .addressBox,
   .qr-code img {
     display: none;
   }
+}
+
+.qr-code {
+  cursor: pointer;
+}
+
+.copy-button {
+  cursor: pointer;
 }
