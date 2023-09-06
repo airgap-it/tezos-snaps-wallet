@@ -1,20 +1,16 @@
 <div class="card cardBox">
   <div class="card-body">
-    <h3 class="card-title">Balance</h3>
-    <div class="d-flex justify-content-between align-items-center">
-      
+    <h2 class="card-title">Balance</h2>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
       <div>
         <p class="cardBalance">{{ balance }} ꜩ</p>
         <p class="text-muted">${{ usdBalance }}</p>
-         <!-- <p *ngFor="let token of tokens">
-        {{ token.token.metadata.name }} {{ token.humanReadableBalance }}
-      </p> -->
       </div>
-      <div>
-        <button type="button" class="btn btn-outline-primary btn-circle" (click)="openLink('https://www.moonpay.com/')">
+      <div class="d-flex justify-content-center align-items-center mt-3 mt-md-0">
+        <button type="button" class="btn btn-outline-primary btn-circle mr-2" (click)="openLink('https://www.moonpay.com/')">
           Buy tez
         </button>
-        <button type="button" class="btn btn-primary btn-circle ml-2" (click)="sendTez()">
+        <button type="button" class="btn btn-primary btn-circle" (click)="sendTez()">
           Send
         </button>
       </div>

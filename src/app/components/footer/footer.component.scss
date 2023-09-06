@@ -17,7 +17,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
   margin-bottom: 2rem;
 }
 
@@ -31,9 +30,7 @@
 @media (max-width: 768px) {
   .custom-footer {
     text-align: center;
-    padding: 10px; 
-    min-width: 580px; 
-    margin-left: 1rem;
+    padding: 5px; 
   }
 
   .separator {
