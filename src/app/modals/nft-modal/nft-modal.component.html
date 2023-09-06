@@ -1,31 +1,30 @@
-<span *ngIf="nft">
-  <div class="image-container">
-    <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
-  </div>
-  <p class="text-name">{{ nft.token.metadata.name }}</p>
-  <p class="text-name">{{ nft.token.metadata.description }}</p>
-  <a
-    href="#"
-    (click)="
-      openLink(
-        'https://tzkt.io/' +
-          nft.token.contract.address +
-          '/tokens/' +
-          nft.token.tokenId +
-          '/transfers'
-      )
-    "
-    >View on tzkt</a
-  >
-  <a
-    href="#"
-    (click)="
-      openLink(
-        'https://better-call.dev/mainnet/' +
-          nft.token.contract.address +
-          '/operations'
-      )
-    "
-    >View contract</a
-  >
-</span>
+<div class="modal-header">
+  <button type="button" class="btn-close close pull-right" aria-label="Close">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body text-center ">
+  <span *ngIf="nft" class="nft-info">
+    <div class="image-container">
+      <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
+    </div>
+    <div class="text-container">
+      <p class="text-name">{{ nft.token.metadata.name }}</p>
+      <p class="text-description">{{ nft.token.metadata.description }}</p>
+      <div class="links mt-3">
+        <a class="custom-link" href="#"
+          (click)="openLink('https://tzkt.io/' + nft.token.contract.address + '/tokens/' + nft.token.tokenId + '/transfers')">
+          Tezos Blockchain
+          <img src="./assets/icons/Links.svg" alt="SVG Image" class="link-icon">
+        </a>
+
+        <a style="margin-left: 10px;" class="custom-link" href="#"
+          (click)="openLink('https://better-call.dev/mainnet/' + nft.token.contract.address + '/operations')">
+          Smart Contract
+          <img src="./assets/icons/Links.svg" alt="SVG Image" class="link-icon">
+        </a>
+      </div>
+
+    </div>
+  </span>
+</div>

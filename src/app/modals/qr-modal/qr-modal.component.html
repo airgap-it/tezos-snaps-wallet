@@ -11,4 +11,22 @@
 <div class="modal-body text-center">
   <h4 class="modal-title">{{ title }}</h4>
   <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+
+  <div class="addressContainer">
+    <img
+      src="./assets/icons/Avatar.svg"
+      alt="SVG Image"
+      style="width: 18px; height: 18px;"
+    />
+    <div class="addressBox">
+      <div class="textAddress">
+        tz1ZhRGf...akmE7
+      </div>
+      <img
+        src="./assets/icons/FiCopy.svg"
+        alt="SVG Image"
+        style="width: 16px; height: 16px; margin-left: 6px;"
+      />
+    </div>
+  </div>
 </div>

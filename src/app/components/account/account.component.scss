@@ -3,16 +3,16 @@
   border-radius: 20px;
   background: var(--Netural-1, #F5F5F7);
   box-shadow: none;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .card-title {
-font-family: Inter;
-font-size: 20px;
-font-weight: 600;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: left;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
 
 }
 
@@ -23,7 +23,7 @@ text-align: left;
   font-size: 28px;
   font-weight: 600;
   line-height: 26px;
-  text-align: center; 
+  text-align: center;
 }
 
 
@@ -34,10 +34,10 @@ text-align: left;
   color: #fff;
   border: none;
   transition: background-color 0.3s ease-in-out;
-  border-radius: 20px; 
+  border-radius: 20px;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .btn.btn-primary.btn-circle:hover {
@@ -49,7 +49,7 @@ text-align: left;
 .btn.btn-outline-primary.btn-circle {
   color: #0F61FF;
   border-color: #0F61FF;
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 .btn.btn-outline-primary.btn-circle:hover {
@@ -59,6 +59,7 @@ text-align: left;
 
 /* Large screens */
 @media (min-width: 769px) {
+
   .btn.btn-primary.btn-circle,
   .btn.btn-outline-primary.btn-circle {
     height: 40px;
@@ -100,12 +101,10 @@ text-align: left;
 
 /* Medium screens and below */
 @media (max-width: 1300px) {
- 
+
   .cardBalance {
     font-size: 18px;
     line-height: 18px;
   }
 
 }
-
-

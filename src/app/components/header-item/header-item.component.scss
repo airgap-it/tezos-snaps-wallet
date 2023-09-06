@@ -112,10 +112,7 @@
   outline: none;
 }
 
-.custom-dropdown-toggle:hover {
-  background-color: #0F61FF;
-  color: #FFFFFF;
-}
+
 
 .dropdown-menu-container {
   position: relative;
@@ -128,10 +125,23 @@
 }
 
 @media (max-width: 768px) {
-
+  
   .buttonContainer,
   .addressBox,
   .qr-code img {
     display: none;
   }
+  .qr-button {
+    display: none;
+  }
+}
+
+.qr-button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 100px;
+  background-color: #F5F5F7;
+  border: none;
+  cursor: pointer;
 }

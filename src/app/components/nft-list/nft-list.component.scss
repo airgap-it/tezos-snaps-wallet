@@ -1,11 +1,11 @@
 .cardBox {
   width: 100%;
-  max-width: 950px;
+  max-width: 1200px;
   min-height: 713px;
   border-radius: 20px;
   background: var(--Netural-1, #F5F5F7);
   margin: 0 auto;
-  padding: 5px;
+  padding: 12px;
   box-sizing: border-box;
   box-shadow: none;
   margin-left: 10px;
@@ -18,20 +18,20 @@
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  
-  }
+
+}
 
 @media (max-width: 768px) {
   .cardBox {
-    
-    max-width: 100%; /* Allow the card to take full width on small screens */
+
+    max-width: 100%;
     margin-left: 0;
-    padding: 20px; /* Add some padding to create space between elements */
+    padding: 20px;
   }
 
   .grid-container {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Full width columns on small screens */
-    gap: 20px; /* Increase the gap between grid items */
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 20px;
   }
 }
 
