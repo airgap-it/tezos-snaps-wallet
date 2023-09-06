@@ -3,6 +3,7 @@ import { first } from 'rxjs/operators';
 import { MetamaskService } from '../../services/metamask.service';
 import { AccountService } from '../../services/account.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { ClipboardService } from 'src/app/services/clipboard.service';
 
 @Component({
   selector: 'app-header-item',
@@ -17,7 +18,8 @@ export class HeaderItemComponent implements OnInit {
   constructor(
     public readonly metamaskService: MetamaskService,
     public readonly accountService: AccountService,
-    public readonly modalService: ModalService
+    public readonly modalService: ModalService,
+    public readonly clipboardService: ClipboardService
   ) {
     this.loadAccountInfo();
   }
@@ -52,5 +54,9 @@ export class HeaderItemComponent implements OnInit {
       this.network = 'Mainnet';
       this.otherNetwork = 'Ghostnet';
     }
+  }
+
+  copyToClipboard() {
+    this.clipboardService.copy(this.address);
   }
 }

@@ -42,6 +42,7 @@ import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confir
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 import { NftModalComponent } from './modals/nft-modal/nft-modal.component';
 import { TimeagoModule } from 'ngx-timeago';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { TimeagoModule } from 'ngx-timeago';
     BsDropdownModule.forRoot(),
     QRCodeModule,
     TimeagoModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

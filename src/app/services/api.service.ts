@@ -107,7 +107,7 @@ export class ApiService {
     // https://api.mainnet.tzkt.io/
     // https://api.ghostnet.tzkt.io/
     const operations = await this.http
-      .get(`https://api.tzkt.io/v1/accounts/${address}/operations`)
+      .get(`https://api.tzkt.io/v1/accounts/${address}/operations?limit=20`)
       .toPromise();
 
     return operations;
@@ -120,7 +120,7 @@ export class ApiService {
   public async getTokenBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance`
+        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=20`
       )
       .toPromise()
       .then((res) =>
