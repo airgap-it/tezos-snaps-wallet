@@ -39,13 +39,12 @@
   line-height: 26px;
   letter-spacing: 0em;
   text-align: left;
-  color: #1D1D1F;
-
+  color: #1d1d1f;
 }
 
 .small {
   font-size: 12px;
-  color: #6E6E73;
+  color: #6e6e73;
 }
 
 .flex-container {
@@ -93,7 +92,9 @@
   justify-content: center;
   align-items: center;
   box-shadow: none;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
 .buttonContainer button,
@@ -160,7 +161,7 @@
   height: 40px;
   padding: 10px;
   border-radius: 100px;
-  background-color: #F5F5F7;
+  background-color: #f5f5f7;
   border: none;
   cursor: pointer;
   outline: none;
@@ -169,7 +170,6 @@
 .qr-button:hover {
   background-color: #d2d2d7;
 }
-
 
 .qr-code {
   cursor: pointer;
@@ -180,7 +180,6 @@
 }
 
 @media (max-width: 768px) {
-
   .buttonContainer,
   .addressBox,
   .qr-code img {

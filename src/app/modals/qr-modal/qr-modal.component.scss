@@ -1,29 +1,28 @@
 .addressContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    background: #f5f5f7;
-    border-radius: 100px;
-    height: 40px;
-    width: 200px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background: #f5f5f7;
+  border-radius: 100px;
+  height: 40px;
+  width: 200px;
+}
 
-  .addressBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   margin: 10px;
-  }
-  
+.addressBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
 
 .textAddress {
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #1d1d1f;
-    word-wrap: break-word;
-  }
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1d1d1f;
+  word-wrap: break-word;
+}

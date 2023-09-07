@@ -8,7 +8,12 @@
     <div class="col-md-4">
       <!-- Balance Component -->
       <div class="card no-shadow mb-3">
-        <app-account [balance]="balance" [usdBalance]="usdBalance" [address]="address" [tokens]="tokens"></app-account>
+        <app-account
+          [balance]="balance"
+          [usdBalance]="usdBalance"
+          [address]="address"
+          [tokens]="tokens"
+        ></app-account>
       </div>
       <!-- Operations Component (Hidden on Mobile) -->
       <div class="card no-shadow mb-3 d-none d-md-block">
@@ -26,7 +31,5 @@
   </div>
   <app-footer></app-footer>
 </div>
-
-
 
 <router-outlet></router-outlet>

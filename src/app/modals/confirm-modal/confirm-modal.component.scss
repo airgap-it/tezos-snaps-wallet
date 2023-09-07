@@ -1,31 +1,31 @@
 .button {
-    width: 100px;
-    height: 40px;
-    padding: 0px 24px 0px 24px;
-    gap: 10px;
-    background-color: #0F61FF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  width: 100px;
+  height: 40px;
+  padding: 0px 24px 0px 24px;
+  gap: 10px;
+  background-color: #0f61ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
 
-    /* Add a hover effect */
-    transition: background-color 0.3s ease-in-out;
+  /* Add a hover effect */
+  transition: background-color 0.3s ease-in-out;
 }
 
 .button:hover {
-    background-color: #0079FF;
+  background-color: #0079ff;
 }
 
 .btn.btn-outline-primary.btn-circle {
-    border-color: #0F61FF;
-    color: #0F61FF;
-  }
-  
-  .btn.btn-outline-primary.btn-circle:hover {
-    border-color: #0F61FF;
-    background-color: #0F61FF;
-    color: #fff;
-  }
+  border-color: #0f61ff;
+  color: #0f61ff;
+}
+
+.btn.btn-outline-primary.btn-circle:hover {
+  border-color: #0f61ff;
+  background-color: #0f61ff;
+  color: #fff;
+}

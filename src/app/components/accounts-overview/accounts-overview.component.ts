@@ -19,7 +19,7 @@ export class AccountsOverviewComponent implements OnInit {
 
   constructor(
     private readonly accountService: AccountService,
-    public readonly bsModalRef: BsModalRef
+    public readonly bsModalRef: BsModalRef,
   ) {
     this.accounts$ = this.accountService.accounts$;
   }

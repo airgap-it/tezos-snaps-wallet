@@ -37,7 +37,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       LoadingModalComponent,
-      initialState
+      initialState,
     );
     return bsModalRef;
   }
@@ -50,7 +50,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       NodeSelectorModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -66,7 +66,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       HowToModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -82,7 +82,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       NotConnectedModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -101,7 +101,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       PermissionModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -121,7 +121,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       OperationModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -137,7 +137,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       SignPayloadModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -154,7 +154,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       SendTezModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -200,7 +200,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       ConfirmModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -290,7 +290,7 @@ export class ModalService {
 
   showNotConnectedModal(
     successCallback: () => void,
-    errorCallback: () => void
+    errorCallback: () => void,
   ) {
     const initialState: ModalOptions<NotConnectedModalComponent> = {
       ...this.modalOptions,
@@ -301,7 +301,7 @@ export class ModalService {
     };
     const bsModalRef = this.modalService.show(
       NotConnectedModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;
@@ -315,7 +315,7 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       ConnectedModalComponent,
-      initialState
+      initialState,
     );
 
     return bsModalRef;

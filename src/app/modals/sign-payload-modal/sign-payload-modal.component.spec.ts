@@ -8,9 +8,8 @@ describe('SignPayloadModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignPayloadModalComponent ]
-    })
-    .compileComponents();
+      declarations: [SignPayloadModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

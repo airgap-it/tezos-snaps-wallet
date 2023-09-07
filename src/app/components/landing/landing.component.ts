@@ -14,7 +14,7 @@ export class LandingComponent implements OnInit {
 
   constructor(
     public readonly metamaskService: MetamaskService,
-    public readonly modalService: ModalService
+    public readonly modalService: ModalService,
   ) {}
 
   ngOnInit(): void {}

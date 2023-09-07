@@ -8,9 +8,8 @@ describe('ConfirmTxModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmTxModalComponent ]
-    })
-    .compileComponents();
+      declarations: [ConfirmTxModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -37,7 +37,7 @@ export class ApiService {
   constructor(
     public readonly http: HttpClient,
     private readonly storage: StorageService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
   ) {
     try {
       const parsedNodes = JSON.parse(localStorage.getItem('nodes') ?? '');
@@ -46,11 +46,11 @@ export class ApiService {
   }
 
   public async getPublicKeyForAddress(
-    address: string
+    address: string,
   ): Promise<{ network: NetworkType; publicKey: string }> {
     // Try to get the public key from any network
     const RPCs: { network: NetworkType; url: string }[] = Object.entries(
-      this.RPCs
+      this.RPCs,
     )
       .filter((element) => !!element[1].selected)
       .map((element) => ({
@@ -77,7 +77,7 @@ export class ApiService {
 
   private async getPublicKeyForAddressFromRPC(
     rpc: string,
-    address: string
+    address: string,
   ): Promise<string | null> {
     const url = `${rpc}/chains/main/blocks/head/context/contracts/${address}/manager_key`;
     const response = await this.http.get<string | null>(url).toPromise();
@@ -120,7 +120,7 @@ export class ApiService {
   public async getTokenBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=20`
+        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=20`,
       )
       .toPromise()
       .then((res) =>
@@ -129,22 +129,22 @@ export class ApiService {
             .thumbnailUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
                 `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
-                  6
-                )}/`
+                  6,
+                )}/`,
               )
             : undefined;
           item.humanReadableBalance = new BigNumber(item.balance)
             .shiftedBy(-new BigNumber(item.token.metadata.decimals).toNumber())
             .toString(10);
           return item;
-        })
+        }),
       );
   }
 
   public async getNftBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&account=${address}&limit=20`
+        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&account=${address}&limit=20`,
       )
       .toPromise()
       .then((res) =>
@@ -153,25 +153,25 @@ export class ApiService {
             .displayUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
                 `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.displayUri.slice(
-                  6
-                )}/`
+                  6,
+                )}/`,
               )
             : item.token.metadata.artifactUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
                 `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.artifactUri.slice(
-                  6
-                )}/`
+                  6,
+                )}/`,
               )
             : undefined;
           return item;
-        })
+        }),
       );
   }
 
   public async getXtzPrice(): Promise<number> {
     return this.http
       .get<{ USD: number }>(
-        `https://min-api.cryptocompare.com/data/price?fsym=XTZ&tsyms=USD`
+        `https://min-api.cryptocompare.com/data/price?fsym=XTZ&tsyms=USD`,
       )
       .toPromise()
       .then((res) => res.USD);

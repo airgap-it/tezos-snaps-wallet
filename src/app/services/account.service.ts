@@ -36,7 +36,7 @@ export class AccountService {
   constructor(private readonly _storage: StorageService) {
     this.accounts$ = this._accounts$.asObservable();
     const accounts: Account[] = JSON.parse(
-      localStorage.getItem(StorageKeys.ACCOUNTS) ?? '[]'
+      localStorage.getItem(StorageKeys.ACCOUNTS) ?? '[]',
     );
 
     this._accounts$.next(accounts);
@@ -57,7 +57,7 @@ export class AccountService {
 
   async removeAccount(account: Account) {
     const accounts = this._accounts$.value.filter(
-      (acc) => acc.address !== account.address
+      (acc) => acc.address !== account.address,
     );
     localStorage.setItem(StorageKeys.ACCOUNTS, JSON.stringify(accounts));
     this._accounts$.next(accounts);

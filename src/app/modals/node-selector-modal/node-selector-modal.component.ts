@@ -16,7 +16,7 @@ export class NodeSelectorModalComponent implements OnInit {
 
   constructor(
     public readonly bsModalRef: BsModalRef,
-    public readonly api: ApiService
+    public readonly api: ApiService,
   ) {
     this.loadRPCs();
   }

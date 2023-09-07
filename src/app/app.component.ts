@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
     public readonly accountService: AccountService,
     private readonly modalService: ModalService,
     private readonly router: Router,
-    private readonly tabSyncService: TabSyncService
+    private readonly tabSyncService: TabSyncService,
   ) {
     this.accounts$ = this.accountService.accounts$;
     this.loadNodes();
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
           .shiftedBy(-6)
           .toString(10);
         this.operations = (await this.api.getTransactionHistory(
-          accounts[0].address
+          accounts[0].address,
         )) as any;
         console.log('BALANCE: ', this.balance);
         console.log('TXs: ', this.operations);
@@ -164,7 +164,7 @@ export class AppComponent implements OnInit {
   async removePermission(permission: PermissionInfo) {
     const bsModalRef = this.modalService.showConfirmModal(async () => {
       await this.beacon.walletClient.removePermission(
-        permission.accountIdentifier
+        permission.accountIdentifier,
       );
       this.getPeers();
     });

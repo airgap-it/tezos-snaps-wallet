@@ -22,7 +22,7 @@ export class OperationsComponent implements OnInit {
 
   constructor(
     private readonly accountService: AccountService,
-    private readonly clipboardService: ClipboardService
+    private readonly clipboardService: ClipboardService,
   ) {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {
