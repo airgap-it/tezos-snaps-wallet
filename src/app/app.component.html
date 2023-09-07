@@ -15,6 +15,23 @@
           [tokens]="tokens"
         ></app-account>
       </div>
+      <div class="card no-shadow mb-3">
+        <div class="card-body">
+          <div class="infoInputBox">
+            <img
+              src="./assets/icons/FiAlertCircleBlack.svg"
+              alt="alert"
+              style="width: 20px; height: 20px"
+            />
+            <p class="infoInputText">
+              You will not be able to view this account within your MetaMask
+              wallet, it will allow you to connect with Tezos dApps and sign
+              transactions.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- Operations Component (Hidden on Mobile) -->
       <div class="card no-shadow mb-3 d-none d-md-block">
         <app-operations [operations]="operations"></app-operations>
