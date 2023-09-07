@@ -13,6 +13,12 @@
   cursor: pointer;
 }
 
+.addressContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .addressBox:hover {
   background-color: #d2d2d7;
 }
@@ -72,6 +78,7 @@
   text-align: left;
   color: #1d1d1f;
   word-wrap: break-word;
+  margin-right: 5px;
 }
 
 .buttonNetwork {

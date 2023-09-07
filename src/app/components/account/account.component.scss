@@ -28,51 +28,58 @@
   font-size: 20px;
 }
 
-.btn.btn-primary.btn-circle {
+.btn.btn-primary.btn-circle,
+.btn.btn-outline-primary.btn-circle {
   height: 40px;
   width: 88px;
-  background-color: #0f61ff;
-  color: #fff;
-  border: none;
-  transition: background-color 0.3s ease-in-out;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.btn.btn-primary.btn-circle:hover {
-  background-color: #0079ff;
-  border: none;
+  outline: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn.btn-outline-primary.btn-circle {
   color: #0f61ff;
-  border-color: #0f61ff;
+  border-color: #D2D2D7;
   background-color: transparent;
 }
 
-.btn.btn-outline-primary.btn-circle:hover {
+.btn.btn-primary.btn-circle {
   background-color: #0f61ff;
   color: #fff;
+  border: none;
 }
 
-/* Large screens */
+.btn.btn-primary.btn-circle:hover {
+  color: #fff;
+  outline: none;
+}
+
+.btn.btn-outline-primary.btn-circle:hover {
+  color: #0f61ff;
+  border-color: #0f61ff;
+  background-color: transparent;
+  outline: none;
+}
+
+/* Additional styles for large screens */
 @media (min-width: 769px) {
+
   .btn.btn-primary.btn-circle,
   .btn.btn-outline-primary.btn-circle {
-    height: 40px;
-    width: 88px;
     font-size: 16px;
     margin: 0;
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079ff;
+    background-color: #4e0aeb;
   }
 }
 
-/* Medium screens and below */
+/* Additional styles for medium screens and below */
 @media (max-width: 768px) {
   .cardBox {
     max-width: 100%;
@@ -94,11 +101,11 @@
   }
 
   .btn.btn-primary.btn-circle:hover {
-    background-color: #0079ff;
+    background-color: #4e0aeb;
   }
 }
 
-/* Medium screens and below */
+/* Additional styles for screens up to 1300px */
 @media (max-width: 1300px) {
   .cardBalance {
     font-size: 18px;
