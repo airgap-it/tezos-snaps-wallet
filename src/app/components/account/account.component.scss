@@ -1,9 +1,11 @@
 .cardBox {
   width: 100%;
+  min-height: 153px;
   border-radius: 20px;
   background: var(--Netural-1, #f5f5f7);
   box-shadow: none;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .card-title {
@@ -65,7 +67,7 @@
   outline: none;
 }
 
-/* Additional styles for large screens */
+
 @media (min-width: 769px) {
 
   .btn.btn-primary.btn-circle,
@@ -79,7 +81,7 @@
   }
 }
 
-/* Additional styles for medium screens and below */
+
 @media (max-width: 768px) {
   .cardBox {
     max-width: 100%;
@@ -105,7 +107,7 @@
   }
 }
 
-/* Additional styles for screens up to 1300px */
+
 @media (max-width: 1300px) {
   .cardBalance {
     font-size: 18px;
