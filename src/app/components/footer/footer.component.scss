@@ -2,7 +2,7 @@
   background: #f5f5f7;
   color: #424245;
   font-size: 12px;
-  padding: 20px;
+  padding: 40px;
   border-radius: 20px;
 }
 
@@ -24,15 +24,24 @@
   color: #86868B;
 }
 
+.custom-footer span {
+  white-space: nowrap;
+}
+
+
 @media (min-width: 768px) {
+  .footer-container {
+    padding: 0px 0px;
+  }
+
   .custom-footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  
 
-  .col-6 {
-    width: 50%;
+  .custom-footer span {
+    white-space: nowrap;
   }
+
 }
