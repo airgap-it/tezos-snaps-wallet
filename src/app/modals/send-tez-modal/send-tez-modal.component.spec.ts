@@ -8,9 +8,8 @@ describe('SendTezModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SendTezModalComponent ]
-    })
-    .compileComponents();
+      declarations: [SendTezModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -36,7 +36,7 @@ export const getSnaps = async (): Promise<GetSnapsResponse> => {
  */
 export const connectSnap = async (
   snapId: string = defaultSnapOrigin,
-  params: Record<'version' | string, unknown> = {}
+  params: Record<'version' | string, unknown> = {},
 ) => {
   await window.ethereum.request({
     method: 'wallet_requestSnaps',
@@ -58,7 +58,7 @@ export const getSnap = async (version?: string): Promise<Snap | undefined> => {
 
     return Object.values(snaps).find(
       (snap) =>
-        snap.id === defaultSnapOrigin && (!version || snap.version === version)
+        snap.id === defaultSnapOrigin && (!version || snap.version === version),
     );
   } catch (e) {
     console.log('Failed to obtain installed snap', e);
@@ -86,7 +86,7 @@ export const sendGetAccount = async () => {
 };
 
 export const sendOperationRequest = async (
-  operations: PartialTezosOperation[]
+  operations: PartialTezosOperation[],
 ): Promise<string> => {
   const result = await window.ethereum.request({
     method: 'wallet_invokeSnap',
@@ -143,7 +143,7 @@ export const sendGetRpc = async () => {
 
 export const sendSetRpc = async (
   network: 'mainnet' | 'ghostnet',
-  rpcUrl: string
+  rpcUrl: string,
 ) => {
   const result = await window.ethereum.request({
     method: 'wallet_invokeSnap',

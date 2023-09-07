@@ -8,9 +8,8 @@ describe('HowToModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HowToModalComponent ]
-    })
-    .compileComponents();
+      declarations: [HowToModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

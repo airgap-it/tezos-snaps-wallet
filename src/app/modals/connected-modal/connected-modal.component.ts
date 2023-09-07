@@ -15,7 +15,7 @@ export class ConnectedModalComponent implements OnInit {
 
   constructor(
     public readonly bsModalRef: BsModalRef,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
   ) {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {

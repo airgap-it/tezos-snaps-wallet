@@ -8,9 +8,8 @@ describe('QrModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QrModalComponent ]
-    })
-    .compileComponents();
+      declarations: [QrModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

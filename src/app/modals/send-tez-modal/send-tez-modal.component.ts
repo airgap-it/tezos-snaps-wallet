@@ -22,7 +22,7 @@ export class SendTezModalComponent implements OnInit {
     public readonly bsModalRef: BsModalRef,
     public readonly apiService: ApiService,
     public readonly accountService: AccountService,
-    public readonly beaconService: BeaconService
+    public readonly beaconService: BeaconService,
   ) {
     this.apiService.getXtzPrice().then((price) => (this.usdPrice = price));
   }

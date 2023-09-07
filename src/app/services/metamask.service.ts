@@ -12,7 +12,7 @@ export class MetamaskService {
 
   constructor(private readonly accountService: AccountService) {
     this.isSnapInstalled().then(
-      (isInstalled) => (this.isConnected = isInstalled)
+      (isInstalled) => (this.isConnected = isInstalled),
     );
   }
 
@@ -36,7 +36,7 @@ export class MetamaskService {
     });
 
     this.isSnapInstalled().then(
-      (isInstalled) => (this.isConnected = isInstalled)
+      (isInstalled) => (this.isConnected = isInstalled),
     );
   }
 

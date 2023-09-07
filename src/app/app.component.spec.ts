@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'tezos-snaps-wallet app is running!'
+      'tezos-snaps-wallet app is running!',
     );
   });
 });

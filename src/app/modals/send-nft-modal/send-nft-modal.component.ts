@@ -24,7 +24,7 @@ export class SendNftModalComponent implements OnInit {
     public readonly bsModalRef: BsModalRef,
     public readonly apiService: ApiService,
     public readonly accountService: AccountService,
-    public readonly beaconService: BeaconService
+    public readonly beaconService: BeaconService,
   ) {}
 
   ngOnInit(): void {}

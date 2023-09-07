@@ -8,9 +8,8 @@ describe('CollapsableJsonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollapsableJsonComponent ]
-    })
-    .compileComponents();
+      declarations: [CollapsableJsonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

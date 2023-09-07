@@ -1,6 +1,5 @@
-
 <div class="modal-header">
-  <h2 class="modalTitle modal-title pull-left ">Connected To MetaMask</h2>
+  <h2 class="modalTitle modal-title pull-left">Connected To MetaMask</h2>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -11,25 +10,33 @@
   </button>
 </div>
 <div class="modalContainer">
-<div class="modal-body">
-  <p  class="inputTitle">Network:</p>
-  <div class="inputBox">
-    <p class="inputText">Mainnet</p></div>
-  <p class="inputTitle">Account:</p>
-  <div class="inputBox">
-    <p class="inputText">{{ address }}</p></div>
-    <div class="infoInputBox">
-      <img src="./assets/icons/FiAlertCircleRed.svg" alt="SVG Image" style="width: 20px; height: 20px;">
-      <p class="infoInputText">This account was generated with your MetaMask Secret Recovery Phrase.</p>
+  <div class="modal-body">
+    <p class="inputTitle">Network:</p>
+    <div class="inputBox">
+      <p class="inputText">Mainnet</p>
     </div>
-</div>
-<div class="modal-footer" style="width: fit-content;">
-  <button
-    type="button"
-    class="button btn btn-block btn-primary"
-    (click)="bsModalRef.hide()"
-  >
-    Got it!
-  </button>
-</div>
+    <p class="inputTitle">Account:</p>
+    <div class="inputBox">
+      <p class="inputText">{{ address }}</p>
+    </div>
+    <div class="infoInputBox">
+      <img
+        src="./assets/icons/FiAlertCircleRed.svg"
+        alt="SVG Image"
+        style="width: 20px; height: 20px"
+      />
+      <p class="infoInputText">
+        This account was generated with your MetaMask Secret Recovery Phrase.
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer" style="width: fit-content">
+    <button
+      type="button"
+      class="button btn btn-block btn-primary"
+      (click)="bsModalRef.hide()"
+    >
+      Got it!
+    </button>
+  </div>
 </div>

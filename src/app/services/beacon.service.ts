@@ -46,7 +46,7 @@ export class BeaconService {
     private readonly accountService: AccountService,
     private readonly modalService: ModalService,
     private readonly apiService: ApiService,
-    private readonly toastService: ToastrService
+    private readonly toastService: ToastrService,
   ) {
     this.walletClient = new WalletClient({
       name: 'MetaMask',
@@ -65,11 +65,10 @@ export class BeaconService {
         message.type === BeaconMessageType.OperationRequest
           ? `${
               message.operationDetails.length === 1
-                ? `${
-                    (message.operationDetails[0] as any)?.amount
-                  } mutez, Entrypoint: ${
-                    (message.operationDetails[0] as any)?.parameters?.entrypoint
-                  }`
+                ? `${(message.operationDetails[0] as any)
+                    ?.amount} mutez, Entrypoint: ${(
+                    message.operationDetails[0] as any
+                  )?.parameters?.entrypoint}`
                 : `${message.operationDetails.length} operations`
             }`
           : ''
@@ -91,7 +90,7 @@ export class BeaconService {
             },
             () => {
               console.log('ERROR');
-            }
+            },
           );
 
           return;
@@ -99,7 +98,7 @@ export class BeaconService {
 
         this.modalRef = this.modalService.showPermissionModal(
           accounts[0],
-          message.appMetadata
+          message.appMetadata,
         );
 
         this.modalRef.onHide?.pipe(first()).subscribe((result) => {
@@ -113,7 +112,7 @@ export class BeaconService {
         });
       } else if (message.type === BeaconMessageType.OperationRequest) {
         const account = accounts.find(
-          (acc) => acc.address === message.sourceAddress
+          (acc) => acc.address === message.sourceAddress,
         );
         if (!account) {
           console.error('No account found for ' + message.sourceAddress);
@@ -127,7 +126,7 @@ export class BeaconService {
             closeButton: true,
             timeOut: 0,
             positionClass: 'toast-bottom-center',
-          }
+          },
         );
         this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         this.handleOperationRequest(account, message).finally(() => {
@@ -135,7 +134,7 @@ export class BeaconService {
         });
       } else if (message.type === BeaconMessageType.SignPayloadRequest) {
         const account = accounts.find(
-          (acc) => acc.address === message.sourceAddress
+          (acc) => acc.address === message.sourceAddress,
         );
         if (!account) {
           console.error('No account found for ' + message.sourceAddress);
@@ -149,7 +148,7 @@ export class BeaconService {
             closeButton: true,
             timeOut: 0,
             positionClass: 'toast-bottom-center',
-          }
+          },
         );
         this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         this.handleSignPayload(account, message).finally(() => {
@@ -205,7 +204,7 @@ export class BeaconService {
 
   private handlePermissionRequest(
     account: Account,
-    message: PermissionRequestOutput
+    message: PermissionRequestOutput,
   ) {
     console.log('Sharing ', account);
 
@@ -223,14 +222,14 @@ export class BeaconService {
 
   public async handleOperationRequest(
     account: Account,
-    message: OperationRequestOutput
+    message: OperationRequestOutput,
   ) {
     const operations: PartialTezosOperation[] = message.operationDetails;
 
     console.log('RPCs', (this.apiService.RPCs as any)[message.network.type]);
 
     const client = new RpcClient(
-      (this.apiService.RPCs as any)[message.network.type].selected
+      (this.apiService.RPCs as any)[message.network.type].selected,
     );
 
     const { counter } = await client.getContract(account.address);
@@ -253,7 +252,7 @@ export class BeaconService {
           storage_limit: '60000',
           ...(op as PartialTezosTransactionOperation),
           kind: OpKind.TRANSACTION,
-        } as any)
+        }) as any,
     );
 
     client
@@ -297,7 +296,7 @@ export class BeaconService {
 
   private async handleSignPayload(
     account: Account,
-    message: SignPayloadRequestOutput
+    message: SignPayloadRequestOutput,
   ) {
     console.log('METAMASK SIGN REQUEST', message);
     let response: SignPayloadResponseInput | any;

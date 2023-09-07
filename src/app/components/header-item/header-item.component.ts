@@ -19,7 +19,7 @@ export class HeaderItemComponent implements OnInit {
     public readonly metamaskService: MetamaskService,
     public readonly accountService: AccountService,
     public readonly modalService: ModalService,
-    public readonly clipboardService: ClipboardService
+    public readonly clipboardService: ClipboardService,
   ) {
     this.loadAccountInfo();
   }

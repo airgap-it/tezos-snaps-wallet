@@ -21,19 +21,19 @@ describe('ShortenString Pipe', () => {
 
   it('should shorten 12 character string', () => {
     expect(shortenStringPipe.transform('abcdefghijkl')).toEqual(
-      'abcde...hijkl'
+      'abcde...hijkl',
     );
   });
 
   it('should shorten 13 character string', () => {
     expect(shortenStringPipe.transform('abcdefghijklm')).toEqual(
-      'abcde...ijklm'
+      'abcde...ijklm',
     );
   });
 
   it('should shorten long string', () => {
     expect(
-      shortenStringPipe.transform('abcdefghijklmnopqrstuvwxyz0123456789')
+      shortenStringPipe.transform('abcdefghijklmnopqrstuvwxyz0123456789'),
     ).toEqual('abcde...56789');
   });
 

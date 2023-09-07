@@ -15,7 +15,7 @@ export class NotConnectedModalComponent implements OnInit {
   constructor(
     public readonly bsModalRef: BsModalRef,
     public readonly modalService: ModalService,
-    private readonly metamaskService: MetamaskService
+    private readonly metamaskService: MetamaskService,
   ) {}
 
   ngOnInit(): void {}

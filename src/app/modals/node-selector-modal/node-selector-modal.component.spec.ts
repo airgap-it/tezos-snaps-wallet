@@ -8,9 +8,8 @@ describe('NodeSelectorModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NodeSelectorModalComponent ]
-    })
-    .compileComponents();
+      declarations: [NodeSelectorModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
