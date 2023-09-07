@@ -94,3 +94,9 @@ json-formatter > div:first-child {
   margin-top: auto;
   margin-bottom: auto;
 }
+
+@media (max-width: 768px) {
+  .operations-mobile {
+    margin-top: 20px;
+  }
+}
