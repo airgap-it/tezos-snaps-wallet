@@ -1,14 +1,16 @@
-<div class="footer-container mt-3">
-  <div class="row custom-footer justify-content-center text-muted">
-    <div class="col-6 d-flex align-items-center">
+<div class="footer-container mt-3 px-lg-5 py-lg-2">
+  <div class="row custom-footer justify-content-between text-muted">
+    <div class="d-flex align-items-center">
       <span (click)="modalService.showAboutModal()">About</span>
       <div class="separator"></div>
       <span (click)="modalService.showPrivacyModal()">Privacy Policy</span>
       <div class="separator"></div>
       <span (click)="modalService.showTosModal()">Terms of Use</span>
     </div>
-    <div class="col-6 text-right">
-      Powered by <u><a href="https://tezos.com" target="_blank" class="text-footer">MetaMask Snaps</a></u>
+    <div class="d-flex align-items-center">
+      <span class="text-right">
+        Powered by <u><a href="https://tezos.com" target="_blank" class="text-footer">MetaMask Snaps</a></u>
+      </span>
     </div>
   </div>
 </div>
