@@ -10,9 +10,20 @@
   background: #f5f5f7;
   border-radius: 100px;
   height: 40px;
+  cursor: pointer;
+}
+
+.addressBox:hover {
+  background-color: #d2d2d7;
+}
+
+.addressBox span:focus {
+  background-color: #d2d2d7;
+  outline: none;
 }
 
 .addressBox span:hover {
+  background-color: #d2d2d7;
   cursor: pointer;
 }
 
@@ -137,6 +148,30 @@
   position: absolute;
 }
 
+.qr-button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 100px;
+  background-color: #F5F5F7;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.qr-button:hover {
+  background-color: #d2d2d7;
+}
+
+
+.qr-code {
+  cursor: pointer;
+}
+
+.copy-button {
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
 
   .buttonContainer,
@@ -148,23 +183,4 @@
   .qr-button {
     display: none;
   }
-}
-
-.qr-button {
-  width: 40px;
-  height: 40px;
-  padding: 10px;
-  border-radius: 100px;
-  background-color: #F5F5F7;
-  border: none;
-  cursor: pointer;
-}
-
-
-.qr-code {
-  cursor: pointer;
-}
-
-.copy-button {
-  cursor: pointer;
 }
