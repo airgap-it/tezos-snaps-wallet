@@ -25,7 +25,7 @@ export class MetamaskService {
 
     if (localStorage.getItem(StorageKeys.METAMASK_BUSY)) {
       console.log('MetaMask is busy handling another request');
-      return;
+      throw new Error('MetaMask is busy handling another request');
     }
     localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
 

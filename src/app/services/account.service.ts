@@ -4,9 +4,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 export enum StorageKeys {
-  ACCOUNTS = 'accounts',
-  REQUEST_ID_PREFIX = 'req_id_',
-  METAMASK_BUSY = 'metamask_busy',
+  ACCOUNTS = 'explorer:accounts',
+  REQUEST_ID_PREFIX = 'explorer:req_id_',
+  METAMASK_BUSY = 'explorer:metamask_busy',
 }
 
 export enum AccountType {
@@ -66,7 +66,11 @@ export class AccountService {
   }
 
   async disconnect() {
-    localStorage.setItem(StorageKeys.ACCOUNTS, JSON.stringify([]));
+    Object.keys(localStorage).forEach((key) => {
+      if (key.startsWith('explorer:')) {
+        localStorage.removeItem(key);
+      }
+    });
     this._accounts$.next([]);
     this.hasAccounts = false;
   }

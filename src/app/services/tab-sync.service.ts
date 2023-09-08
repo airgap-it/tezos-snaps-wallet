@@ -1,9 +1,9 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
 export enum StorageEvents {
-  PAGE_OPEN_PING = 'evt_page_open_ping',
-  PAGE_OPEN_PONG = 'evt_page_open_pong',
-  CLEAR = 'evt_clear',
+  PAGE_OPEN_PING = 'explorer:evt_page_open_ping',
+  PAGE_OPEN_PONG = 'explorer:evt_page_open_pong',
+  CLEAR = 'explorer:evt_clear',
 }
 
 @Injectable({

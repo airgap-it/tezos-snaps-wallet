@@ -6,9 +6,8 @@
     >
       <div>
         <p class="cardBalance">
-          {{ tezMainAmount }}.<span class="cardBalanceDecimal"
-            >{{ tezDecimalAmount }} ꜩ</span
-          >
+          {{ tezMainAmount }}<span *ngIf="tezDecimalAmount">.</span
+          ><span class="cardBalanceDecimal">{{ tezDecimalAmount }} ꜩ</span>
         </p>
         <p class="text-muted">${{ usdBalance }}</p>
       </div>

@@ -35,16 +35,20 @@
     <div class="textBox">
       <div class="metamasTextBox">
         <div class="metamaskTitle">
-          Tezos Wallet Explorer, powered by MetaMask
+          Tezos Wallet Explorer, powered by MetaMask Flask
         </div>
         <div class="metamaskSubtitle">
-          <span *ngIf="!isMetaMaskInstalled"
-            >You need to install MetaMask. You can download it
+          <span *ngIf="!isMetaMaskInstalled">
+            <!-- You need to install MetaMask. You can download it
             <a href="https://metamask.io/download/" target="_blank">here</a
+            >. -->
+            You need to install MetaMask Flask. You can download it
+            <a href="https://metamask.io/flask/" target="_blank">here</a
             >. </span
-          ><span *ngIf="isMetaMaskInstalled"
-            >Connect your MetaMask to access the Tezos Wallet Explorer.</span
-          >
+          ><span *ngIf="isMetaMaskInstalled">
+            <!-- Connect your MetaMask to access the Tezos Wallet Explorer. -->
+            Connect your MetaMask Flask to access the Tezos Wallet Explorer.
+          </span>
         </div>
       </div>
 
@@ -66,9 +70,14 @@
           class="metamaskSubtitle red-text mt-3"
           *ngIf="errorCode === -32601"
         >
-          Your version of MetaMask wallet does not support Snaps. Please update
+          <!-- Your version of MetaMask wallet does not support Snaps. Please update
           your MetaMask
-          <a href="https://metamask.io/download/" target="_blank">here</a>.
+          <a href="https://metamask.io/download/" target="_blank">here</a>. -->
+
+          Your version of MetaMask wallet does not support Snaps. Please
+          uninstall your MetaMask and install MetaMask Flask (Development
+          Version) from
+          <a href="https://metamask.io/flask/" target="_blank">here</a>.
         </div>
       </div>
 
