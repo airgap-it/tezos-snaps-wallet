@@ -7,7 +7,6 @@
   margin: 0 auto;
   box-sizing: border-box;
   box-shadow: none;
-  padding: 0.5rem 2rem;
 }
 
 .card-title {
@@ -29,7 +28,6 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(182px, 1fr));
-
 }
 
 .grid-item {

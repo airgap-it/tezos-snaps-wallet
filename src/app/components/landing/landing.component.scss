@@ -46,6 +46,13 @@
   cursor: pointer;
 }
 
+.metamaskModal:hover {
+  color: #0f61ff;
+  border-color: #0f61ff;
+  background-color: transparent;
+  outline: none;
+}
+
 .containerModal {
   justify-content: flex-start;
   align-items: center;
@@ -94,23 +101,39 @@
 
 .large {
   font-size: 24px;
-  display: block;
+  font-weight: 300;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1d1d1f;
+  margin: 0;
+  margin-left: 3px;
 }
 
 .small {
   font-size: 12px;
-  display: block;
   color: #6e6e73;
+  margin: 0;
 }
 
 .flex-container {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  max-height: 40px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .logo {
-  margin-right: 10px;
+  height: auto;
+  max-height: 100%;
+  margin-left: 10px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
 }
 
 .footer {
@@ -208,18 +231,19 @@
   }
 }
 
-/* Responsive styles */
 
 @media (max-width: 768px) {
-  /* Adjustments for smaller screens */
+
+  .flex-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 
   .imageBox {
     width: 100%;
     max-width: 400px;
     padding: 40px;
   }
-
-  /* Override any styles specific to large screens */
 
   .large {
     font-size: 20px;
@@ -233,7 +257,6 @@
     font-size: 24px;
   }
 
-  /* Additional styles for responsiveness */
 
   .textBox {
     text-align: center;
@@ -255,4 +278,9 @@
   .footerTezos {
     margin-top: 2rem;
   }
+}
+
+
+.text:hover {
+  text-decoration: underline;
 }

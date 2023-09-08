@@ -9,6 +9,10 @@
   box-shadow: none;
 }
 
+.operations-header {
+  margin-bottom: 30px;
+}
+
 .card-title {
   font-family: "Inter", sans-serif;
   font-size: 20px;
@@ -16,11 +20,11 @@
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+  margin: 0;
 }
 
 .card-container {
   border-radius: 10px;
-  gap: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -33,12 +37,26 @@
 
   .card-container {
     max-width: 520px;
-    margin: 20px auto 0;
+    margin: 10px auto 0;
   }
+}
+
+@media (max-width: 768px) {
+
+  .card-container {
+    margin-top: 10px;
+  }
+
+  .card-title {
+    margin: 0;
+  }
+  
 }
 
 .copy-button {
   cursor: pointer;
+  color: #D2D2D7;
+  margin-top: 10px;
 }
 
 .explorer-link {
@@ -74,9 +92,9 @@
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600;
-  line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
+  margin: 0; 
 }
 
 .text-address {
@@ -86,7 +104,18 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
-  color: #6e6e73;
+  color: #6E6E73; 
+  margin-top: 10px;
+  
+}
+
+.text-strong {
+font-family: "Inter", sans-serif;
+font-size: 14px;
+font-weight: 600;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
 }
 
 .explorer-link:hover {
