@@ -128,9 +128,9 @@ export class BeaconService {
             positionClass: 'toast-bottom-center',
           },
         );
-        this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         this.handleOperationRequest(account, message).finally(() => {
           toast.toastRef.close();
+          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         });
       } else if (message.type === BeaconMessageType.SignPayloadRequest) {
         const account = accounts.find(
@@ -150,9 +150,9 @@ export class BeaconService {
             positionClass: 'toast-bottom-center',
           },
         );
-        this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         this.handleSignPayload(account, message).finally(() => {
           toast.toastRef.close();
+          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
         });
       } else {
         console.error('Message type not supported');
