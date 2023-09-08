@@ -17,11 +17,11 @@ export class MetamaskService {
   }
 
   async connect() {
-    console.log(await isFlask());
+    console.log('isFlask', await isFlask());
 
     await connectSnap();
     const installedSnap = await getSnap();
-    console.log(installedSnap);
+    console.log('snap installed', installedSnap);
 
     const res = await sendGetAccount();
 
