@@ -80,9 +80,9 @@ export class AppComponent implements OnInit {
       }
     });
 
-    // setInterval(() => {
-    //   this.loadAccountInfo();
-    // }, 10000);
+    setInterval(() => {
+      this.loadAccountInfo();
+    }, 10000);
     this.loadAccountInfo();
   }
 
