@@ -33,7 +33,7 @@ export class SendTezModalComponent implements OnInit {
     const result = await sendOperationRequest([
       {
         kind: TezosOperationType.TRANSACTION,
-        amount: this.amount,
+        amount: new BigNumber(this.amount).times(1_000_000).toString(),
         destination: this.recipient,
       },
     ]);
