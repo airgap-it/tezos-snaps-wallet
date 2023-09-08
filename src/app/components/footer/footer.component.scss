@@ -25,6 +25,10 @@
   color: #86868b;
 }
 
+.text-footer:hover {
+  text-decoration: underline;
+}
+
 .footer-link {
   font-family: "Inter", sans-serif;
   font-size: 12px;
@@ -35,6 +39,10 @@
   margin-left: 0.5rem;
   text-decoration: none;
   color: #424245; 
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }
 
 .custom-footer span {
