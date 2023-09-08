@@ -90,7 +90,6 @@ export class BeaconService {
       `${StorageKeys.REQUEST_ID_PREFIX}${message.id}`,
       Date.now().toString(),
     );
-    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
 
     this.tabSyncService.addTabClosedEventHandler(() => {
       this.requestCleanup(message.id);
@@ -121,6 +120,8 @@ export class BeaconService {
       if (message.type === BeaconMessageType.PermissionRequest) {
         if (accounts.length === 0) {
           console.error('No account found, need to wait for user to connect');
+
+          this.requestCleanup(message.id);
 
           return;
         }
@@ -259,6 +260,8 @@ export class BeaconService {
     account: Account,
     message: OperationRequestOutput,
   ) {
+    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
+
     const operations: PartialTezosOperation[] = message.operationDetails;
 
     this.runOperation(account.address, operations, message.network.type)
@@ -299,6 +302,9 @@ export class BeaconService {
     message: SignPayloadRequestOutput,
   ) {
     console.log('METAMASK SIGN REQUEST', message);
+
+    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
+
     let response: SignPayloadResponseInput | any;
     try {
       const result = await sendSignRequest(message.payload);
