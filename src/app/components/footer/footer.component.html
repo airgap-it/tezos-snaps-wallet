@@ -1,20 +1,20 @@
 <div class="footer-container mt-3 px-lg-5 py-lg-2">
   <div class="row custom-footer justify-content-between text-muted">
     <div class="d-flex align-items-center">
-      <span (click)="modalService.showAboutModal()">About</span>
+      <a href="#" (click)="modalService.showAboutModal()" class="footer-link">About</a>
       <div class="separator"></div>
-      <span (click)="modalService.showPrivacyModal()">Privacy Policy</span>
+      <a href="#" (click)="openLink('#')" class="footer-link">Privacy Policy</a>
       <div class="separator"></div>
-      <span (click)="modalService.showTosModal()">Terms of Use</span>
+      <a href="#" (click)="openLink('#')" class="footer-link">Terms of Use</a>
+      <div class="separator"></div>
+      <a href="#" (click)="
+        openLink('https://github.com/airgap-it/tezos-metamask-snap/wiki/FAQs')
+      " class="footer-link">FAQs</a>
     </div>
     <div class="d-flex align-items-center">
       <span class="text-right">
         Powered by
-        <u
-          ><a href="https://tezos.com" target="_blank" class="text-footer"
-            >MetaMask Snaps</a
-          ></u
-        >
+        <u><a href="https://tezos.com" target="_blank" class="text-footer">MetaMask Snaps</a></u>
       </span>
     </div>
   </div>

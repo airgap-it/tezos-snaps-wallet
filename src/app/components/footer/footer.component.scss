@@ -18,11 +18,23 @@
   width: 1px;
   height: 20px;
   background: #d2d2d7;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .text-footer {
   color: #86868b;
+}
+
+.footer-link {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  text-decoration: none;
+  color: #424245; 
 }
 
 .custom-footer span {
