@@ -10,4 +10,8 @@ export class FooterComponent implements OnInit {
   constructor(public readonly modalService: ModalService) {}
 
   ngOnInit(): void {}
+
+  openLink(link: string) {
+    window.open(link, '_blank');
+  }
 }
