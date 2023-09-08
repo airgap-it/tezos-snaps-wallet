@@ -18,13 +18,8 @@ import { Injectable } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
-import {
-  Account,
-  AccountService,
-  AccountType,
-  StorageKeys,
-} from './account.service';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { Account, AccountService, StorageKeys } from './account.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
@@ -40,7 +35,7 @@ export interface LogAction {
   providedIn: 'root',
 })
 export class BeaconService {
-  public pendingPermissionRequest: PermissionRequestOutput | undefined;
+  public pendingRequest: BeaconRequestOutputMessage | undefined;
 
   public walletClient: WalletClient;
 
@@ -63,6 +58,23 @@ export class BeaconService {
 
     this.tabSyncService.clear$.subscribe(() => {
       this.modalRef?.hide();
+    });
+
+    this.tabSyncService.tabWillClose$.subscribe(async () => {
+      if (this.pendingRequest) {
+        // It seems that this doesn't always work. Probably because execution takes too long to send the network request?
+        localStorage.setItem(
+          'tab_closing_while_pending',
+          new Date().toLocaleTimeString(),
+        );
+        const response = {
+          type: BeaconMessageType.Error,
+          id: this.pendingRequest.id,
+          errorType: BeaconErrorType.ABORTED_ERROR,
+        };
+        await this.walletClient.respond(response as any);
+        localStorage.setItem('tab_closing_while_pending', 'error sent');
+      }
     });
   }
   async handleMessage(message: BeaconRequestOutputMessage) {
@@ -103,12 +115,12 @@ export class BeaconService {
     ]);
     console.log('message', message);
 
+    this.pendingRequest = message;
+
     this.accountService.accounts$.pipe(first()).subscribe((accounts) => {
       if (message.type === BeaconMessageType.PermissionRequest) {
         if (accounts.length === 0) {
           console.error('No account found, need to wait for user to connect');
-
-          this.pendingPermissionRequest = message;
 
           return;
         }
