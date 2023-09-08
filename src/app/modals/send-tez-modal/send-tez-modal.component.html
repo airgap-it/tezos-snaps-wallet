@@ -24,7 +24,7 @@
     />
     <div class="d-flex justify-content-between mt-1">
       <small class="form-text text-muted">USD: ${{ usdAmount }}</small>
-      <!-- <small class="form-text text-muted">Fee: 0.000000 ꜩ</small> -->
+      <small *ngIf="fee" class="form-text text-muted">Fee: {{ fee }} ꜩ</small>
     </div>
   </div>
 

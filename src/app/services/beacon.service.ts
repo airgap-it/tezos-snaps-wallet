@@ -11,7 +11,7 @@ import {
   OperationResponseInput,
   SignPayloadResponseInput,
 } from '@airgap/beacon-types';
-import { WalletClient } from '@airgap/beacon-wallet';
+import { NetworkType, WalletClient } from '@airgap/beacon-wallet';
 import { Serializer } from '@airgap/beacon-core';
 import { Injectable } from '@angular/core';
 
@@ -261,44 +261,7 @@ export class BeaconService {
   ) {
     const operations: PartialTezosOperation[] = message.operationDetails;
 
-    console.log('RPCs', (this.apiService.RPCs as any)[message.network.type]);
-
-    const client = new RpcClient(
-      (this.apiService.RPCs as any)[message.network.type].selected,
-    );
-
-    const { counter } = await client.getContract(account.address);
-    console.log('COUNTER FROM API', counter);
-    let nextCounter = parseInt(counter || '0', 10) + 1;
-    console.log('nextCounter', nextCounter);
-    const branch = (await client.getBlockHeader()).hash;
-    // RPC requires a signature but does not verify it
-    const SIGNATURE_STUB =
-      'edsigtkpiSSschcaCt9pUVrpNPf7TTcgvgDEDD6NCEHMy8NNQJCGnMfLZzYoQj74yLjo9wx6MPVV29CvVzgi7qEcEUok3k7AuMg';
-    const chainId = await client.getChainId();
-
-    const typedOperations: OperationContents[] = operations.map(
-      (op) =>
-        ({
-          source: account.address,
-          counter: String(nextCounter++),
-          fee: '10000',
-          gas_limit: '1040000',
-          storage_limit: '60000',
-          ...(op as PartialTezosTransactionOperation),
-          kind: OpKind.TRANSACTION,
-        }) as any,
-    );
-
-    client
-      .runOperation({
-        operation: {
-          branch,
-          contents: typedOperations,
-          signature: SIGNATURE_STUB,
-        },
-        chain_id: chainId,
-      })
+    this.runOperation(account.address, operations, message.network.type)
       .then((res) => {
         console.log('RUN_OPERATION RESULT', res);
       })
@@ -363,5 +326,49 @@ export class BeaconService {
   private requestCleanup(messageId: string) {
     localStorage.removeItem(`${StorageKeys.REQUEST_ID_PREFIX}${messageId}`);
     localStorage.removeItem(StorageKeys.METAMASK_BUSY);
+  }
+
+  public async runOperation(
+    address: string,
+    operations: PartialTezosOperation[],
+    network: NetworkType,
+  ) {
+    console.log('RPCs', (this.apiService.RPCs as any)[network]);
+
+    const client = new RpcClient(
+      (this.apiService.RPCs as any)[network].selected,
+    );
+
+    const { counter } = await client.getContract(address);
+    console.log('COUNTER FROM API', counter);
+    let nextCounter = parseInt(counter || '0', 10) + 1;
+    console.log('nextCounter', nextCounter);
+    const branch = (await client.getBlockHeader()).hash;
+    // RPC requires a signature but does not verify it
+    const SIGNATURE_STUB =
+      'edsigtkpiSSschcaCt9pUVrpNPf7TTcgvgDEDD6NCEHMy8NNQJCGnMfLZzYoQj74yLjo9wx6MPVV29CvVzgi7qEcEUok3k7AuMg';
+    const chainId = await client.getChainId();
+
+    const typedOperations: OperationContents[] = operations.map(
+      (op) =>
+        ({
+          source: address,
+          counter: String(nextCounter++),
+          fee: '10000',
+          gas_limit: '1040000',
+          storage_limit: '60000',
+          ...(op as PartialTezosTransactionOperation),
+          kind: OpKind.TRANSACTION,
+        }) as any,
+    );
+
+    return client.runOperation({
+      operation: {
+        branch,
+        contents: typedOperations,
+        signature: SIGNATURE_STUB,
+      },
+      chain_id: chainId,
+    });
   }
 }
