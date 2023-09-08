@@ -11,6 +11,7 @@ import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { ApiService } from 'src/app/services/api.service';
 import { BeaconService } from 'src/app/services/beacon.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { sendOperationRequest } from 'src/app/utils/snap';
 import { prepareOperations } from 'src/app/utils/tezos/prepare-operations';
 
@@ -31,6 +32,7 @@ export class SendTezModalComponent implements OnInit {
     public readonly apiService: ApiService,
     public readonly accountService: AccountService,
     public readonly beaconService: BeaconService,
+    public readonly toastService: ToastService,
   ) {
     this.apiService.getXtzPrice().then((price) => (this.usdPrice = price));
   }
@@ -48,22 +50,27 @@ export class SendTezModalComponent implements OnInit {
         },
       ];
 
-      const estimated = await prepareOperations(
-        account.address,
-        account.publicKey,
-        operations,
-        (this.apiService.RPCs as any)[NetworkType.MAINNET].selected + '/',
-      );
+      try {
+        const estimated = await prepareOperations(
+          account.address,
+          account.publicKey,
+          operations,
+          (this.apiService.RPCs as any)[NetworkType.MAINNET].selected + '/',
+        );
 
-      this.fee = new BigNumber(
-        (estimated.contents[0] as TezosTransactionOperation).fee,
-      )
-        .div(1_000_000)
-        .toString();
+        this.fee = new BigNumber(
+          (estimated.contents[0] as TezosTransactionOperation).fee,
+        )
+          .div(1_000_000)
+          .toString();
 
-      const result = await sendOperationRequest(operations);
+        const result = await sendOperationRequest(operations);
+        this.toastService.showTxSucessToast();
 
-      console.log('RESULT', result);
+        console.log('RESULT', result);
+      } catch (e) {
+        this.toastService.showTxErrorToast();
+      }
       this.bsModalRef.hide();
     });
   }
