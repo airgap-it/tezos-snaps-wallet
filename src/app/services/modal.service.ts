@@ -236,19 +236,6 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showAboutModal() {
-    const initialState: ModalOptions<TextModalComponent> = {
-      ...this.modalOptions,
-      initialState: {
-        title: 'About Tezos Wallet Explorer',
-        text: `Text`,
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
-
-    return bsModalRef;
-  }
-
   showPrivacyModal() {
     const initialState: ModalOptions<TextModalComponent> = {
       ...this.modalOptions,
