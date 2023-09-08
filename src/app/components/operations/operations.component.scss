@@ -9,6 +9,10 @@
   box-shadow: none;
 }
 
+.operations-header {
+  margin-bottom: 30px;
+}
+
 .card-title {
   font-family: "Inter", sans-serif;
   font-size: 20px;
@@ -16,6 +20,7 @@
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+  margin: 0;
 }
 
 .card-container {
@@ -34,6 +39,18 @@
     max-width: 520px;
     margin: 10px auto 0;
   }
+}
+
+@media (max-width: 768px) {
+
+  .card-container {
+    margin-top: 10px;
+  }
+
+  .card-title {
+    margin: 0;
+  }
+  
 }
 
 .copy-button {
