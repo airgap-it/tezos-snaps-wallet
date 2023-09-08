@@ -236,37 +236,11 @@ export class ModalService {
     return bsModalRef;
   }
 
-  showPrivacyModal() {
-    const initialState: ModalOptions<TextModalComponent> = {
-      ...this.modalOptions,
-      initialState: {
-        title: 'Privacy Policy',
-        text: 'text',
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
-
-    return bsModalRef;
-  }
-
   showFaqModal() {
     const initialState: ModalOptions<TextModalComponent> = {
       ...this.modalOptions,
       initialState: {
         title: 'FAQ',
-        text: 'text',
-      },
-    };
-    const bsModalRef = this.modalService.show(TextModalComponent, initialState);
-
-    return bsModalRef;
-  }
-
-  showTosModal() {
-    const initialState: ModalOptions<TextModalComponent> = {
-      ...this.modalOptions,
-      initialState: {
-        title: 'Terms of Service',
         text: 'text',
       },
     };
