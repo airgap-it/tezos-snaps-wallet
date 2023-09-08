@@ -10,7 +10,12 @@
 </div>
 <div class="modal-body text-center">
   <h4 class="modal-title">{{ title }}</h4>
-  <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  <qrcode
+    (click)="copyToClipboard()"
+    [qrdata]="qrData"
+    [width]="256"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
 
   <div class="addressContainer">
     <img
@@ -19,8 +24,9 @@
       style="width: 18px; height: 18px"
     />
     <div class="addressBox">
-      <div class="textAddress">tz1ZhRGf...akmE7</div>
+      <div class="textAddress">{{ qrData | shortenString }}</div>
       <img
+        (click)="copyToClipboard()"
         src="./assets/icons/FiCopy.svg"
         alt="SVG Image"
         style="width: 16px; height: 16px; margin-left: 6px"
