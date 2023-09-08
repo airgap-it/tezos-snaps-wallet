@@ -27,4 +27,20 @@ export class ToastService {
       positionClass: 'toast-bottom-center',
     });
   }
+
+  showOperationRequestReceivedToast() {
+    return this.toastr.success('Operation request received', 'Success', {
+      closeButton: true,
+      timeOut: 0,
+      positionClass: 'toast-bottom-center',
+    });
+  }
+
+  showSignRequestReceivedToast() {
+    return this.toastr.success('Sign request received', 'Success', {
+      closeButton: true,
+      timeOut: 0,
+      positionClass: 'toast-bottom-center',
+    });
+  }
 }

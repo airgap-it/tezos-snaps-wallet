@@ -24,7 +24,7 @@ import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
 import { ModalService } from './modal.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastService } from './toast.service';
 
 export interface LogAction {
   title: string;
@@ -48,7 +48,7 @@ export class BeaconService {
     private readonly accountService: AccountService,
     private readonly modalService: ModalService,
     private readonly apiService: ApiService,
-    private readonly toastService: ToastrService,
+    private readonly toastService: ToastService,
   ) {
     this.walletClient = new WalletClient({
       name: 'MetaMask',
@@ -148,19 +148,19 @@ export class BeaconService {
           return;
         }
 
-        const toast = this.toastService.success(
-          'Operation request received',
-          'Success',
-          {
-            closeButton: true,
-            timeOut: 0,
-            positionClass: 'toast-bottom-center',
-          },
-        );
-        this.handleOperationRequest(account, message).finally(() => {
-          toast.toastRef.close();
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-        });
+        const toast = this.toastService.showOperationRequestReceivedToast();
+        this.handleOperationRequest(account, message)
+          .then(() => {
+            toast.toastRef.close();
+            this.toastService.showTxSucessToast();
+          })
+          .catch(() => {
+            toast.toastRef.close();
+            this.toastService.showTxErrorToast();
+          })
+          .finally(() => {
+            this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          });
       } else if (message.type === BeaconMessageType.SignPayloadRequest) {
         const account = accounts.find(
           (acc) => acc.address === message.sourceAddress,
@@ -170,19 +170,19 @@ export class BeaconService {
           return;
         }
 
-        const toast = this.toastService.success(
-          'Sign request received',
-          'Success',
-          {
-            closeButton: true,
-            timeOut: 0,
-            positionClass: 'toast-bottom-center',
-          },
-        );
-        this.handleSignPayload(account, message).finally(() => {
-          toast.toastRef.close();
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-        });
+        const toast = this.toastService.showSignRequestReceivedToast();
+        this.handleSignPayload(account, message)
+          .then(() => {
+            toast.toastRef.close();
+            this.toastService.showTxSucessToast();
+          })
+          .catch(() => {
+            toast.toastRef.close();
+            this.toastService.showTxErrorToast();
+          })
+          .finally(() => {
+            this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          });
       } else {
         console.error('Message type not supported');
         console.error('Received: ', message);
