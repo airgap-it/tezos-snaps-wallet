@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Share Account?</h4>
+  <h2 class="modalTitle modal-title pull-left">Share Account</h2>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -9,17 +9,26 @@
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <p>
-    Do you want to give "{{ appMetadata?.name }}" permissions for this account?
-    {{ account?.address }}
-  </p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-light" (click)="decline()">
-    Decline
-  </button>
-  <button type="button" class="btn btn-primary ml-1" (click)="confirm()">
-    Share
-  </button>
+<div class="modalContainer">
+  <div class="modal-body">
+    <p>Do you want to connect to the following DApp?</p>
+    <p class="inputTitle">DApp:</p>
+    <div class="inputBox">
+      <p class="inputText">{{ appMetadata?.name }}</p>
+    </div>
+    <p class="inputTitle">Account:</p>
+    <div class="inputBox">
+      <p class="inputText">{{ account?.address }}</p>
+    </div>
+  </div>
+
+  <div class="modal-footer" style="width: fit-content">
+    <button
+      type="button"
+      class="button btn btn-block btn-primary"
+      (click)="confirm()"
+    >
+      Share
+    </button>
+  </div>
 </div>

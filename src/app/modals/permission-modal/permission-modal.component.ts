@@ -1,6 +1,7 @@
 import { AppMetadata } from '@airgap/beacon-wallet';
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Account } from 'src/app/services/account.service';
 
 @Component({
@@ -12,13 +13,20 @@ export class PermissionModalComponent implements OnInit {
   public account: Account | undefined;
   public appMetadata: AppMetadata | undefined;
 
-  constructor(public bsModalRef: BsModalRef) {}
+  constructor(
+    public readonly bsModalRef: BsModalRef,
+    public readonly toastService: ToastrService,
+  ) {}
 
   ngOnInit(): void {}
 
   confirm(): void {
     this.bsModalRef.onHide?.emit('confirm');
     this.bsModalRef.hide();
+    this.toastService.success('Connected to dApp', 'Success', {
+      progressBar: true,
+      positionClass: 'toast-bottom-center',
+    });
   }
 
   decline(): void {
