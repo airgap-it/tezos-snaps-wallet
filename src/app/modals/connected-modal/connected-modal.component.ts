@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
+import { BeaconService } from 'src/app/services/beacon.service';
 
 @Component({
   selector: 'app-connected-modal',
@@ -16,6 +17,7 @@ export class ConnectedModalComponent implements OnInit {
   constructor(
     public readonly bsModalRef: BsModalRef,
     private readonly accountService: AccountService,
+    private readonly beaconService: BeaconService,
   ) {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {
@@ -25,4 +27,14 @@ export class ConnectedModalComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  close(): void {
+    this.bsModalRef.hide();
+    if (this.beaconService.pendingPermissionRequest) {
+      console.log('Have pending request, handling now');
+      this.beaconService.handleMessage(
+        this.beaconService.pendingPermissionRequest,
+      );
+    }
+  }
 }

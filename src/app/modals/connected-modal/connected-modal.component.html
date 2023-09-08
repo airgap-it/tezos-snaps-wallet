@@ -4,7 +4,7 @@
     type="button"
     class="btn-close close pull-right"
     aria-label="Close"
-    (click)="bsModalRef.hide()"
+    (click)="close()"
   >
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
@@ -47,7 +47,7 @@
     <button
       type="button"
       class="button btn btn-block btn-primary"
-      (click)="bsModalRef.hide()"
+      (click)="close()"
     >
       Got it!
     </button>

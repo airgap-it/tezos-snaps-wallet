@@ -35,6 +35,8 @@ export interface LogAction {
   providedIn: 'root',
 })
 export class BeaconService {
+  public pendingPermissionRequest: PermissionRequestOutput | undefined;
+
   public walletClient: WalletClient;
 
   log: [Date, string, any, LogAction[]][] = [];
@@ -81,17 +83,9 @@ export class BeaconService {
     this.accountService.accounts$.pipe(first()).subscribe((accounts) => {
       if (message.type === BeaconMessageType.PermissionRequest) {
         if (accounts.length === 0) {
-          console.error('No account found');
+          console.error('No account found, need to wait for user to connect');
 
-          this.modalRef = this.modalService.showNotConnectedModal(
-            () => {
-              console.log('SUCCESS');
-              this.handleMessage(message);
-            },
-            () => {
-              console.log('ERROR');
-            },
-          );
+          this.pendingPermissionRequest = message;
 
           return;
         }
