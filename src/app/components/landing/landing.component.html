@@ -83,8 +83,11 @@
   </div>
 
   <div class="footer-menu">
-    <a href="#" (click)="modalService.showAboutModal()" class="footer-link"
-      >About</a
+    <a
+      href="#"
+      (click)="openLink('https://github.com/airgap-it/tezos-snaps-wallet')"
+      class="footer-link"
+      >GitHub</a
     >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +98,12 @@
     >
       <path d="M1 0V20" stroke="#D2D2D7" />
     </svg>
-    <a href="#" (click)="openLink('#')" class="footer-link">Privacy Policy</a>
+    <a
+      href="#"
+      (click)="openLink('./assets/documents/privacy-policy.pdf')"
+      class="footer-link"
+      >Privacy Policy</a
+    >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="2"
