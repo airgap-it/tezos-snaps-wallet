@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Token } from 'src/app/types';
 
 @Component({
@@ -9,7 +10,7 @@ import { Token } from 'src/app/types';
 export class NftModalComponent implements OnInit {
   nft?: Token;
 
-  constructor() {}
+  constructor(public readonly bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {}
 
