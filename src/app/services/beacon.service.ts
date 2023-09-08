@@ -61,6 +61,12 @@ export class BeaconService {
     });
   }
   async handleMessage(message: BeaconRequestOutputMessage) {
+    if (localStorage.getItem(`req-${message.id}`)) {
+      console.log('Request is already being handled');
+      return;
+    }
+    localStorage.setItem(`req-${message.id}`, Date.now().toString());
+
     this.log.push([
       new Date(),
       `${message.appMetadata.name}: INCOMING MESSAGE (${message.type}) ${
