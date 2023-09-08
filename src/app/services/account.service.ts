@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
-enum StorageKeys {
+export enum StorageKeys {
   ACCOUNTS = 'accounts',
+  REQUEST_ID_PREFIX = 'req_id_',
+  METAMASK_BUSY = 'metamask_busy',
 }
 
 export enum AccountType {

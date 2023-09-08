@@ -18,7 +18,12 @@ import { Injectable } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
-import { Account, AccountService, AccountType } from './account.service';
+import {
+  Account,
+  AccountService,
+  AccountType,
+  StorageKeys,
+} from './account.service';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
@@ -61,11 +66,23 @@ export class BeaconService {
     });
   }
   async handleMessage(message: BeaconRequestOutputMessage) {
-    if (localStorage.getItem(`req-${message.id}`)) {
-      console.log('Request is already being handled');
+    if (localStorage.getItem(StorageKeys.METAMASK_BUSY)) {
+      console.log('MetaMask is busy handling another request');
       return;
     }
-    localStorage.setItem(`req-${message.id}`, Date.now().toString());
+    if (localStorage.getItem(`${StorageKeys.REQUEST_ID_PREFIX}${message.id}`)) {
+      console.log('This request is already being handled');
+      return;
+    }
+    localStorage.setItem(
+      `${StorageKeys.REQUEST_ID_PREFIX}${message.id}`,
+      Date.now().toString(),
+    );
+    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
+
+    this.tabSyncService.addTabClosedEventHandler(() => {
+      this.requestCleanup(message.id);
+    });
 
     this.log.push([
       new Date(),
@@ -164,6 +181,8 @@ export class BeaconService {
           errorType: BeaconErrorType.ABORTED_ERROR,
         };
         this.walletClient.respond(response as any);
+
+        this.requestCleanup(message.id);
       }
     });
   }
@@ -185,6 +204,8 @@ export class BeaconService {
     };
 
     this.walletClient.respond(response);
+
+    this.requestCleanup(message.id);
   }
 
   public async addPeer(text: string) {
@@ -218,6 +239,8 @@ export class BeaconService {
 
     // Send response back to DApp
     this.walletClient.respond(response as any);
+
+    this.requestCleanup(message.id);
   }
 
   public async handleOperationRequest(
@@ -291,6 +314,8 @@ export class BeaconService {
         console.log('RESPONSE', response);
 
         this.walletClient.respond(response);
+
+        this.requestCleanup(message.id);
       });
   }
 
@@ -319,5 +344,12 @@ export class BeaconService {
     this.walletClient.respond(response);
 
     console.log('METAMASK SIGN RESPONSE', response);
+
+    this.requestCleanup(message.id);
+  }
+
+  private requestCleanup(messageId: string) {
+    localStorage.removeItem(`${StorageKeys.REQUEST_ID_PREFIX}${messageId}`);
+    localStorage.removeItem(StorageKeys.METAMASK_BUSY);
   }
 }
