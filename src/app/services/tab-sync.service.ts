@@ -12,6 +12,8 @@ export enum StorageEvents {
 export class TabSyncService {
   clear$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  private tabClosedEventHandlers: (() => void)[] = [];
+
   constructor() {
     this.setupListener();
   }
@@ -41,5 +43,15 @@ export class TabSyncService {
       }
     };
     window.addEventListener('storage', onLocalStorageEvent, false);
+
+    window.addEventListener('beforeunload', (event) => {
+      this.tabClosedEventHandlers.forEach((handler) => {
+        handler();
+      });
+    });
+  }
+
+  addTabClosedEventHandler(handler: () => void) {
+    this.tabClosedEventHandlers.push(handler);
   }
 }
