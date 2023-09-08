@@ -21,7 +21,9 @@ export const isFlask = async () => {
 
 export const isMetaMaskInstalled = (): boolean => {
   if (typeof window.ethereum !== 'undefined') {
-    return window.ethereum.isMetaMask ?? false;
+    return (
+      window.ethereum.isMetaMask && !(window.ethereum as any).isBraveWallet
+    );
   }
   return false;
 };

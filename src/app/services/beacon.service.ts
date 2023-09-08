@@ -11,25 +11,20 @@ import {
   OperationResponseInput,
   SignPayloadResponseInput,
 } from '@airgap/beacon-types';
-import { WalletClient } from '@airgap/beacon-wallet';
+import { NetworkType, WalletClient } from '@airgap/beacon-wallet';
 import { Serializer } from '@airgap/beacon-core';
 import { Injectable } from '@angular/core';
 
 import { first } from 'rxjs/operators';
 
 import { RpcClient, OperationContents, OpKind } from '@taquito/rpc';
-import {
-  Account,
-  AccountService,
-  AccountType,
-  StorageKeys,
-} from './account.service';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { Account, AccountService, StorageKeys } from './account.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 import { sendOperationRequest, sendSignRequest } from '../utils/snap';
 import { StorageEvents, TabSyncService } from './tab-sync.service';
 import { ModalService } from './modal.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastService } from './toast.service';
 
 export interface LogAction {
   title: string;
@@ -40,7 +35,7 @@ export interface LogAction {
   providedIn: 'root',
 })
 export class BeaconService {
-  public pendingPermissionRequest: PermissionRequestOutput | undefined;
+  public pendingRequest: BeaconRequestOutputMessage | undefined;
 
   public walletClient: WalletClient;
 
@@ -53,7 +48,7 @@ export class BeaconService {
     private readonly accountService: AccountService,
     private readonly modalService: ModalService,
     private readonly apiService: ApiService,
-    private readonly toastService: ToastrService,
+    private readonly toastService: ToastService,
   ) {
     this.walletClient = new WalletClient({
       name: 'MetaMask',
@@ -63,6 +58,23 @@ export class BeaconService {
 
     this.tabSyncService.clear$.subscribe(() => {
       this.modalRef?.hide();
+    });
+
+    this.tabSyncService.tabWillClose$.subscribe(async () => {
+      if (this.pendingRequest) {
+        // It seems that this doesn't always work. Probably because execution takes too long to send the network request?
+        localStorage.setItem(
+          'tab_closing_while_pending',
+          new Date().toLocaleTimeString(),
+        );
+        const response = {
+          type: BeaconMessageType.Error,
+          id: this.pendingRequest.id,
+          errorType: BeaconErrorType.ABORTED_ERROR,
+        };
+        await this.walletClient.respond(response as any);
+        localStorage.setItem('tab_closing_while_pending', 'error sent');
+      }
     });
   }
   async handleMessage(message: BeaconRequestOutputMessage) {
@@ -78,7 +90,6 @@ export class BeaconService {
       `${StorageKeys.REQUEST_ID_PREFIX}${message.id}`,
       Date.now().toString(),
     );
-    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
 
     this.tabSyncService.addTabClosedEventHandler(() => {
       this.requestCleanup(message.id);
@@ -103,12 +114,14 @@ export class BeaconService {
     ]);
     console.log('message', message);
 
+    this.pendingRequest = message;
+
     this.accountService.accounts$.pipe(first()).subscribe((accounts) => {
       if (message.type === BeaconMessageType.PermissionRequest) {
         if (accounts.length === 0) {
           console.error('No account found, need to wait for user to connect');
 
-          this.pendingPermissionRequest = message;
+          this.requestCleanup(message.id);
 
           return;
         }
@@ -136,19 +149,19 @@ export class BeaconService {
           return;
         }
 
-        const toast = this.toastService.success(
-          'Operation request received',
-          'Success',
-          {
-            closeButton: true,
-            timeOut: 0,
-            positionClass: 'toast-bottom-center',
-          },
-        );
-        this.handleOperationRequest(account, message).finally(() => {
-          toast.toastRef.close();
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-        });
+        const toast = this.toastService.showOperationRequestReceivedToast();
+        this.handleOperationRequest(account, message)
+          .then(() => {
+            toast.toastRef.close();
+            this.toastService.showTxSucessToast();
+          })
+          .catch(() => {
+            toast.toastRef.close();
+            this.toastService.showTxErrorToast();
+          })
+          .finally(() => {
+            this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          });
       } else if (message.type === BeaconMessageType.SignPayloadRequest) {
         const account = accounts.find(
           (acc) => acc.address === message.sourceAddress,
@@ -158,19 +171,19 @@ export class BeaconService {
           return;
         }
 
-        const toast = this.toastService.success(
-          'Sign request received',
-          'Success',
-          {
-            closeButton: true,
-            timeOut: 0,
-            positionClass: 'toast-bottom-center',
-          },
-        );
-        this.handleSignPayload(account, message).finally(() => {
-          toast.toastRef.close();
-          this.tabSyncService.sendEvent(StorageEvents.CLEAR);
-        });
+        const toast = this.toastService.showSignRequestReceivedToast();
+        this.handleSignPayload(account, message)
+          .then(() => {
+            toast.toastRef.close();
+            this.toastService.showTxSucessToast();
+          })
+          .catch(() => {
+            toast.toastRef.close();
+            this.toastService.showTxErrorToast();
+          })
+          .finally(() => {
+            this.tabSyncService.sendEvent(StorageEvents.CLEAR);
+          });
       } else {
         console.error('Message type not supported');
         console.error('Received: ', message);
@@ -247,46 +260,11 @@ export class BeaconService {
     account: Account,
     message: OperationRequestOutput,
   ) {
+    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
+
     const operations: PartialTezosOperation[] = message.operationDetails;
 
-    console.log('RPCs', (this.apiService.RPCs as any)[message.network.type]);
-
-    const client = new RpcClient(
-      (this.apiService.RPCs as any)[message.network.type].selected,
-    );
-
-    const { counter } = await client.getContract(account.address);
-    console.log('COUNTER FROM API', counter);
-    let nextCounter = parseInt(counter || '0', 10) + 1;
-    console.log('nextCounter', nextCounter);
-    const branch = (await client.getBlockHeader()).hash;
-    // RPC requires a signature but does not verify it
-    const SIGNATURE_STUB =
-      'edsigtkpiSSschcaCt9pUVrpNPf7TTcgvgDEDD6NCEHMy8NNQJCGnMfLZzYoQj74yLjo9wx6MPVV29CvVzgi7qEcEUok3k7AuMg';
-    const chainId = await client.getChainId();
-
-    const typedOperations: OperationContents[] = operations.map(
-      (op) =>
-        ({
-          source: account.address,
-          counter: String(nextCounter++),
-          fee: '10000',
-          gas_limit: '1040000',
-          storage_limit: '60000',
-          ...(op as PartialTezosTransactionOperation),
-          kind: OpKind.TRANSACTION,
-        }) as any,
-    );
-
-    client
-      .runOperation({
-        operation: {
-          branch,
-          contents: typedOperations,
-          signature: SIGNATURE_STUB,
-        },
-        chain_id: chainId,
-      })
+    this.runOperation(account.address, operations, message.network.type)
       .then((res) => {
         console.log('RUN_OPERATION RESULT', res);
       })
@@ -324,6 +302,9 @@ export class BeaconService {
     message: SignPayloadRequestOutput,
   ) {
     console.log('METAMASK SIGN REQUEST', message);
+
+    localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');
+
     let response: SignPayloadResponseInput | any;
     try {
       const result = await sendSignRequest(message.payload);
@@ -351,5 +332,49 @@ export class BeaconService {
   private requestCleanup(messageId: string) {
     localStorage.removeItem(`${StorageKeys.REQUEST_ID_PREFIX}${messageId}`);
     localStorage.removeItem(StorageKeys.METAMASK_BUSY);
+  }
+
+  public async runOperation(
+    address: string,
+    operations: PartialTezosOperation[],
+    network: NetworkType,
+  ) {
+    console.log('RPCs', (this.apiService.RPCs as any)[network]);
+
+    const client = new RpcClient(
+      (this.apiService.RPCs as any)[network].selected,
+    );
+
+    const { counter } = await client.getContract(address);
+    console.log('COUNTER FROM API', counter);
+    let nextCounter = parseInt(counter || '0', 10) + 1;
+    console.log('nextCounter', nextCounter);
+    const branch = (await client.getBlockHeader()).hash;
+    // RPC requires a signature but does not verify it
+    const SIGNATURE_STUB =
+      'edsigtkpiSSschcaCt9pUVrpNPf7TTcgvgDEDD6NCEHMy8NNQJCGnMfLZzYoQj74yLjo9wx6MPVV29CvVzgi7qEcEUok3k7AuMg';
+    const chainId = await client.getChainId();
+
+    const typedOperations: OperationContents[] = operations.map(
+      (op) =>
+        ({
+          source: address,
+          counter: String(nextCounter++),
+          fee: '10000',
+          gas_limit: '1040000',
+          storage_limit: '60000',
+          ...(op as PartialTezosTransactionOperation),
+          kind: OpKind.TRANSACTION,
+        }) as any,
+    );
+
+    return client.runOperation({
+      operation: {
+        branch,
+        contents: typedOperations,
+        signature: SIGNATURE_STUB,
+      },
+      chain_id: chainId,
+    });
   }
 }

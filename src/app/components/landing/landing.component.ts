@@ -11,6 +11,7 @@ import { isMetaMaskInstalled } from 'src/app/utils/metamask';
 export class LandingComponent implements OnInit {
   isMetaMaskInstalled: boolean = isMetaMaskInstalled();
   isLoading: boolean = false;
+  errorCode: number = 0;
 
   constructor(
     public readonly metamaskService: MetamaskService,
@@ -24,10 +25,15 @@ export class LandingComponent implements OnInit {
       return;
     }
     this.isLoading = true;
+
     this.metamaskService
       .connect()
       .then(() => {
+        this.errorCode = 0;
         this.modalService.showConnectedModal();
+      })
+      .catch((error: Error & { code: number }) => {
+        this.errorCode = error.code;
       })
       .finally(async () => {
         this.isLoading = false;
