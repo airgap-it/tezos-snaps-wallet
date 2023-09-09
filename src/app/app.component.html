@@ -1,7 +1,10 @@
 <app-landing *ngIf="!accountService.hasAccounts"></app-landing>
 
 <!-- Toolbar -->
-<app-header-item *ngIf="accountService.hasAccounts"></app-header-item>
+<div>
+  <app-header-item *ngIf="accountService.hasAccounts"></app-header-item>
+</div>
+
 
 <div *ngIf="accountService.hasAccounts" class="container-fluid px-md-5 pb-3">
   <div class="row">

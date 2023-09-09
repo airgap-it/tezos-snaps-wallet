@@ -7,20 +7,18 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-}
-
-.image-container {
-  flex: 0 0 auto;
-  margin-right: 20px;
+  flex-wrap: wrap;
 }
 
 .text-container {
   flex: 1;
   text-align: left;
+  
 }
 
-.text-name {
-  font-weight: bold;
+.image-container img {
+  max-width: 100%;
+  height: auto;
 }
 
 .custom-link {
@@ -32,6 +30,14 @@
   text-align: left;
   color: #0f61ff;
   text-decoration: none;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+
+.text-name {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .custom-link:hover {

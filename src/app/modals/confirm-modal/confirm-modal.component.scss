@@ -10,22 +10,25 @@
   border: none;
   outline: none;
   cursor: pointer;
-
-  /* Add a hover effect */
   transition: background-color 0.3s ease-in-out;
 }
 
+
 .button:hover {
-  background-color: #0079ff;
+  background-color: #183FD7;
 }
 
 .btn.btn-outline-primary.btn-circle {
-  border-color: #0f61ff;
   color: #0f61ff;
+  border-color: #d2d2d7;
+  background-color: transparent;
 }
 
 .btn.btn-outline-primary.btn-circle:hover {
+  color: #0f61ff;
   border-color: #0f61ff;
-  background-color: #0f61ff;
-  color: #fff;
+  background-color: transparent;
+  outline: none;
 }
+
+
