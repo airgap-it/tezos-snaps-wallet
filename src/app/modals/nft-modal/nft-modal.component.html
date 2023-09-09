@@ -6,7 +6,7 @@
 <div class="modal-body text-center">
   <span *ngIf="nft" class="nft-info">
     <div class="image-container">
-      <img width="100px" [src]="nft.token.metadata.sanitizedThumbnailUri" />
+      <img [src]="nft.token.metadata.sanitizedThumbnailUri" />
     </div>
     <div class="text-container">
       <p class="text-name">{{ nft.token.metadata.name }}</p>
