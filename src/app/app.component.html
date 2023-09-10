@@ -11,21 +11,12 @@
     <div class="col-md-4">
       <!-- Balance Component -->
       <div class="card no-shadow mb-3">
-        <app-account
-          [balance]="balance"
-          [usdBalance]="usdBalance"
-          [address]="address"
-          [tokens]="tokens"
-        ></app-account>
+        <app-account [balance]="balance" [usdBalance]="usdBalance" [address]="address" [tokens]="tokens"></app-account>
       </div>
-      <div class="card no-shadow mb-3">
+      <div class="card no-shadow mb-3 cardBox">
         <div class="card-body" style="padding: 30px;">
           <div class="infoInputBox">
-            <img
-              src="./assets/icons/FiAlertCircleBlack.svg"
-              alt="alert"
-              style="width: 20px; height: 20px"
-            />
+            <img src="./assets/icons/FiAlertCircleBlack.svg" alt="alert" style="width: 20px; height: 20px" />
             <p class="infoInputText">
               This explorer will allow you to connect with Tezos dApps and
               send/receive tokens via the MetaMask Wallet. Note, this account

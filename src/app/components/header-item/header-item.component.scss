@@ -11,6 +11,7 @@
   border-radius: 100px;
   height: 40px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .addressContainer {
@@ -180,6 +181,7 @@
 }
 
 @media (max-width: 768px) {
+
   .buttonContainer,
   .addressBox,
   .qr-code img {
