@@ -3,7 +3,7 @@
 }
 
 .cardBox {
-  width: 100%;
+  width: 580px !important;
   border-radius: 20px;
   background: var(--Netural-1, #f5f5f7);
   box-shadow: none;
@@ -29,9 +29,15 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 1490px) {
+  .cardBox {
+    width: 100% !important;
+  }
+}
+
 @media (min-width: 768px) {
   .cardBox {
-    max-width: 580px;
+    width: 100%;
     margin: 0 auto;
   }
 
@@ -50,7 +56,7 @@
   .card-title {
     margin: 0;
   }
-  
+
 }
 
 .copy-button {
@@ -94,7 +100,7 @@
   font-weight: 600;
   letter-spacing: 0em;
   text-align: left;
-  margin: 0; 
+  margin: 0;
 }
 
 .text-address {
@@ -104,18 +110,18 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
-  color: #6E6E73; 
+  color: #6E6E73;
   margin-top: 10px;
-  
+
 }
 
 .text-strong {
-font-family: "Inter", sans-serif;
-font-size: 14px;
-font-weight: 600;
-line-height: 17px;
-letter-spacing: 0em;
-text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .explorer-link:hover {

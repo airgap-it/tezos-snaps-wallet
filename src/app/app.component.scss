@@ -1,4 +1,4 @@
-json-formatter > div:first-child {
+json-formatter>div:first-child {
   padding: 8px;
 }
 
@@ -58,7 +58,7 @@ json-formatter > div:first-child {
 ::ng-deep .modal-content {
   border-radius: 20px;
   padding: 50px;
-  
+
 
   .close {
     margin-top: -50px;
@@ -95,7 +95,25 @@ json-formatter > div:first-child {
   margin-bottom: auto;
 }
 
+.cardBox {
+  width: 580px;
+  box-shadow: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+@media (max-width: 1490px) {
+  .cardBox {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
+  .cardBox {
+    width: 580px;
+    max-width: 100%;
+  }
+
   .operations-mobile {
     margin-top: 20px;
   }

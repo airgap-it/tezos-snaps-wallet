@@ -1,5 +1,5 @@
 .cardBox {
-  width: 100%;
+  width: 580px !important;
   min-height: 153px;
   border-radius: 20px;
   background: var(--Netural-1, #f5f5f7);
@@ -70,7 +70,18 @@
   outline: none;
 }
 
-@media (min-width: 769px) {
+@media (max-width: 1490px) {
+  .cardBox {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardBox {
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .btn.btn-primary.btn-circle,
   .btn.btn-outline-primary.btn-circle {
     font-size: 16px;
@@ -93,6 +104,7 @@
     font-size: 20px;
     line-height: 28px;
   }
+
   .cardBalanceDecimal {
     font-size: 16px;
     line-height: 16px;
@@ -116,6 +128,7 @@
     font-size: 18px;
     line-height: 18px;
   }
+
   .cardBalanceDecimal {
     font-size: 14px;
     line-height: 14px;

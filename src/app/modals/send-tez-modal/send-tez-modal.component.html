@@ -1,52 +1,32 @@
-<div class="modal-header">
-  <button
-    type="button"
-    class="btn-close close pull-right"
-    aria-label="Close"
-    (click)="bsModalRef.hide()"
-  >
+<div class="modal-header send-header">
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
-<div class="modal-body text-center">
+<div class="modal-body text-center" style="padding: 0;">
   <h4 class="modal-title">Send tez</h4>
   <div class="text-left">
-    <label for="amount">
-      <h5>Amount:</h5>
+    <label for="amount" style="margin: 0;">
+      <h5 class="amount-text">Amount:</h5>
     </label>
-    <input
-      [ngModel]="amount"
-      (ngModelChange)="onAmountChanged($event)"
-      type="input"
-      id="amount"
-      class="form-control custom-input"
-      placeholder="0.00"
-    />
-    <div class="d-flex justify-content-between mt-1">
+    <input [ngModel]="amount" (ngModelChange)="onAmountChanged($event)" type="input" id="amount"
+      class="form-control custom-input" placeholder="0.00" />
+    <div class="d-flex justify-content-between">
       <small class="form-text text-muted">USD: ${{ usdAmount }}</small>
       <small *ngIf="fee" class="form-text text-muted">Fee: {{ fee }} ꜩ</small>
     </div>
   </div>
 
-  <div class="text-left mt-3">
-    <label for="sendTo">
-      <h5>Send To:</h5>
+  <div class="text-left">
+    <label for="sendTo" style="margin: 0;">
+      <h5 class="send-text">Send To:</h5>
     </label>
-    <input
-      [(ngModel)]="recipient"
-      type="input"
-      id="sendTo"
-      class="form-control custom-input"
-      placeholder="Paste tz address here"
-    />
+    <input [(ngModel)]="recipient" type="input" id="sendTo" class="form-control custom-input"
+      placeholder="Paste tz address here" />
   </div>
 
-  <button
-    (click)="send()"
-    type="button"
-    class="btn button btn-circle btn-block mt-3"
-    [disabled]="amount.length === 0 || recipient.length === 0"
-  >
+  <button (click)="send()" type="button" class="btn button btn-circle btn-block"
+    [disabled]="amount.length === 0 || recipient.length === 0">
     Preview
   </button>
 </div>
