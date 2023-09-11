@@ -15,9 +15,12 @@
   text-align: left;
 }
 
-.image-container img {
-  max-width: 100%;
+.max-400 {
+  max-width: 400px;
+  max-height: 400px;
+  width: auto;
   height: auto;
+  object-fit: contain;
 }
 
 .custom-link {
@@ -35,7 +38,6 @@
 
 .text-name {
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .custom-link:hover {
@@ -49,18 +51,33 @@
   margin-bottom: 1px;
 }
 
-// ::ng-deep modal-container {
-//   max-width: 910px;
-// }
+@media (max-width: 767px) {
+  .max-400 {
+    max-width: 100%;
+    max-height: none;
+  }
 
-// ::ng-deep .modal-content {
-//   width: 910px;
-// }
-
-::ng-deep .modal-dialog {
-  width: 910px;
+  .text-container {
+    margin-top: 30px;
+  }
 }
 
-.big {
-  width: 200px;
+@media (min-width: 992px) {
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+  }
+
+  .image-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text-container .links {
+    margin-top: auto;
+  }
 }

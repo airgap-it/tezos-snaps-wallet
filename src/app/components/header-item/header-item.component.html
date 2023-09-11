@@ -8,27 +8,6 @@
         <span class="header pt-1 ml-1 large">Tezos Wallet Explorer</span>
         <span class="header ml-1 small">powered by MetaMask</span>
       </div>
-      <!-- // Re-enable once switching network is available.
-      <div class="btn-group buttonContainer" dropdown>
-        <button id="button-basic" dropdownToggle type="button"
-          class="btn btn-primary btn-circle dropdown-toggle buttonNetwork" aria-controls="dropdown-basic">
-          {{ network }} <span class="caret"></span>
-        </button>
-        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-          <ul
-          id="dropdown-basic"
-          *dropdownMenu
-          class="dropdown-menu"
-          role="menu"
-          aria-labelledby="button-basic"
-        >
-          <li role="menuitem">
-            <a class="dropdown-item" (click)="changeNetwork()">{{
-              otherNetwork
-              }}</a>
-          </li>
-        </ul>
-      </div> -->
     </div>
 
     <ul class="navbar-nav d-flex align-items-md-center">
@@ -61,7 +40,7 @@
         </button>
       </li>
       <li class="ml-md-3">
-        <div class="addressBox">
+        <div class="addressBoxConnect">
           <span class="d-flex align-items-center" (click)="disconnect()">
             <img src="./assets/icons/FiLogOut.svg" class="fa-icon" />
 

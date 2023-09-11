@@ -73,6 +73,7 @@ export class BeaconService {
           errorType: BeaconErrorType.ABORTED_ERROR,
         };
         await this.walletClient.respond(response as any);
+        this.requestCleanup(this.pendingRequest.id);
         localStorage.setItem('tab_closing_while_pending', 'error sent');
       }
     });
@@ -329,7 +330,14 @@ export class BeaconService {
     this.requestCleanup(message.id);
   }
 
+  public metamaskDisconnected() {
+    if (this.pendingRequest) {
+      this.requestCleanup(this.pendingRequest.id);
+    }
+  }
+
   private requestCleanup(messageId: string) {
+    this.pendingRequest = undefined;
     localStorage.removeItem(`${StorageKeys.REQUEST_ID_PREFIX}${messageId}`);
     localStorage.removeItem(StorageKeys.METAMASK_BUSY);
   }

@@ -4,6 +4,7 @@ import { MetamaskService } from '../../services/metamask.service';
 import { AccountService } from '../../services/account.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { ClipboardService } from 'src/app/services/clipboard.service';
+import { BeaconService } from 'src/app/services/beacon.service';
 
 @Component({
   selector: 'app-header-item',
@@ -20,6 +21,7 @@ export class HeaderItemComponent implements OnInit {
     public readonly accountService: AccountService,
     public readonly modalService: ModalService,
     public readonly clipboardService: ClipboardService,
+    public readonly beaconService: BeaconService,
   ) {
     this.loadAccountInfo();
   }
@@ -40,9 +42,12 @@ export class HeaderItemComponent implements OnInit {
 
   disconnect() {
     this.modalService.showConfirmModal(() => {
-      this.accountService.hasAccounts
-        ? this.accountService.disconnect()
-        : this.metamaskService.connect();
+      if (this.accountService.hasAccounts) {
+        this.accountService.disconnect();
+        this.beaconService.metamaskDisconnected();
+      } else {
+        this.metamaskService.connect();
+      }
     });
   }
 
