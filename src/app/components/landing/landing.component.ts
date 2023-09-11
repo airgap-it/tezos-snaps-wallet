@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MetamaskService } from '../../services/metamask.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { isMetaMaskInstalled } from 'src/app/utils/metamask';
-
+import { isMobile } from 'src/app/utils/is-mobile';
+console.log('isMobile', isMobile());
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -10,6 +11,7 @@ import { isMetaMaskInstalled } from 'src/app/utils/metamask';
 })
 export class LandingComponent implements OnInit {
   isMetaMaskInstalled: boolean = isMetaMaskInstalled();
+  isMobile: boolean = isMobile();
   isLoading: boolean = false;
   errorCode: number = 0;
 
