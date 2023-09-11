@@ -1,11 +1,21 @@
 <div class="modal-header">
-  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 <div class="modal-body d-flex flex-column align-items-center">
   <h4 class="modal-title">{{ title }}</h4>
-  <qrcode (click)="copyToClipboard()" [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  <qrcode
+    (click)="copyToClipboard()"
+    [qrdata]="qrData"
+    [width]="256"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
   <div class="addressBox">
     <img
       src="./assets/metamask-logo-sm.svg"

@@ -1,70 +1,164 @@
 <div class="card no-shadow cardBox">
-  <div class="card-body" style="padding: 30px;">
+  <div class="card-body" style="padding: 30px">
     <div class="row operations-header">
       <div class="col-6">
         <h2 class="card-title">Operations</h2>
       </div>
       <div class="col-6 text-right">
-        <a href="https://tzkt.io/{{ address }}" class="explorer-link">View in Explorer</a>
-        <img src="./assets/icons/FiExternalLink.svg" alt="SVG Image" style="width: 16px; height: 16px" />
+        <a href="https://tzkt.io/{{ address }}" class="explorer-link"
+          >View in Explorer</a
+        >
+        <img
+          src="./assets/icons/FiExternalLink.svg"
+          alt="SVG Image"
+          style="width: 16px; height: 16px"
+        />
       </div>
     </div>
-
 
     <p class="text-muted" *ngIf="operations.length === 0">
       No operations so far...
     </p>
 
     <div class="card card-container" *ngFor="let op of operations">
-      <div class="card-body" style="padding: 15px;">
+      <div class="card-body" style="padding: 15px">
         <div class="d-flex justify-content-between align-items-center">
-          <div *ngIf="op.type !== 'transaction'" class="d-flex flex-column">
+          <div
+            *ngIf="op.type !== 'transaction' && op.type !== 'tokenTransfer'"
+            class="d-flex flex-column"
+          >
             {{
-            op.type === "origination"
-            ? "Origination"
-            : op.type === "delegation"
-            ? "Delegation"
-            : op.type
+              op.type === "origination"
+                ? "Origination"
+                : op.type === "delegation"
+                ? "Delegation"
+                : op.type
             }}
           </div>
           <div *ngIf="op.type === 'transaction'" class="d-flex flex-column">
-
             <div class="d-flex flex-row align-items-center">
-              <img *ngIf="op?.target?.address === address" src="./assets/icons/MdOutlineCallReceived.svg" alt="Received"
-                style="width: 18px; height: 18px; margin-right: 4px;" />
-              <img *ngIf="op?.target?.address !== address" src="./assets/icons/MdOutlineCallReceived.svg" alt="Sent"
-                style="color: #6E6E73; width: 18px; height: 18px; margin-right: 4px; transform: rotate(180deg);" />
+              <img
+                *ngIf="op?.target?.address === address"
+                src="./assets/icons/MdOutlineCallReceived.svg"
+                alt="Received"
+                style="width: 18px; height: 18px; margin-right: 4px"
+              />
+              <img
+                *ngIf="op?.target?.address !== address"
+                src="./assets/icons/MdOutlineCallReceived.svg"
+                alt="Sent"
+                style="
+                  color: #6e6e73;
+                  width: 18px;
+                  height: 18px;
+                  margin-right: 4px;
+                  transform: rotate(180deg);
+                "
+              />
               <p class="text-amount">{{ op.amount / 1000000 }} tez</p>
             </div>
 
-
-            <div class="d-flex justify-content-between align-items-center mobile-container" style="margin-left: 22px;">
-              <span *ngIf="op?.target?.address === address" class="text-address"><strong
-                  style="font-weight: 600; font-family: Inter;">From:</strong>
-                {{ op?.sender?.address ?? "" | shortenString }}</span>
-              <span *ngIf="op?.target?.address !== address" class="text-address"><strong
-                  style="font-weight: 600;">To:</strong>
-                {{ op?.target?.address ?? "" | shortenString }}</span>
-              <img (click)="
+            <div
+              class="d-flex justify-content-between align-items-center mobile-container"
+              style="margin-left: 22px"
+            >
+              <span *ngIf="op?.target?.address === address" class="text-address"
+                ><strong style="font-weight: 600; font-family: Inter"
+                  >From:</strong
+                >
+                {{ op?.sender?.address ?? "" | shortenString }}</span
+              >
+              <span *ngIf="op?.target?.address !== address" class="text-address"
+                ><strong style="font-weight: 600">To:</strong>
+                {{ op?.target?.address ?? "" | shortenString }}</span
+              >
+              <img
+                (click)="
                   copyAddressToClipboard(
                     $event,
                     op?.target?.address === address
                       ? op.sender.address
                       : op.target.address
                   )
-                " class="copy-button" src="./assets/icons/FiCopy.svg" alt="Copy"
-                style="width: 16px; height: 16px; margin-left: 6px;" />
+                "
+                class="copy-button"
+                src="./assets/icons/FiCopy.svg"
+                alt="Copy"
+                style="width: 16px; height: 16px; margin-left: 6px"
+              />
             </div>
           </div>
-          <div class="d-flex justify-content-between align-items-center text-box">
+          <div *ngIf="op.type === 'tokenTransfer'" class="d-flex flex-column">
+            <div class="d-flex flex-row align-items-center">
+              <img
+                *ngIf="op?.to?.address === address"
+                src="./assets/icons/MdOutlineCallReceived.svg"
+                alt="Received"
+                style="width: 18px; height: 18px; margin-right: 4px"
+              />
+              <img
+                *ngIf="op?.to?.address !== address"
+                src="./assets/icons/MdOutlineCallReceived.svg"
+                alt="Sent"
+                style="
+                  color: #6e6e73;
+                  width: 18px;
+                  height: 18px;
+                  margin-right: 4px;
+                  transform: rotate(180deg);
+                "
+              />
+              <p class="text-amount">
+                {{ op.amount }}
+                <!-- {{ op.amount.toString() === "1" ? "NFT" : "NFTs" }} -->
+                {{ op.token?.metadata?.name }}
+              </p>
+            </div>
+
+            <div
+              class="d-flex justify-content-between align-items-center mobile-container"
+              style="margin-left: 22px"
+            >
+              <span *ngIf="op?.to?.address === address" class="text-address"
+                ><strong style="font-weight: 600; font-family: Inter"
+                  >From:</strong
+                >
+                {{ op?.from?.address ?? "" | shortenString }}</span
+              >
+              <span *ngIf="op?.to?.address !== address" class="text-address"
+                ><strong style="font-weight: 600">To:</strong>
+                {{ op?.to?.address ?? "" | shortenString }}</span
+              >
+              <img
+                (click)="
+                  copyAddressToClipboard(
+                    $event,
+                    (op?.to?.address === address
+                      ? op.from?.address
+                      : op.to?.address) ?? ''
+                  )
+                "
+                class="copy-button"
+                src="./assets/icons/FiCopy.svg"
+                alt="Copy"
+                style="width: 16px; height: 16px; margin-left: 6px"
+              />
+            </div>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center text-box"
+          >
             <div (click)="openLink('https://tzkt.io/' + op.hash)">
               <span class="ml-3 timestamp">{{
                 op.timestamp | timeago: "live"
-                }}</span>
+              }}</span>
             </div>
             <div class="d-flex align-items-center">
-              <img src="./assets/icons/MdOutlineCheckCircle.svg" alt="Checked"
-                style="width: 16px; height: 16px; margin-left: 4px" />
+              <img
+                src="./assets/icons/MdOutlineCheckCircle.svg"
+                alt="Checked"
+                style="width: 16px; height: 16px; margin-left: 4px"
+              />
             </div>
           </div>
         </div>

@@ -1,12 +1,20 @@
 <div class="card cardBox">
-  <div class="card-body" style="padding: 10px; margin: auto;">
+  <div class="card-body" style="padding: 10px; margin: auto">
     <h2 class="card-title">Collectibles</h2>
     <p class="text-muted" *ngIf="nfts.length === 0">No items</p>
     <div class="centered-image" *ngIf="nfts.length === 0">
-      <img src="./assets/icons/Vector.svg" alt="SVG Image" style="width: 250px; height: 100%" />
+      <img
+        src="./assets/icons/Vector.svg"
+        alt="SVG Image"
+        style="width: 250px; height: 100%"
+      />
     </div>
     <div class="grid-container" *ngIf="nfts.length > 0">
-      <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
+      <div
+        class="grid-item custom-grid-item"
+        *ngFor="let nft of nfts"
+        (click)="showNFTModal(nft)"
+      >
         <div class="image-container">
           <img [src]="nft.token.metadata.sanitizedThumbnailUri" />
         </div>

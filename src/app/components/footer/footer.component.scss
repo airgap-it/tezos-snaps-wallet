@@ -53,19 +53,15 @@
 }
 
 @media (min-width: 768px) {
-
-
   .custom-footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     white-space: nowrap;
   }
-
 }
 
 @media (max-width: 768px) {
-
   .custom-footer {
     margin-top: 0;
   }
@@ -85,5 +81,4 @@
   .separator {
     margin: 2px;
   }
-
 }
