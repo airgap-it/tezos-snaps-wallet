@@ -11,9 +11,26 @@
     </div>
 
 
-    <p class="text-muted" *ngIf="operations.length === 0">
-      No operations so far...
-    </p>
+    <div *ngIf="operations.length === 0">
+      <div class="metamasTextBox">
+        <div class="metamaskTitle">
+          No ‘operations’ to show
+        </div>
+        <div class="metamaskSubtitle">
+          <p>
+            Buy tez to see your operation history here...         
+           </p>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-circle mr-2" (click)="
+        openLink(
+          'https://widget.wert.io/default/widget/?commodity=XTZ%3ATezos&address=' +
+            address
+        )
+      ">
+      Buy tez
+    </button>
+      </div>
+    </div>
 
     <div class="card card-container" *ngFor="let op of operations">
       <div class="card-body" style="padding: 15px;">
