@@ -100,21 +100,23 @@
   }
 
   .cardBalance {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 28px;
   }
 
+  .text-muted {
+    font-size: 14px;
+  }
+
   .cardBalanceDecimal {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 16px;
   }
 
   .btn.btn-primary.btn-circle,
   .btn.btn-outline-primary.btn-circle {
-    width: auto;
-    font-size: 14px;
-    height: 100%;
-    margin: 5px 0;
+    width: 154px;
+
   }
 
   .btn.btn-primary.btn-circle:hover {

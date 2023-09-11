@@ -6,7 +6,7 @@
   box-sizing: border-box;
   box-shadow: none;
   margin-right: 0;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .card-title {
@@ -17,7 +17,7 @@
   letter-spacing: 0em;
   text-align: left;
   padding: 20px;
-  padding-left: 0px;
+  padding-left: 20px;
   padding-bottom: 0px;
 }
 
@@ -31,7 +31,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
 .background-image img {
@@ -52,13 +52,13 @@
   justify-content: center;
   align-items: center;
   justify-items: center;
-  grid-gap: 10px;
-  max-width: 758px;
+  gap: 10px;
+  padding: 20px;
 }
 
 .custom-grid-item {
   width: 100%;
-  max-width: 182px;
+  min-width: 182px;
   height: 226px;
   border-radius: 10px;
   background-color: #ffffff;
@@ -145,9 +145,26 @@
 }
 
 @media (max-width: 768px) {
+  .card-title {
+    margin-left: 10px;
+  }
+
+  .grid-container {
+    padding: 10px;
+  }
+
+  .image-container img {
+    width: 134px;
+    height: 134px;
+  }
+
+  .custom-grid-item {
+    min-width: 0px;
+  }
+
   .max-height-300 {
     max-height: 300px;
-    width: auto; 
+    width: auto;
   }
 
   .cardBox {
