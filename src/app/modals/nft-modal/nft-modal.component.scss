@@ -13,12 +13,14 @@
 .text-container {
   flex: 1;
   text-align: left;
-  
 }
 
-.image-container img {
-  max-width: 100%;
+.max-400 {
+  max-width: 400px;
+  max-height: 400px;
+  width: auto;
   height: auto;
+  object-fit: contain;
 }
 
 .custom-link {
@@ -37,7 +39,6 @@
 
 .text-name {
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .custom-link:hover {
@@ -49,4 +50,35 @@
   height: 14px;
   margin-left: 1px;
   margin-bottom: 1px;
+}
+
+@media (max-width: 767px) {
+  .max-400 {
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .text-container {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+  }
+
+  .image-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text-container .links {
+    margin-top: auto;
+  }
 }
