@@ -103,11 +103,25 @@ export class ApiService {
     return client.getBalance(address);
   }
 
-  public async getTransactionHistory(address: string) {
+  public async getOperationHistory(address: string) {
     // https://api.mainnet.tzkt.io/
     // https://api.ghostnet.tzkt.io/
     const operations = await this.http
-      .get(`https://api.tzkt.io/v1/accounts/${address}/operations?limit=10`)
+      .get<any[]>(
+        `https://api.tzkt.io/v1/accounts/${address}/operations?limit=10`,
+      )
+      .toPromise();
+
+    return operations;
+  }
+
+  public async getTokenTransactionHistory(address: string) {
+    // https://api.mainnet.tzkt.io/
+    // https://api.ghostnet.tzkt.io/
+    const operations = await this.http
+      .get<any[]>(
+        `https://api.tzkt.io/v1/tokens/transfers?anyof.from.to=${address}&sort.desc=id&limit=10`,
+      )
       .toPromise();
 
     return operations;

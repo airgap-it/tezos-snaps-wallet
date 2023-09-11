@@ -15,7 +15,10 @@ export class OperationsComponent implements OnInit {
     amount: number;
     sender: { address: string };
     target: { address: string };
+    from?: { address: string };
+    to?: { address: string };
     timestamp: string;
+    token?: { metadata: { name: string } };
   }[] = [];
 
   address: string = '';
