@@ -1,51 +1,47 @@
 <div class="card cardBox">
   <div class="card-body" style="padding: 10px; margin: auto;">
     <h2 class="card-title" *ngIf="nfts.length > 0">Collectibles</h2>
-    <div *ngIf="nfts.length === 0"  class="container">
+    <div *ngIf="nfts.length === 0" class="container">
       <div class="background-image">
-        <img src="./assets/icons/Vector.svg" alt="SVG Image" class="max-height-300"/>
+        <img src="./assets/icons/Vector.svg" alt="SVG Image" class="max-height-300" />
       </div>
-      
       <div class="centered-content">
-      <div class="textBox">
-        <div class="imageBox">
-          <div class="d-flex justify-content-center" style="width: 40px; height: 40px">
-            <img src="./assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%" />
-            <img src="./assets/icons/close.svg" alt="SVG Image" style="width: 20px; height: 100%; margin-left: 20px" />
+        <div class="textBox">
+          <div class="imageBox">
+            <div class="d-flex justify-content-center" style="width: 40px; height: 40px">
+              <img src="./assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%" />
+              <img src="./assets/icons/close.svg" alt="SVG Image"
+                style="width: 20px; height: 100%; margin-left: 20px" />
 
-            <img src="./assets/metamask-logo-sm.svg" alt="SVG Image"
-              style="width: 100%; height: 100%; margin-left: 20px" />
-          </div>
+              <img src="./assets/metamask-logo-sm.svg" alt="SVG Image"
+                style="width: 100%; height: 100%; margin-left: 20px" />
+            </div>
 
-        </div>
-        <div class="metamasTextBox">
-          <div class="metamaskTitle">
-            Welcome to Tezos Wallet Explorer, powered by MetaMask
           </div>
-          <div class="metamaskSubtitle">
-            <p>
-              This section will be designed for the purpose of onboarding. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Nam at volutpat massa. Mauris feugiat erat non porttitor.
-            </p>
-            <p>
-              Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean congue
-              neque eget risus elementum, nec blandit sapien convallis.
-            </p>
+          <div class="metamasTextBox">
+            <div class="metamaskTitle">
+              Welcome to Tezos Wallet Explorer, powered by MetaMask
+            </div>
+            <div class="metamaskSubtitle">
+              <p>
+                This section will be designed for the purpose of onboarding. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Nam at volutpat massa. Mauris feugiat erat non porttitor.
+              </p>
+              <p>
+                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean congue
+                neque eget risus elementum, nec blandit sapien convallis.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-      
-    </div>
-
-    <div *ngIf="nfts.length === 0">
-      <div class="grid-container" *ngIf="nfts.length > 0">
-        <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
-          <div class="image-container">
-            <img [src]="nft.token.metadata.sanitizedThumbnailUri" />
-          </div>
-          <p class="text-name">{{ nft.token.metadata.name }}</p>
+    <div class="grid-container" *ngIf="nfts.length > 0">
+      <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
+        <div class="image-container">
+          <img [src]="nft.token.metadata.sanitizedThumbnailUri" />
         </div>
+        <p class="text-name">{{ nft.token.metadata.name }}</p>
       </div>
     </div>
   </div>
