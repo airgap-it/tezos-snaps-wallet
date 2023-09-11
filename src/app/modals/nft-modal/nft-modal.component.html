@@ -1,13 +1,24 @@
-<div class="modal-header" style="padding: 0; padding-top: 10px; padding-right: 10px;">
-  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+<div
+  class="modal-header"
+  style="padding: 0; padding-top: 10px; padding-right: 10px"
+>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
-<div class="modal-body text-center" style="padding: 0;">
+<div class="modal-body text-center" style="padding: 0">
   <span *ngIf="nft" class="nft-info">
     <div class="d-flex flex-lg-row flex-column align-items-start">
       <div class="image-container">
-        <img [src]="nft.token.metadata.sanitizedThumbnailUri" class="img-fluid max-400" />
+        <img
+          [src]="nft.token.metadata.sanitizedThumbnailUri"
+          class="img-fluid max-400"
+        />
       </div>
       <div class="text-container ml-lg-3 d-flex flex-column">
         <div>
@@ -16,15 +27,44 @@
         </div>
         <div class="mt-auto">
           <div class="links">
-            <a class="custom-link" href="#"
-              (click)="openLink('https://tzkt.io/' + nft.token.contract.address + '/tokens/' + nft.token.tokenId + '/transfers')">
+            <a
+              class="custom-link"
+              href="#"
+              (click)="
+                openLink(
+                  'https://tzkt.io/' +
+                    nft.token.contract.address +
+                    '/tokens/' +
+                    nft.token.tokenId +
+                    '/transfers'
+                )
+              "
+            >
               Tezos Blockchain
-              <img src="./assets/icons/Links.svg" alt="SVG Image" class="link-icon" />
+              <img
+                src="./assets/icons/Links.svg"
+                alt="SVG Image"
+                class="link-icon"
+              />
             </a>
-            <a style="margin-left: 10px" class="custom-link" href="#"
-              (click)="openLink('https://better-call.dev/mainnet/' + nft.token.contract.address + '/operations')">
+            <a
+              style="margin-left: 10px"
+              class="custom-link"
+              href="#"
+              (click)="
+                openLink(
+                  'https://better-call.dev/mainnet/' +
+                    nft.token.contract.address +
+                    '/operations'
+                )
+              "
+            >
               Smart Contract
-              <img src="./assets/icons/Links.svg" alt="SVG Image" class="link-icon" />
+              <img
+                src="./assets/icons/Links.svg"
+                alt="SVG Image"
+                class="link-icon"
+              />
             </a>
           </div>
         </div>

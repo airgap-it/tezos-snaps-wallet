@@ -89,27 +89,50 @@ export class AppComponent implements OnInit {
   loadAccountInfo() {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {
-        this.address = accounts[0].address;
-        this.balance = (await this.api.getBalanceOfAddress(accounts[0].address))
-          .shiftedBy(-6)
-          .toString(10);
-        this.operations = (await this.api.getTransactionHistory(
-          accounts[0].address,
-        )) as any;
-        console.log('BALANCE: ', this.balance);
-        console.log('TXs: ', this.operations);
+        const address = accounts[0].address;
 
-        this.price = await this.api.getXtzPrice();
-        this.nfts = await this.api.getNftBalances(accounts[0].address);
-        this.tokens = await this.api.getTokenBalances(accounts[0].address);
+        this.address = address;
 
-        console.log('NFTs: ', this.nfts);
-        console.log('TOKENs: ', this.tokens);
+        Promise.all([
+          this.api.getXtzPrice(),
+          this.api.getBalanceOfAddress(address),
+          this.api.getOperationHistory(address),
+          this.api.getTokenTransactionHistory(address),
+          this.api.getNftBalances(address),
+          this.api.getTokenBalances(address),
+        ]).then(
+          ([
+            price,
+            balance,
+            operations,
+            tokenTransfers,
+            nftBalances,
+            tokenBalances,
+          ]) => {
+            console.log('BALANCE: ', this.balance);
+            console.log('TXs: ', this.operations);
+            console.log('tokenTransfers: ', tokenTransfers);
+            console.log('NFTs: ', this.nfts);
+            console.log('TOKENs: ', this.tokens);
 
-        this.usdBalance = new BigNumber(this.balance)
-          .times(this.price)
-          .decimalPlaces(2)
-          .toString(10);
+            this.balance = balance.shiftedBy(-6).toString(10);
+            this.operations = [
+              ...operations,
+              ...tokenTransfers.map((el) => ({ ...el, type: 'tokenTransfer' })),
+            ]
+              .sort((a, b) => b.id - a.id)
+              .slice(0, 10);
+
+            this.price = price;
+            this.nfts = nftBalances;
+            this.tokens = tokenBalances;
+
+            this.usdBalance = new BigNumber(this.balance)
+              .times(this.price)
+              .decimalPlaces(2)
+              .toString(10);
+          },
+        );
       }
     });
   }
