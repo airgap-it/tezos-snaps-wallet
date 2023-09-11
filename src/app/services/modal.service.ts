@@ -227,6 +227,7 @@ export class ModalService {
   showNFTModal(nft: Token) {
     const initialState: ModalOptions<NftModalComponent> = {
       ...this.modalOptions,
+      class: 'modal-lg',
       initialState: {
         nft,
       },
