@@ -6,7 +6,7 @@
   box-sizing: border-box;
   box-shadow: none;
   margin-right: 0;
-  min-height: 100vh;
+  min-height: 692px;
 }
 
 .card-title {
@@ -184,4 +184,24 @@
   .background-image {
     margin-top: 3rem;
   }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.spinner {
+  text-align: center;
+}
+
+.svg-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
