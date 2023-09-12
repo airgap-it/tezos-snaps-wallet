@@ -19,7 +19,7 @@
     <div *ngIf="isLoading" class="spinner-border mr-3" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-    <div *ngIf="!isLoading && operations.length === 0" [@inOutAnimation]>
+    <div *ngIf="!isLoading && operations.length === 0" [@fadeInAnimation]>
       <div class="metamasTextBox">
         <div class="metamaskTitle">No ‘operations’ to show</div>
         <div class="metamaskSubtitle">
@@ -42,7 +42,7 @@
 
     <ng-container *ngIf="!isLoading">
       <div
-        [@inOutAnimation]
+        [@fadeInAnimation]
         class="card card-container"
         *ngFor="let op of operations"
       >
