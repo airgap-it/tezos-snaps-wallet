@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { fadeIn } from 'src/app/animations/fade-in.animation';
 import { AccountService } from 'src/app/services/account.service';
 import { ClipboardService } from 'src/app/services/clipboard.service';
 
@@ -7,6 +8,7 @@ import { ClipboardService } from 'src/app/services/clipboard.service';
   selector: 'app-operations',
   templateUrl: './operations.component.html',
   styleUrls: ['./operations.component.scss'],
+  animations: [fadeIn],
 })
 export class OperationsComponent implements OnInit {
   @Input() operations: {

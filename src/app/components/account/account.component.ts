@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Token } from '../../types';
 import { ModalService } from 'src/app/services/modal.service';
+import { fadeIn } from 'src/app/animations/fade-in.animation';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
+  animations: [fadeIn],
 })
 export class AccountComponent implements OnChanges {
   @Input() address: string = '';

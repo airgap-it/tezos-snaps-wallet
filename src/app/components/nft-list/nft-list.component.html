@@ -1,10 +1,16 @@
 <div class="card cardBox">
   <div class="card-body" style="padding: 10px">
-    <h2 class="card-title" *ngIf="nfts.length > 0">Collectibles</h2>
+    <h2 class="card-title" *ngIf="nfts.length > 0" [@fadeInAnimation]>
+      Collectibles
+    </h2>
     <div *ngIf="isLoading" class="spinner-border mr-3" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-    <div *ngIf="!isLoading && nfts.length === 0" class="container">
+    <div
+      *ngIf="!isLoading && nfts.length === 0"
+      [@fadeInAnimation]
+      class="container"
+    >
       <div class="background-image">
         <img
           src="./assets/icons/Vector.svg"
@@ -57,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="grid-container" *ngIf="nfts.length > 0">
+    <div class="grid-container" *ngIf="nfts.length > 0" [@fadeInAnimation]>
       <div
         class="grid-item custom-grid-item"
         *ngFor="let nft of nfts"

@@ -2,14 +2,9 @@ import { PeerInfo, PermissionInfo } from '@airgap/beacon-types';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { AccountsOverviewComponent } from './components/accounts-overview/accounts-overview.component';
-import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
-import { HowToModalComponent } from './modals/how-to-modal/how-to-modal.component';
-import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
-import { NodeSelectorModalComponent } from './modals/node-selector-modal/node-selector-modal.component';
 import { Account, AccountService } from './services/account.service';
 import { ApiService } from './services/api.service';
-import { BeaconService, LogAction } from './services/beacon.service';
+import { BeaconService } from './services/beacon.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { TabSyncService } from './services/tab-sync.service';
 import { Token } from './types';
@@ -27,6 +22,7 @@ export class AppComponent implements OnInit {
   usdBalance: string = '0';
   address: string = '';
   operations: {
+    id: number;
     hash: string;
     type: 'transaction' | string;
     amount: number;
@@ -120,15 +116,33 @@ export class AppComponent implements OnInit {
             console.log('TOKENs: ', this.tokens);
 
             this.balance = balance.shiftedBy(-6).toString(10);
-            this.operations = [
+            const mergedOperations = [
               ...operations,
               ...tokenTransfers.map((el) => ({ ...el, type: 'tokenTransfer' })),
             ]
               .sort((a, b) => b.id - a.id)
               .slice(0, 10);
 
+            // Only update reference if content changed
+            if (
+              !mergedOperations.every((el, index) => {
+                return el?.id === this.operations[index]?.id;
+              })
+            ) {
+              this.operations = mergedOperations;
+            }
+
+            // Only update reference if content changed
+            if (
+              !nftBalances.every((el, index) => {
+                return el?.id === this.nfts[index]?.id;
+              })
+            ) {
+              this.nfts = nftBalances;
+            }
+
             this.price = price;
-            this.nfts = nftBalances;
+
             this.tokens = tokenBalances;
 
             this.usdBalance = new BigNumber(this.balance)
