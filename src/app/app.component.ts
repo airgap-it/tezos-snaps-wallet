@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
   nfts: Token[] = [];
   tokens: Token[] = [];
 
+  isLoading: boolean = true;
+
   isCollapsed = true;
 
   syncCode: string = '';
@@ -109,6 +111,8 @@ export class AppComponent implements OnInit {
             nftBalances,
             tokenBalances,
           ]) => {
+            this.isLoading = false;
+
             console.log('BALANCE: ', this.balance);
             console.log('TXs: ', this.operations);
             console.log('tokenTransfers: ', tokenTransfers);

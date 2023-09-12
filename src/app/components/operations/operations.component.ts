@@ -21,6 +21,7 @@ export class OperationsComponent implements OnInit {
     token?: { metadata: { name: string } };
   }[] = [];
 
+  @Input() isLoading: boolean = true;
   address: string = '';
 
   constructor(

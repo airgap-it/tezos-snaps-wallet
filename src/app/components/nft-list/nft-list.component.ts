@@ -10,6 +10,8 @@ import { ModalService } from 'src/app/services/modal.service';
 export class NftListComponent implements OnInit {
   @Input() nfts: Token[] = [];
 
+  @Input() isLoading: boolean = true;
+
   constructor(private readonly modalService: ModalService) {}
 
   ngOnInit(): void {}

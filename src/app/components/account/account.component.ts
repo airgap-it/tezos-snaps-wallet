@@ -13,6 +13,8 @@ export class AccountComponent implements OnChanges {
   @Input() usdBalance: string = '';
   @Input() tokens: Token[] = [];
 
+  @Input() isLoading: boolean = true;
+
   tezMainAmount: string = '0';
   tezDecimalAmount: string = '0';
 

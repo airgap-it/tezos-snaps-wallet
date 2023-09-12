@@ -11,6 +11,7 @@
       <!-- Balance Component -->
       <div class="card no-shadow mb-3">
         <app-account
+          [isLoading]="isLoading"
           [balance]="balance"
           [usdBalance]="usdBalance"
           [address]="address"
@@ -36,15 +37,21 @@
 
       <!-- Operations Component (Hidden on Mobile) -->
       <div class="card no-shadow mb-3 d-none d-md-block">
-        <app-operations [operations]="operations"></app-operations>
+        <app-operations
+          [isLoading]="isLoading"
+          [operations]="operations"
+        ></app-operations>
       </div>
     </div>
     <div class="col-md-8">
       <!-- NFTs Component -->
-      <app-nft-list [nfts]="nfts"></app-nft-list>
+      <app-nft-list [isLoading]="isLoading" [nfts]="nfts"></app-nft-list>
       <!-- only show on mobile -->
       <div class="card no-shadow mb-3 d-md-none operations-mobile">
-        <app-operations [operations]="operations"></app-operations>
+        <app-operations
+          [isLoading]="isLoading"
+          [operations]="operations"
+        ></app-operations>
       </div>
     </div>
   </div>
