@@ -7,7 +7,7 @@
 
 <div *ngIf="accountService.hasAccounts" class="container-fluid px-md-5 pb-3">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col fixed-width">
       <!-- Balance Component -->
       <div class="card no-shadow mb-3">
         <app-account
@@ -43,7 +43,7 @@
         ></app-operations>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col">
       <!-- NFTs Component -->
       <app-nft-list [isLoading]="isLoading" [nfts]="nfts"></app-nft-list>
       <!-- only show on mobile -->
