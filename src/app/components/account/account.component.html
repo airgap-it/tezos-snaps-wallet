@@ -9,11 +9,11 @@
           <span class="sr-only">Loading...</span>
         </div>
         <ng-container *ngIf="!isLoading">
-          <p class="cardBalance">
+          <p class="cardBalance" [@inOutAnimation]>
             {{ tezMainAmount }}<span *ngIf="tezDecimalAmount">.</span
             ><span class="cardBalanceDecimal">{{ tezDecimalAmount }} ꜩ</span>
           </p>
-          <p class="text-muted">${{ usdBalance }}</p>
+          <p class="text-muted" [@inOutAnimation]>${{ usdBalance }}</p>
         </ng-container>
       </div>
       <div
