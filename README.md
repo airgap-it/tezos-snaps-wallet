@@ -1,4 +1,12 @@
-# Tezos Wallet
+# Tezos Wallet Explorer
+
+The Tezos Wallet Explorer allows MetaMask users to explore their Tezos account.
+
+You can find the production version of the Tezos Wallet Explorer here: https://metamask.tezos.com
+
+The latest dev build (built by GitHub Actions from main branch) can be found [here](https://airgap-it.github.io/tezos-snaps-wallet/).
+
+## Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
 
