@@ -45,7 +45,9 @@
     </div>
     <div class="col">
       <!-- NFTs Component -->
+      <div class="max-width">
       <app-nft-list [isLoading]="isLoading" [nfts]="nfts"></app-nft-list>
+    </div>
       <!-- only show on mobile -->
       <div class="card no-shadow mb-3 d-md-none operations-mobile">
         <app-operations
