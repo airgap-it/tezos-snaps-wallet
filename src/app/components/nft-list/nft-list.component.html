@@ -3,44 +3,28 @@
     <h2 class="card-title" *ngIf="nfts.length > 0" [@fadeInAnimation]>
       Collectibles
     </h2>
-    <div *ngIf="isLoading" class="spinner-border mr-3" role="status">
-      <span class="sr-only">Loading...</span>
+    <div class="spinner-container" *ngIf="isLoading">
+      <div class="spinner">
+        <img src="./assets/icons/arrow-spin.svg" alt="Loading..." class="svg-spinner">
+        <div class="background-image">
+          <img src="./assets/icons/Vector.svg" alt="SVG Image" class="max-height-300" />
+        </div>
+      </div>
     </div>
-    <div
-      *ngIf="!isLoading && nfts.length === 0"
-      [@fadeInAnimation]
-      class="container"
-    >
+    <div *ngIf="!isLoading && nfts.length === 0" [@fadeInAnimation] class="container">
       <div class="background-image">
-        <img
-          src="./assets/icons/Vector.svg"
-          alt="SVG Image"
-          class="max-height-300"
-        />
+        <img src="./assets/icons/Vector.svg" alt="SVG Image" class="max-height-300" />
       </div>
       <div class="centered-content">
         <div class="textBox">
           <div class="imageBox">
-            <div
-              class="d-flex justify-content-center"
-              style="width: 40px; height: 40px"
-            >
-              <img
-                src="./assets/tezos-logo-sm.svg"
-                alt="SVG Image"
-                style="width: 100%; height: 100%"
-              />
-              <img
-                src="./assets/icons/close.svg"
-                alt="SVG Image"
-                style="width: 20px; height: 100%; margin-left: 20px"
-              />
+            <div class="d-flex justify-content-center" style="width: 40px; height: 40px">
+              <img src="./assets/tezos-logo-sm.svg" alt="SVG Image" style="width: 100%; height: 100%" />
+              <img src="./assets/icons/close.svg" alt="SVG Image"
+                style="width: 20px; height: 100%; margin-left: 20px" />
 
-              <img
-                src="./assets/metamask-logo-sm.svg"
-                alt="SVG Image"
-                style="width: 100%; height: 100%; margin-left: 20px"
-              />
+              <img src="./assets/metamask-logo-sm.svg" alt="SVG Image"
+                style="width: 100%; height: 100%; margin-left: 20px" />
             </div>
           </div>
           <div class="metamasTextBox">
@@ -49,14 +33,8 @@
             </div>
             <div class="metamaskSubtitle">
               <p>
-                This section will be designed for the purpose of onboarding.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
-                volutpat massa. Mauris feugiat erat non porttitor.
-              </p>
-              <p>
-                Orci varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Aenean congue neque eget risus
-                elementum, nec blandit sapien convallis.
+                This explorer will allow you to connect with Tezos dApps and view and manage tokens via the MetaMask
+                Wallet. Note, this account won't be visible in your MetaMask browser extension.
               </p>
             </div>
           </div>
@@ -64,11 +42,7 @@
       </div>
     </div>
     <div class="grid-container" *ngIf="nfts.length > 0" [@fadeInAnimation]>
-      <div
-        class="grid-item custom-grid-item"
-        *ngFor="let nft of nfts"
-        (click)="showNFTModal(nft)"
-      >
+      <div class="grid-item custom-grid-item" *ngFor="let nft of nfts" (click)="showNFTModal(nft)">
         <div class="image-container">
           <img [src]="nft.token.metadata.sanitizedThumbnailUri" />
         </div>
