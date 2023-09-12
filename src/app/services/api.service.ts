@@ -158,7 +158,7 @@ export class ApiService {
   public async getNftBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&account=${address}&limit=20`,
+        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&balance.ne=0&account=${address}&limit=20`,
       )
       .toPromise()
       .then((res) =>
