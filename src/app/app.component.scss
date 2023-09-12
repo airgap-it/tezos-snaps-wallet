@@ -1,30 +1,3 @@
-json-formatter > div:first-child {
-  padding: 8px;
-}
-
-.json-formatter-row {
-  background-color: var(--ion-color-light);
-  font-size: 0.7rem;
-}
-
-.json-formatter-row .json-formatter-toggler:after {
-  content: "+" !important;
-}
-
-.json-formatter-row .json-formatter-toggler {
-  vertical-align: initial !important;
-}
-
-.json-formatter-row .json-formatter-key {
-  color: #000 !important;
-}
-
-.json-formatter-row .json-formatter-string,
-.json-formatter-row .json-formatter-stringifiable {
-  color: #3880ff !important;
-  font-weight: bold;
-}
-
 .header {
   font-size: 24px;
 }
@@ -100,19 +73,29 @@ json-formatter > div:first-child {
   margin: 0 auto;
 }
 
-@media (max-width: 1490px) {
-  .cardBox {
-    width: 100%;
-  }
-}
+// @media (max-width: 1490px) {
+//   .cardBox {
+//     width: 100%;
+//   }
+// }
 
 @media (max-width: 768px) {
-  .cardBox {
-    width: 580px;
-    max-width: 100%;
+  // .cardBox {
+  //   width: 580px;
+  //   max-width: 100%;
+  // }
+
+  .fixed-width {
+    min-width: none !important;
+    max-width: none !important;
   }
 
   .operations-mobile {
     margin-top: 20px;
   }
+}
+
+.fixed-width {
+  min-width: 500px;
+  max-width: 500px;
 }
