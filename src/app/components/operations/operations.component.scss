@@ -105,6 +105,17 @@
   padding: 1rem;
 }
 
+.stateBox {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+  padding: 1rem;
+  height: 48vh;
+}
+
 .metamaskTitle {
   font-family: "Inter", sans-serif;
   font-size: 28px;
@@ -177,3 +188,24 @@
     margin: 0;
   }
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36vh;
+}
+
+.spinner {
+  text-align: center;
+}
+
+.svg-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
