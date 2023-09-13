@@ -84,14 +84,15 @@
   }
 }
 
-.fixed-width {
-  min-width: 500px;
-  max-width: 500px;
+@media (min-width: 768px) {
+  .fixed-width {
+    min-width: 500px;
+    max-width: 500px;
+  }
 }
 
 @media (max-width: 837px) {
   .col {
     max-width: none !important;
   }
-
 }
