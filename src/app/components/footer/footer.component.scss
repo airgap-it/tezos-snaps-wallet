@@ -81,3 +81,11 @@
     margin: 2px;
   }
 }
+
+@media (max-width: 991px) {
+  .custom-footer {
+    max-width: fit-content;
+    margin: auto;
+    padding-top: 20px;
+  }
+}
