@@ -17,7 +17,11 @@
     </div>
     <div class="spinner-container" *ngIf="isLoading">
       <div class="spinner">
-        <img src="./assets/icons/arrow-spin.svg" alt="Loading..." class="svg-spinner">
+        <img
+          src="./assets/icons/arrow-spin.svg"
+          alt="Loading..."
+          class="svg-spinner"
+        />
       </div>
     </div>
     <div *ngIf="!isLoading && operations.length === 0" [@fadeInAnimation]>
@@ -83,7 +87,11 @@
                     transform: rotate(180deg);
                   "
                 />
-                <p class="text-amount">{{ op.amount / 1000000 }} tez Sometimes I crystallise, sometimes I melt.</p>
+                <p class="text-amount">
+                  {{ op?.target?.address === address ? "+" : "-"
+                  }}{{ op.amount / 1000000 }} tez Sometimes I crystallise,
+                  sometimes I melt.
+                </p>
               </div>
 
               <div
@@ -141,7 +149,7 @@
                   "
                 />
                 <p class="text-amount">
-                  {{ op.amount }}
+                  {{ op?.to?.address === address ? "+" : "-" }}{{ op.amount }}
                   <!-- {{ op.amount.toString() === "1" ? "NFT" : "NFTs" }} -->
                   {{ op.token?.metadata?.name }}
                 </p>
