@@ -73,18 +73,7 @@
   margin: 0 auto;
 }
 
-// @media (max-width: 1490px) {
-//   .cardBox {
-//     width: 100%;
-//   }
-// }
-
 @media (max-width: 768px) {
-  // .cardBox {
-  //   width: 580px;
-  //   max-width: 100%;
-  // }
-
   .fixed-width {
     min-width: none !important;
     max-width: none !important;
@@ -98,4 +87,11 @@
 .fixed-width {
   min-width: 500px;
   max-width: 500px;
+}
+
+@media (max-width: 837px) {
+  .col {
+    max-width: none !important;
+  }
+
 }
