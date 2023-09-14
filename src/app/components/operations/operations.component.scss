@@ -28,6 +28,7 @@
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  min-height: 87px;
 }
 
 .copy-button {
@@ -248,6 +249,10 @@
 }
 
 @media (max-width: 768px) {
+  .card-container {
+    min-height: 72px !important;
+  }
+
   .timestamp {
     font-size: 12px;
   }

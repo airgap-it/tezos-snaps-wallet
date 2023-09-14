@@ -55,9 +55,7 @@
                 <div class="flex-grow-1">
                   <p class="text-amount">
                     <span class="truncate-text truncate-container">
-                      {{ op?.target?.address === address ? "+" : "-" }}{{ op.amount / 1000000 }}
-                      hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhd
-                      tez
+                      {{ op?.target?.address === address ? "+" : "-" }}{{ op.amount / 1000000 }} tez
                     </span>
                   </p>
                 </div>
@@ -118,14 +116,16 @@
                 </div>
               </div>
 
-              <div class="d-flex align-items-center mobile-container" style="margin-left: 22px">
-                <span *ngIf="op?.to?.address === address" class="text-address"><strong
-                    style="font-weight: 600; font-family: Inter">From:</strong>
-                  {{ op?.from?.address ?? "" | shortenString }}</span>
-                <span *ngIf="op?.to?.address !== address" class="text-address"><strong
-                    style="font-weight: 600">To:</strong>
-                  {{ op?.to?.address ?? "" | shortenString }}</span>
-                <img (click)="
+              <div class="d-flex align-items-center mobile-container"
+                style="margin-left: 22px; justify-content: space-between;">
+                <div class="elements-left">
+                  <span *ngIf="op?.to?.address === address" class="text-address"><strong
+                      style="font-weight: 600; font-family: Inter">From:</strong>
+                    {{ op?.from?.address ?? "" | shortenString }}</span>
+                  <span *ngIf="op?.to?.address !== address" class="text-address"><strong
+                      style="font-weight: 600">To:</strong>
+                    {{ op?.to?.address ?? "" | shortenString }}</span>
+                  <img (click)="
                     copyAddressToClipboard(
                       $event,
                       (op?.to?.address === address
@@ -133,7 +133,19 @@
                         : op.to?.address) ?? ''
                     )
                   " class="copy-button" src="./assets/icons/FiCopy.svg" alt="Copy"
-                  style="width: 16px; height: 16px; margin-left: 6px" />
+                    style="width: 16px; height: 16px; margin-left: 6px" />
+                </div>
+                <div class="elements-right d-flex align-items-center">
+                  <div (click)="openLink('https://tzkt.io/' + op.hash)">
+                    <span class="timestamp">{{
+                      op.timestamp | timeago: "live"
+                      }}</span>
+                  </div>
+                  <div>
+                    <img src="./assets/icons/MdOutlineCheckCircle.svg" alt="Checked"
+                      style="width: 16px; height: 16px; margin-left: 4px" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
