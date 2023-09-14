@@ -10,14 +10,8 @@ import BigNumber from 'bignumber.js';
 
 const defaultNodes = {
   [NetworkType.MAINNET]: {
-    selected: 'https://mainnet.api.tez.ie',
-    all: [
-      'https://mainnet.api.tez.ie',
-      'https://mainnet.smartpy.io',
-      'https://rpc.tzbeta.net',
-      'https://teznode.letzbake.com',
-      'https://mainnet-tezos.giganode.io',
-    ],
+    selected: 'https://tezos-node.prod.gke.papers.tech',
+    all: ['https://tezos-node.prod.gke.papers.tech'],
   },
   [NetworkType.GHOSTNET]: {
     selected: 'https://tezos-ghostnet-node-1.diamond.papers.tech',
