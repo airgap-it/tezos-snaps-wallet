@@ -95,4 +95,13 @@
   .col {
     max-width: none !important;
   }
+
+  .d-md-block {
+    display: none !important;
+  }
+
+  .operations-mobile {
+    display: block !important;
+    margin-top: 20px;
+  }
 }
