@@ -5,23 +5,13 @@
         <h2 class="card-title">Operations</h2>
       </div>
       <div class="col-6 text-right">
-        <a href="https://tzkt.io/{{ address }}" class="explorer-link"
-          >View in Explorer</a
-        >
-        <img
-          src="./assets/icons/FiExternalLink.svg"
-          alt="SVG Image"
-          style="width: 16px; height: 16px"
-        />
+        <a href="https://tzkt.io/{{ address }}" class="explorer-link">View in Explorer</a>
+        <img src="./assets/icons/FiExternalLink.svg" alt="SVG Image" style="width: 16px; height: 16px" />
       </div>
     </div>
     <div class="spinner-container" *ngIf="isLoading">
       <div class="spinner">
-        <img
-          src="./assets/icons/arrow-spin.svg"
-          alt="Loading..."
-          class="svg-spinner"
-        />
+        <img src="./assets/icons/arrow-spin.svg" alt="Loading..." class="svg-spinner" />
       </div>
     </div>
     <div *ngIf="!isLoading && operations.length === 0" [@fadeInAnimation]>
@@ -30,177 +20,121 @@
         <div class="metamaskSubtitle">
           <p>Buy tez to see your operation history here...</p>
         </div>
-        <button
-          type="button"
-          class="btn btn-outline-primary btn-circle mr-2"
-          (click)="
+        <button type="button" class="btn btn-outline-primary btn-circle mr-2" (click)="
             openLink(
               'https://widget.wert.io/default/widget/?commodity=XTZ%3ATezos&address=' +
                 address
             )
-          "
-        >
+          ">
           Buy tez
         </button>
       </div>
     </div>
 
     <ng-container *ngIf="!isLoading">
-      <div
-        [@fadeInAnimation]
-        class="card card-container"
-        *ngFor="let op of operations"
-      >
+      <div [@fadeInAnimation] class="card card-container" *ngFor="let op of operations">
         <div class="card-body" style="padding: 15px">
           <div class="d-flex justify-content-between align-items-center">
-            <div
-              *ngIf="op.type !== 'transaction' && op.type !== 'tokenTransfer'"
-              class="d-flex flex-column"
-            >
+            <div *ngIf="op.type !== 'transaction' && op.type !== 'tokenTransfer'" class="d-flex flex-column">
               {{
-                op.type === "origination"
-                  ? "Origination"
-                  : op.type === "delegation"
-                  ? "Delegation"
-                  : op.type === "reveal"
-                  ? "Reveal"
-                  : op.type
+              op.type === "origination"
+              ? "Origination"
+              : op.type === "delegation"
+              ? "Delegation"
+              : op.type === "reveal"
+              ? "Reveal"
+              : op.type
               }}
             </div>
             <div *ngIf="op.type === 'transaction'" class="d-flex flex-column">
               <div class="d-flex flex-row align-items-center">
-                <img
-                  *ngIf="op?.target?.address === address"
-                  src="./assets/icons/MdOutlineCallReceived.svg"
-                  alt="Received"
-                  style="width: 18px; height: 18px; margin-right: 4px"
-                />
-                <img
-                  *ngIf="op?.target?.address !== address"
-                  src="./assets/icons/MdOutlineCallReceived.svg"
-                  alt="Sent"
-                  style="
-                    color: #6e6e73;
-                    width: 18px;
-                    height: 18px;
-                    margin-right: 4px;
-                    transform: rotate(180deg);
-                  "
-                />
-                <p class="text-amount" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                  {{ op?.target?.address === address ? "+" : "-"
-                  }}{{ op.amount / 1000000 }} tez Sometimes I crystallise,
-                  sometimes I melt.
-                </p>
+                <img *ngIf="op?.target?.address === address" src="./assets/icons/MdOutlineCallReceived.svg"
+                  alt="Received" style="width: 18px; height: 18px; margin-right: 4px" />
+                <img *ngIf="op?.target?.address !== address" src="./assets/icons/MdOutlineCallReceived.svg" alt="Sent"
+                  style="color: #6e6e73; width: 18px; height: 18px; margin-right: 4px; transform: rotate(180deg)" />
+                <div class="flex-grow-1">
+                  <p class="text-amount">
+                    <span class="truncate-text truncate-container">
+                      {{ op?.target?.address === address ? "+" : "-" }}{{ op.amount / 1000000 }}
+                      kjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjhshshshshshshshshshshshshshshshshshshshshshshshshshs
+                      tez
+                    </span>
+                  </p>
+                </div>
               </div>
 
-              <div
-                class="d-flex align-items-center mobile-container"
-                style="margin-left: 22px"
-              >
-                <span
-                  *ngIf="op?.target?.address === address"
-                  class="text-address"
-                  ><strong style="font-weight: 600; font-family: Inter"
-                    >From:</strong
-                  >
-                  {{ op?.sender?.address ?? "" | shortenString }}</span
-                >
-                <span
-                  *ngIf="op?.target?.address !== address"
-                  class="text-address"
-                  ><strong style="font-weight: 600">To:</strong>
-                  {{ op?.target?.address ?? "" | shortenString }}</span
-                >
-                <img
-                  (click)="
-                    copyAddressToClipboard(
-                      $event,
-                      op?.target?.address === address
-                        ? op.sender.address
-                        : op.target.address
-                    )
-                  "
-                  class="copy-button"
-                  src="./assets/icons/FiCopy.svg"
-                  alt="Copy"
-                  style="width: 16px; height: 16px; margin-left: 6px"
-                />
+              <div class="d-flex align-items-center mobile-container" style="margin-left: 22px">
+                <span *ngIf="op?.target?.address === address" class="text-address">
+                  <strong style="font-weight: 600; font-family: Inter">From:</strong>
+                  {{ op?.sender?.address ?? "" | shortenString }}
+                </span>
+
+                <span *ngIf="op?.target?.address !== address" class="text-address">
+                  <strong style="font-weight: 600">To:</strong>
+                  {{ op?.target?.address ?? "" | shortenString }}
+                </span>
+
+                <img (click)="copyAddressToClipboard(
+                    $event,
+                    op?.target?.address === address ? op.sender.address : op.target.address
+                  )" class="copy-button" src="./assets/icons/FiCopy.svg" alt="Copy"
+                  style="width: 16px; height: 16px; margin-left: 6px" />
+
+                <div class="text-box">
+                  <div class="timestamp-container">
+                    <div (click)="openLink('https://tzkt.io/' + op.hash)">
+                      <span class="timestamp">{{ op.timestamp | timeago: 'live' }}</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <img src="./assets/icons/MdOutlineCheckCircle.svg" alt="Checked"
+                        style="width: 16px; height: 16px; margin-left: 4px" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div *ngIf="op.type === 'tokenTransfer'" class="d-flex flex-column">
               <div class="d-flex flex-row align-items-center">
-                <img
-                  *ngIf="op?.to?.address === address"
-                  src="./assets/icons/MdOutlineCallReceived.svg"
-                  alt="Received"
-                  style="width: 18px; height: 18px; margin-right: 4px"
-                />
-                <img
-                  *ngIf="op?.to?.address !== address"
-                  src="./assets/icons/MdOutlineCallReceived.svg"
-                  alt="Sent"
+                <img *ngIf="op?.to?.address === address" src="./assets/icons/MdOutlineCallReceived.svg" alt="Received"
+                  style="width: 18px; height: 18px; margin-right: 4px" />
+                <img *ngIf="op?.to?.address !== address" src="./assets/icons/MdOutlineCallReceived.svg" alt="Sent"
                   style="
                     color: #6e6e73;
                     width: 18px;
                     height: 18px;
                     margin-right: 4px;
                     transform: rotate(180deg);
-                  "
-                />
-                <p class="text-amount">
-                  {{ op?.to?.address === address ? "+" : "-" }}{{ op.amount }}
-                  <!-- {{ op.amount.toString() === "1" ? "NFT" : "NFTs" }} -->
-                  {{ op.token?.metadata?.name }}
-                </p>
+                  " />
+                <div class="flex-grow-1">
+                  <p class="text-amount">
+                    <span class="truncate-text truncate-container">
+                      {{ op?.to?.address === address ? "+" : "-" }}{{ op.amount }}
+                      <!-- {{ op.amount.toString() === "1" ? "NFT" : "NFTs" }} -->
+                      {{ op.token?.metadata?.name }}
+                    </span>
+                  </p>
+                </div>
               </div>
 
-              <div
-                class="d-flex justify-content-between align-items-center mobile-container"
-                style="margin-left: 22px"
-              >
-                <span *ngIf="op?.to?.address === address" class="text-address"
-                  ><strong style="font-weight: 600; font-family: Inter"
-                    >From:</strong
-                  >
-                  {{ op?.from?.address ?? "" | shortenString }}</span
-                >
-                <span *ngIf="op?.to?.address !== address" class="text-address"
-                  ><strong style="font-weight: 600">To:</strong>
-                  {{ op?.to?.address ?? "" | shortenString }}</span
-                >
-                <img
-                  (click)="
+              <div class="d-flex align-items-center mobile-container" style="margin-left: 22px">
+                <span *ngIf="op?.to?.address === address" class="text-address"><strong
+                    style="font-weight: 600; font-family: Inter">From:</strong>
+                  {{ op?.from?.address ?? "" | shortenString }}</span>
+                <span *ngIf="op?.to?.address !== address" class="text-address"><strong
+                    style="font-weight: 600">To:</strong>
+                  {{ op?.to?.address ?? "" | shortenString }}</span>
+                <img (click)="
                     copyAddressToClipboard(
                       $event,
                       (op?.to?.address === address
                         ? op.from?.address
                         : op.to?.address) ?? ''
                     )
-                  "
-                  class="copy-button"
-                  src="./assets/icons/FiCopy.svg"
-                  alt="Copy"
-                  style="width: 16px; height: 16px; margin-left: 6px"
-                />
+                  " class="copy-button" src="./assets/icons/FiCopy.svg" alt="Copy"
+                  style="width: 16px; height: 16px; margin-left: 6px" />
               </div>
             </div>
-            <div
-              class="d-flex justify-content-between align-items-center text-box"
-            >
-              <div (click)="openLink('https://tzkt.io/' + op.hash)">
-                <span class="ml-3 timestamp">{{
-                  op.timestamp | timeago: "live"
-                }}</span>
-              </div>
-              <div class="d-flex align-items-center">
-                <img
-                  src="./assets/icons/MdOutlineCheckCircle.svg"
-                  alt="Checked"
-                  style="width: 16px; height: 16px; margin-left: 4px"
-                />
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

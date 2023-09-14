@@ -67,7 +67,6 @@
 
   .footer-container {
     padding: 20px;
-    min-width: 470px;
   }
 
   .footer-link {
@@ -88,5 +87,11 @@
     max-width: fit-content;
     margin: auto;
     padding-top: 20px;
+  }
+}
+
+@media (max-width: 423px) {
+  .footer-link {
+    font-size: x-small;
   }
 }

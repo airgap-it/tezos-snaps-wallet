@@ -27,12 +27,12 @@
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .copy-button {
   cursor: pointer;
   color: #d2d2d7;
-  margin-top: 10px;
 }
 
 .explorer-link {
@@ -45,10 +45,6 @@
   color: #fff;
 }
 
-.text-box {
-  padding-top: 32px;
-}
-
 .timestamp {
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -59,10 +55,23 @@
   color: #6e6e73;
   cursor: pointer;
   white-space: nowrap;
+  margin-left: auto;
+  max-width: 100%;
 }
 
 .timestamp:hover {
   text-decoration: underline;
+}
+
+.timestamp-container {
+  display: flex;
+  align-items: center;
+}
+
+.text-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .text-amount {
@@ -75,7 +84,84 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 300px;
+  flex-grow: 1;
+  word-break: break-word;
+  flex-shrink: 1;
+  max-width: 100%;
+}
+
+.truncate-text {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 837px) {
+  .truncate-text {
+    max-width: 600px !important;
+  }
+
+  @media (max-width: 796px) {
+    .truncate-text {
+      max-width: 550px !important;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .truncate-text {
+      max-width: 500px !important;
+    }
+  }
+
+  @media (max-width: 630px) {
+    .truncate-text {
+      max-width: 400px !important;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .truncate-text {
+      max-width: 350px !important;
+    }
+  }
+
+  @media (max-width: 485px) {
+    .truncate-text {
+      max-width: 300px !important;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .truncate-text {
+      max-width: 280px !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .truncate-text {
+      max-width: 250px !important;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .truncate-text {
+      max-width: 230px !important;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .truncate-text {
+      max-width: 200px !important;
+    }
+  }
+}
+
+@media (min-width: 837px) {
+  .truncate-text {
+    max-width: 360px;
+  }
 }
 
 .text-address {
@@ -86,7 +172,6 @@
   letter-spacing: 0em;
   text-align: left;
   color: #6e6e73;
-  margin-top: 10px;
 }
 
 .text-strong {
@@ -174,6 +259,8 @@
 }
 
 @media (max-width: 768px) {
+
+
   .timestamp {
     font-size: 12px;
   }
@@ -211,7 +298,11 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+  0% {
+    transform: rotate(0deg);
+  }
 
+  100% {
+    transform: rotate(360deg);
+  }
+}
