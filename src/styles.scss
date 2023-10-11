@@ -34,7 +34,8 @@ $link-hover-decoration: none;
 @import "~bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
-@import "~ngx-bootstrap/datepicker/bs-datepicker";
+// @import "~ngx-bootstrap/datepicker/bs-datepicker";
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
 
 @import "~roboto-fontface/css/roboto/roboto-fontface.css";
 

@@ -26,7 +26,8 @@
       "util": ["./node_modules/util"],
       "http": ["./node_modules/stream-http"],
       "https": ["./node_modules/https-browserify"],
-      "os": ["./node_modules/os-browserify/browser"]
+      "os": ["./node_modules/os-browserify/browser"],
+      "url": ["./node_modules/url"]
       // "process": ["./node_modules/process"]
     }
   },
