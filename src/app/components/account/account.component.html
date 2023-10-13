@@ -4,9 +4,13 @@
     <div
       class="d-flex flex-column flex-md-row justify-content-between align-items-center"
     >
-      <div>  
-      <div *ngIf="isLoading" role="status">
-          <img src="./assets/icons/arrow-spin.svg" alt="Loading..." class="svg-spinner">
+      <div>
+        <div *ngIf="isLoading" role="status">
+          <img
+            src="./assets/icons/arrow-spin.svg"
+            alt="Loading..."
+            class="svg-spinner"
+          />
         </div>
 
         <ng-container *ngIf="!isLoading">
@@ -39,6 +43,33 @@
         >
           Send
         </button>
+      </div>
+    </div>
+
+    <div [@fadeInAnimation]>
+      <div [@fadeInAnimation] *ngFor="let token of tokens">
+        <div class="token-box" style="padding-top: 18px; margin-top: 18px">
+          <div class="justify-content-between align-items-center">
+            <img
+              [src]="
+                token?.token?.metadata?.sanitizedThumbnailUri ??
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+              "
+              style="width: 40px; height: 100%; margin-right: 12px"
+            />
+            <span style="font-weight: 600">{{
+              token?.token?.metadata?.symbol
+            }}</span>
+            <span style="position: absolute; left: 170px; margin-top: 8px">
+              {{ splitNumber(token?.humanReadableBalance)[0]
+              }}<span *ngIf="splitNumber(token?.humanReadableBalance)[1]"
+                >.</span
+              ><span class="small-text">{{
+                splitNumber(token?.humanReadableBalance)[1]
+              }}</span>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

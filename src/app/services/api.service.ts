@@ -136,9 +136,10 @@ export class ApiService {
           item.token.metadata.sanitizedThumbnailUri = item.token.metadata
             .thumbnailUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
+              item.token.metadata.thumbnailUri.startsWith('ipfs://') ? 
                 `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
                   6,
-                )}/`,
+                )}/` : item.token.metadata.thumbnailUri,
               )
             : undefined;
           item.humanReadableBalance = new BigNumber(item.balance)
