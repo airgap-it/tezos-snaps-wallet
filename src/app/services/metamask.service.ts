@@ -24,7 +24,7 @@ export class MetamaskService {
     console.log('snap installed', installedSnap);
 
     if (localStorage.getItem(StorageKeys.METAMASK_BUSY)) {
-      console.log('MetaMask is busy handling another request');
+      console.log('MetaMaskService: MetaMask is busy handling another request');
       throw new Error('MetaMask is busy handling another request');
     }
     localStorage.setItem(StorageKeys.METAMASK_BUSY, 'true');

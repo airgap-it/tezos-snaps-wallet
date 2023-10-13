@@ -79,8 +79,11 @@ export class BeaconService {
     });
   }
   async handleMessage(message: BeaconRequestOutputMessage) {
-    if (localStorage.getItem(StorageKeys.METAMASK_BUSY)) {
-      console.log('MetaMask is busy handling another request');
+    if (
+      localStorage.getItem(StorageKeys.METAMASK_BUSY) &&
+      message.type !== BeaconMessageType.PermissionRequest // Permission requests don't show UI, so we let them through
+    ) {
+      console.log('BeaconService: MetaMask is busy handling another request');
       return;
     }
     if (localStorage.getItem(`${StorageKeys.REQUEST_ID_PREFIX}${message.id}`)) {
