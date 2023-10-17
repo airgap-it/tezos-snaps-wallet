@@ -138,7 +138,11 @@ export class AppComponent implements OnInit {
             // Only update reference if content changed
             if (
               tokenBalances.some((el, index) => {
-                return el?.id !== this.tokens[index]?.id || el?.humanReadableBalance !== this.tokens[index]?.humanReadableBalance;
+                return (
+                  el?.id !== this.tokens[index]?.id ||
+                  el?.humanReadableBalance !==
+                    this.tokens[index]?.humanReadableBalance
+                );
               })
             ) {
               this.tokens = tokenBalances;
@@ -150,7 +154,6 @@ export class AppComponent implements OnInit {
               .times(this.price)
               .decimalPlaces(2)
               .toString(10);
-
 
             console.log('BALANCE: ', this.balance);
             console.log('TXs: ', this.operations);

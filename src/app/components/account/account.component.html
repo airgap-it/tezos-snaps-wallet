@@ -71,6 +71,35 @@
           </div>
         </div>
       </div>
+      <div
+        *ngIf="tokens.length >= 5"
+        class="load-more-box justify-content-between align-items-center"
+        style="padding-top: 18px; margin-top: 18px; display: flex"
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+          "
+        >
+          <div>
+            <a
+              href="https://tzkt.io/{{ address }}/balances/"
+              target="_blank"
+              class="explorer-link"
+              >Load More</a
+            >
+            <img
+              src="./assets/icons/FiExternalLink.svg"
+              alt="SVG Image"
+              style="width: 16px; height: 16px"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

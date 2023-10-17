@@ -1,5 +1,7 @@
 <div class="container-fluid py-3 px-0 px-md-4">
-  <nav class="navbar navbar-expand-md navbar-light d-flex justify-content-between">
+  <nav
+    class="navbar navbar-expand-md navbar-light d-flex justify-content-between"
+  >
     <div class="flex-container">
       <img src="./assets/tezos-logo-main.svg" class="logo" />
       <div class="text-container">
@@ -11,13 +13,24 @@
     <ul class="navbar-nav d-flex align-items-md-center">
       <li class="ml-md-3" (click)="copyToClipboard()">
         <div class="addressBox">
-          <img src="./assets/metamask-logo-sm.svg" alt="SVG Image" style="width: 16px; height: 16px" />
+          <img
+            src="./assets/metamask-logo-sm.svg"
+            alt="SVG Image"
+            style="width: 16px; height: 16px"
+          />
           <div class="addressContainer">
             <div class="textAddress">
               {{ address | shortenString }}
             </div>
-            <button class="copy-button" style="background: none; border: none; cursor: pointer;">
-              <img src="./assets/icons/FiCopy.svg" alt="SVG Image" style="width: 16px; height: 16px" />
+            <button
+              class="copy-button"
+              style="background: none; border: none; cursor: pointer"
+            >
+              <img
+                src="./assets/icons/FiCopy.svg"
+                alt="SVG Image"
+                style="width: 16px; height: 16px"
+              />
             </button>
           </div>
         </div>
