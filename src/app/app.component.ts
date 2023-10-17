@@ -112,7 +112,18 @@ export class AppComponent implements OnInit {
             this.balance = balance.shiftedBy(-6).toString(10);
             const mergedOperations = [
               ...operations,
-              ...tokenTransfers.map((el) => ({ ...el, type: 'tokenTransfer' })),
+              ...tokenTransfers.map((el) => {
+                const item = { ...el, type: 'tokenTransfer' };
+                item.formattedAmount = new BigNumber(item.amount)
+                  .shiftedBy(
+                    -new BigNumber(
+                      item.token.metadata.decimals ?? 0,
+                    ).toNumber(),
+                  )
+                  .decimalPlaces(6)
+                  .toString(10);
+                return item;
+              }),
             ]
               .sort((a, b) => b.id - a.id)
               .slice(0, 10);

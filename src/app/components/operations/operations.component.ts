@@ -20,7 +20,8 @@ export class OperationsComponent implements OnInit {
     from?: { address: string };
     to?: { address: string };
     timestamp: string;
-    token?: { metadata: { name: string } };
+    formattedAmount?: string;
+    token?: { metadata: { name: string; decimals: number } };
   }[] = [];
 
   @Input() isLoading: boolean = true;

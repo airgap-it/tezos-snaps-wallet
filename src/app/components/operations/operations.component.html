@@ -29,7 +29,7 @@
     </div>
     <div *ngIf="!isLoading && operations.length === 0" [@fadeInAnimation]>
       <div class="stateBox">
-        <div class="metamaskTitle">No ‘operations’ to show</div>
+        <div class="metamaskTitle">No 'operations' to show</div>
         <div class="metamaskSubtitle">
           <p>Buy tez to see your operation history here...</p>
         </div>
@@ -190,7 +190,7 @@
                   <p class="text-amount">
                     <span class="truncate-text truncate-container">
                       {{ op?.to?.address === address ? "+" : "-"
-                      }}{{ op.amount }}
+                      }}{{ op.formattedAmount }}
                       <!-- {{ op.amount.toString() === "1" ? "NFT" : "NFTs" }} -->
                       {{ op.token?.metadata?.name }}
                     </span>
