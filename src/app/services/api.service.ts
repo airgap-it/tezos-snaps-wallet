@@ -128,7 +128,7 @@ export class ApiService {
   public async getTokenBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=20`,
+        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=5`,
       )
       .toPromise()
       .then((res) =>
@@ -136,9 +136,11 @@ export class ApiService {
           item.token.metadata.sanitizedThumbnailUri = item.token.metadata
             .thumbnailUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
-                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
-                  6,
-                )}/`,
+                item.token.metadata.thumbnailUri.startsWith('ipfs://')
+                  ? `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
+                      6,
+                    )}/`
+                  : item.token.metadata.thumbnailUri,
               )
             : undefined;
           item.humanReadableBalance = new BigNumber(item.balance)

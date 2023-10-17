@@ -139,6 +139,35 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.token-box {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-top: 1px solid #d2d2d7;
+}
+
+.small-text {
+  font-size: 14px;
+}
+
+.explorer-link {
+  color: #0f61ff;
+  font-size: 14px;
+  font-family: Inter;
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.load-more-box {
+  border-top: 1px solid #d2d2d7;
 }

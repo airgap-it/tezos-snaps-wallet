@@ -38,4 +38,11 @@ export class AccountComponent implements OnChanges {
   sendTez() {
     this.modalService.showSendTezModal();
   }
+
+  splitNumber(number: string | undefined) {
+    if (!number) {
+      return ['', ''];
+    }
+    return number.split('.');
+  }
 }

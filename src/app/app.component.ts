@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         const url = `https://placeholder.com/${event.url}`;
         if (url.includes('?type=tzip10&data=')) {
-          console.log('xxx', url);
+          console.log(url);
 
           // Deeplink handler for beacon
           const params: URLSearchParams = new URL(url).searchParams;
@@ -109,12 +109,6 @@ export class AppComponent implements OnInit {
           ]) => {
             this.isLoading = false;
 
-            console.log('BALANCE: ', this.balance);
-            console.log('TXs: ', this.operations);
-            console.log('tokenTransfers: ', tokenTransfers);
-            console.log('NFTs: ', this.nfts);
-            console.log('TOKENs: ', this.tokens);
-
             this.balance = balance.shiftedBy(-6).toString(10);
             const mergedOperations = [
               ...operations,
@@ -125,8 +119,8 @@ export class AppComponent implements OnInit {
 
             // Only update reference if content changed
             if (
-              !mergedOperations.every((el, index) => {
-                return el?.id === this.operations[index]?.id;
+              mergedOperations.some((el, index) => {
+                return el?.id !== this.operations[index]?.id;
               })
             ) {
               this.operations = mergedOperations;
@@ -134,21 +128,38 @@ export class AppComponent implements OnInit {
 
             // Only update reference if content changed
             if (
-              !nftBalances.every((el, index) => {
-                return el?.id === this.nfts[index]?.id;
+              nftBalances.some((el, index) => {
+                return el?.id !== this.nfts[index]?.id;
               })
             ) {
               this.nfts = nftBalances;
             }
 
-            this.price = price;
+            // Only update reference if content changed
+            if (
+              tokenBalances.some((el, index) => {
+                return (
+                  el?.id !== this.tokens[index]?.id ||
+                  el?.humanReadableBalance !==
+                    this.tokens[index]?.humanReadableBalance
+                );
+              })
+            ) {
+              this.tokens = tokenBalances;
+            }
 
-            this.tokens = tokenBalances;
+            this.price = price;
 
             this.usdBalance = new BigNumber(this.balance)
               .times(this.price)
               .decimalPlaces(2)
               .toString(10);
+
+            console.log('BALANCE: ', this.balance);
+            console.log('TXs: ', this.operations);
+            console.log('tokenTransfers: ', tokenTransfers);
+            console.log('NFTs: ', this.nfts);
+            console.log('TOKENs: ', this.tokens);
           },
         );
       }
