@@ -21,6 +21,7 @@ export class OperationsComponent implements OnInit {
     to?: { address: string };
     timestamp: string;
     formattedAmount?: string;
+    transactionId?: string;
     token?: { metadata: { name: string; decimals: number } };
   }[] = [];
 

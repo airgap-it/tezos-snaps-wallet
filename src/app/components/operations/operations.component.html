@@ -229,7 +229,13 @@
                   />
                 </div>
                 <div class="elements-right d-flex align-items-center">
-                  <div (click)="openLink('https://tzkt.io/' + op.hash)">
+                  <div
+                    (click)="
+                      openLink(
+                        'https://tzkt.io/transactions/' + op.transactionId
+                      )
+                    "
+                  >
                     <span class="timestamp">{{
                       op.timestamp | timeago: "live"
                     }}</span>
