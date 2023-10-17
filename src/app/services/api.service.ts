@@ -145,6 +145,7 @@ export class ApiService {
             : undefined;
           item.humanReadableBalance = new BigNumber(item.balance)
             .shiftedBy(-new BigNumber(item.token.metadata.decimals).toNumber())
+            .decimalPlaces(6)
             .toString(10);
           return item;
         }),
