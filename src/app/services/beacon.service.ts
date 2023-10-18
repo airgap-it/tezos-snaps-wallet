@@ -35,11 +35,11 @@ export interface LogAction {
   providedIn: 'root',
 })
 export class BeaconService {
-  public pendingRequest: BeaconRequestOutputMessage | undefined;
-
   public walletClient: WalletClient;
 
   log: [Date, string, any, LogAction[]][] = [];
+
+  private pendingRequest: BeaconRequestOutputMessage | undefined;
 
   private modalRef: BsModalRef<any> | undefined;
 
@@ -125,7 +125,11 @@ export class BeaconService {
         if (accounts.length === 0) {
           console.error('No account found, need to wait for user to connect');
 
-          this.requestCleanup(message.id);
+          // We don't call "requestCleanup" because the pending request should not be cleared to be handled later
+          localStorage.removeItem(
+            `${StorageKeys.REQUEST_ID_PREFIX}${message.id}`,
+          );
+          localStorage.removeItem(StorageKeys.METAMASK_BUSY);
 
           return;
         }
@@ -238,6 +242,15 @@ export class BeaconService {
       .catch((e) => {
         console.error('not a valid sync code: ', e, text);
       });
+  }
+
+  public handlePendingRequest() {
+    if (this.pendingRequest) {
+      console.log('Have pending request, handling now');
+      this.handleMessage(this.pendingRequest);
+    } else {
+      console.log('Have NO pending request');
+    }
   }
 
   private handlePermissionRequest(

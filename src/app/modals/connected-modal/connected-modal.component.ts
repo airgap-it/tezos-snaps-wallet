@@ -30,9 +30,6 @@ export class ConnectedModalComponent implements OnInit {
 
   close(): void {
     this.bsModalRef.hide();
-    if (this.beaconService.pendingRequest) {
-      console.log('Have pending request, handling now');
-      this.beaconService.handleMessage(this.beaconService.pendingRequest);
-    }
+    this.beaconService.handlePendingRequest();
   }
 }
