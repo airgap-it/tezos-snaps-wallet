@@ -35,6 +35,7 @@ import { NftListComponent } from './components/nft-list/nft-list.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { QrModalComponent } from './modals/qr-modal/qr-modal.component';
 import { SendTezModalComponent } from './modals/send-tez-modal/send-tez-modal.component';
+import { SendTokenModalComponent } from './modals/send-token-modal/send-token-modal.component';
 import { ConnectedModalComponent } from './modals/connected-modal/connected-modal.component';
 import { SendNftModalComponent } from './modals/send-nft-modal/send-nft-modal.component';
 import { ConfirmTxModalComponent } from './modals/confirm-tx-modal/confirm-tx-modal.component';
@@ -66,6 +67,7 @@ import { ToastrModule } from 'ngx-toastr';
     LandingComponent,
     QrModalComponent,
     SendTezModalComponent,
+    SendTokenModalComponent,
     ConnectedModalComponent,
     SendNftModalComponent,
     ConfirmTxModalComponent,

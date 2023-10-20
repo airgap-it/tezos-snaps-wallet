@@ -16,6 +16,7 @@ import { Token } from '../types';
 import { ConnectedModalComponent } from '../modals/connected-modal/connected-modal.component';
 import { AppMetadata } from '@airgap/beacon-wallet';
 import { NftModalComponent } from '../modals/nft-modal/nft-modal.component';
+import { SendTokenModalComponent } from '../modals/send-token-modal/send-token-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -154,6 +155,24 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       SendTezModalComponent,
+      initialState,
+    );
+
+    return bsModalRef;
+  }
+
+  showSendTokenModal(token: Token) {
+    const initialState: ModalOptions<SendTokenModalComponent> = {
+      ...this.modalOptions,
+      initialState: {
+        token,
+        recipient: '',
+        amount: '',
+      },
+    };
+
+    const bsModalRef = this.modalService.show(
+      SendTokenModalComponent,
       initialState,
     );
 

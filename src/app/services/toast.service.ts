@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ToastService {
   constructor(private readonly toastr: ToastrService) {}
 
-  showTxSucessToast() {
+  showTxSuccessToast() {
     return this.toastr.success('Operation sent', undefined, {
       progressBar: true,
       positionClass: 'toast-bottom-center',
