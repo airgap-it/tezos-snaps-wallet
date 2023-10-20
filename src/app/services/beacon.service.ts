@@ -161,7 +161,7 @@ export class BeaconService {
         this.handleOperationRequest(account, message)
           .then(() => {
             toast.toastRef.close();
-            this.toastService.showTxSucessToast();
+            this.toastService.showTxSuccessToast();
           })
           .catch(() => {
             toast.toastRef.close();
@@ -183,7 +183,7 @@ export class BeaconService {
         this.handleSignPayload(account, message)
           .then(() => {
             toast.toastRef.close();
-            this.toastService.showTxSucessToast();
+            this.toastService.showTxSuccessToast();
           })
           .catch(() => {
             toast.toastRef.close();

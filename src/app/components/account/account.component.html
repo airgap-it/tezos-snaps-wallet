@@ -68,6 +68,19 @@
                 splitNumber(token?.humanReadableBalance)[1]
               }}</span>
             </span>
+            <button
+              style="float: right; width: 40px"
+              type="button"
+              class="btn btn-outline-primary btn-circle"
+              (click)="sendToken(token)"
+            >
+              <img
+                class="copy-button"
+                src="./assets/icons/MdOutlineCallReceivedBlue.svg"
+                alt="Sent"
+                style="width: 16px; height: 16px; transform: rotate(180deg)"
+              />
+            </button>
           </div>
         </div>
       </div>

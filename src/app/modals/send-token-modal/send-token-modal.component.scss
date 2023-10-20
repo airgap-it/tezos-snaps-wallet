@@ -1,0 +1,55 @@
+.custom-input {
+  padding: 0px 24px 0px 24px;
+  border-radius: 100px;
+  border: 1px solid #d2d2d7;
+  min-height: 52px;
+}
+
+.button {
+  width: 100%;
+  height: 52px;
+  padding: 0px 24px 0px 24px;
+  border-radius: 100px;
+  gap: 10px;
+  background-color: #0f61ff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #183fd7;
+}
+
+.btn:disabled {
+  background-color: #d2d2d7;
+  color: #86868b;
+}
+
+.send-header {
+  padding: 0;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.amount-text {
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.form-text {
+  margin: 0;
+  margin-top: 12px;
+}
+
+.send-text {
+  margin: 0;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}

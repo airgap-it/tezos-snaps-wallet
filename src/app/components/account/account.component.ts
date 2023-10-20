@@ -45,4 +45,8 @@ export class AccountComponent implements OnChanges {
     }
     return number.split('.');
   }
+
+  sendToken(token: Token) {
+    this.modalService.showSendTokenModal(token);
+  }
 }

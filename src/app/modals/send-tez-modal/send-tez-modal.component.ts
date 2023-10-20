@@ -65,7 +65,7 @@ export class SendTezModalComponent implements OnInit {
           .toString();
 
         const result = await sendOperationRequest(operations);
-        this.toastService.showTxSucessToast();
+        this.toastService.showTxSuccessToast();
 
         console.log('RESULT', result);
       } catch (e) {
