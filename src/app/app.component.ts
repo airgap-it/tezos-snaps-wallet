@@ -117,7 +117,7 @@ export class AppComponent implements OnInit {
                 item.formattedAmount = new BigNumber(item.amount)
                   .shiftedBy(
                     -new BigNumber(
-                      item.token.metadata.decimals ?? 0,
+                      item?.token?.metadata?.decimals ?? 0,
                     ).toNumber(),
                   )
                   .decimalPlaces(6)
