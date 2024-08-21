@@ -1,6 +1,6 @@
-export const MAX_GAS_PER_BLOCK = 2600000;
-export const GAS_LIMIT_PLACEHOLDER = '1040000';
-export const STORAGE_LIMIT_PLACEHOLDER = '60000';
+export const MAX_GAS_PER_BLOCK = 1733333;
+export const GAS_LIMIT_PER_OPERATION = '1040000';
+export const STORAGE_LIMIT_PER_OPERATION = '60000';
 export const FEE_PLACEHOLDER = '0';
 
 export const DEFAULT_GAS_LIMIT = '10300';

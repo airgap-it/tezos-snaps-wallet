@@ -15,8 +15,8 @@ import {
 } from './types';
 import {
   MAX_GAS_PER_BLOCK,
-  GAS_LIMIT_PLACEHOLDER,
-  STORAGE_LIMIT_PLACEHOLDER,
+  GAS_LIMIT_PER_OPERATION,
+  STORAGE_LIMIT_PER_OPERATION,
   FEE_PLACEHOLDER,
   MINIMAL_FEE,
   MINIMAL_FEE_PER_BYTE,
@@ -126,14 +126,14 @@ const sumUpFees = async (
 
       if (
         ((operation as any).gas_limit && overrideParameters) ||
-        (operation as any).gas_limit === GAS_LIMIT_PLACEHOLDER
+        (operation as any).gas_limit === GAS_LIMIT_PER_OPERATION
       ) {
         (operation as any).gas_limit = gasLimit.toString();
       }
 
       if (
         ((operation as any).storage_limit && overrideParameters) ||
-        (operation as any).storage_limit === STORAGE_LIMIT_PLACEHOLDER
+        (operation as any).storage_limit === STORAGE_LIMIT_PER_OPERATION
       ) {
         (operation as any).storage_limit = storageLimit.toString();
       }
@@ -173,9 +173,9 @@ export const estimateAndReplaceLimitsAndFee = async (
     const gasValue = new BigNumber(MAX_GAS_PER_BLOCK).dividedToIntegerBy(
       tezosWrappedOperation.contents.length,
     );
-    const gasLimit = new BigNumber(GAS_LIMIT_PLACEHOLDER).gt(gasValue)
+    const gasLimit = new BigNumber(GAS_LIMIT_PER_OPERATION).gt(gasValue)
       ? gasValue
-      : GAS_LIMIT_PLACEHOLDER;
+      : GAS_LIMIT_PER_OPERATION;
     const counter = startingCounter
       ? startingCounter.plus(i).toString()
       : op.counter;
