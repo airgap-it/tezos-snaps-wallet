@@ -137,7 +137,7 @@ export class ApiService {
             .thumbnailUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
                 item.token.metadata.thumbnailUri.startsWith('ipfs://')
-                  ? `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.thumbnailUri.slice(
+                  ? `https://ipfs.io/ipfs${item.token.metadata.thumbnailUri.slice(
                       6,
                     )}/`
                   : item.token.metadata.thumbnailUri,
@@ -163,13 +163,13 @@ export class ApiService {
           item.token.metadata.sanitizedThumbnailUri = item.token.metadata
             .displayUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
-                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.displayUri.slice(
+                `https://ipfs.io/ipfs${item.token.metadata.displayUri.slice(
                   6,
                 )}/`,
               )
             : item.token.metadata.artifactUri
             ? this.domSanitizer.bypassSecurityTrustUrl(
-                `https://cloudflare-ipfs.com/ipfs/${item.token.metadata.artifactUri.slice(
+                `https://ipfs.io/ipfs${item.token.metadata.artifactUri.slice(
                   6,
                 )}/`,
               )
