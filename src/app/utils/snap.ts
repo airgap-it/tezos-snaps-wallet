@@ -88,10 +88,6 @@ export const sendGetAccount = async () => {
 export const sendOperationRequest = async (
   operations: PartialTezosOperation[],
 ): Promise<string> => {
-  const newOperations = operations.map((operation) => ({
-    ...operation,
-    counter: undefined,
-  }));
   const result = await window.ethereum.request({
     method: 'wallet_invokeSnap',
     params: {
@@ -99,7 +95,7 @@ export const sendOperationRequest = async (
       request: {
         method: 'tezos_sendOperation',
         params: {
-          payload: newOperations,
+          payload: operations,
         },
       },
     },
