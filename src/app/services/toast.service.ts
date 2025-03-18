@@ -15,7 +15,7 @@ export class ToastService {
   }
 
   showTxErrorToast() {
-    return this.toastr.error('Operaton failed to send', undefined, {
+    return this.toastr.error('Operation failed to send', undefined, {
       progressBar: true,
       positionClass: 'toast-bottom-center',
     });

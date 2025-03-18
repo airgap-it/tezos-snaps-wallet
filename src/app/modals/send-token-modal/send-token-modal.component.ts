@@ -167,6 +167,7 @@ export class SendTokenModalComponent implements OnInit {
 
         console.log('RESULT', result);
       } catch (e) {
+        console.error('Error sending token operation', e);
         this.toastService.showTxErrorToast();
       }
       this.bsModalRef.hide();

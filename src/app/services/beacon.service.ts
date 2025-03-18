@@ -163,8 +163,9 @@ export class BeaconService {
             toast.toastRef.close();
             this.toastService.showTxSuccessToast();
           })
-          .catch(() => {
+          .catch((e) => {
             toast.toastRef.close();
+            console.error('Error during handle operation', e);
             this.toastService.showTxErrorToast();
           })
           .finally(() => {
@@ -185,8 +186,9 @@ export class BeaconService {
             toast.toastRef.close();
             this.toastService.showTxSuccessToast();
           })
-          .catch(() => {
+          .catch((e) => {
             toast.toastRef.close();
+            console.error('Error during sign payload', e);
             this.toastService.showTxErrorToast();
           })
           .finally(() => {

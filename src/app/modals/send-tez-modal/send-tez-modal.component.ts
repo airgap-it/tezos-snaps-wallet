@@ -69,6 +69,7 @@ export class SendTezModalComponent implements OnInit {
 
         console.log('RESULT', result);
       } catch (e) {
+        console.error('Error sending operation', e);
         this.toastService.showTxErrorToast();
       }
       this.bsModalRef.hide();
