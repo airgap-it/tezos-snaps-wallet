@@ -10,12 +10,15 @@ import BigNumber from 'bignumber.js';
 
 const defaultNodes = {
   [NetworkType.MAINNET]: {
-    selected: 'https://tezos-node.prod.gke.papers.tech',
-    all: ['https://tezos-node.prod.gke.papers.tech'],
+    selected: 'https://blockchain-nodes.papers.tech/tezos/metamask',
+    all: ['https://blockchain-nodes.papers.tech/tezos/metamask'],
   },
   [NetworkType.GHOSTNET]: {
-    selected: 'https://tezos-ghostnet-node-1.diamond.papers.tech',
-    all: ['https://tezos-ghostnet-node-1.diamond.papers.tech'],
+    selected:
+      'https://blockchain-nodes.papers.tech/tezos-ghostnet/metamask-ghostnet',
+    all: [
+      'https://blockchain-nodes.papers.tech/tezos-ghostnet/metamask-ghostnet',
+    ],
   },
 };
 
