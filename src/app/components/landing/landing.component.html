@@ -42,11 +42,14 @@
             >The Tezos Wallet Explorer is not supported on mobile.</span
           >
           <ng-container *ngIf="!isMobile">
-            <span *ngIf="!isMetaMaskInstalled">
+            <span *ngIf="isMetaMaskInstalled === null">
+              Detecting MetaMask...
+            </span>
+            <span *ngIf="isMetaMaskInstalled === false">
               You need to install MetaMask. You can download it
               <a href="https://metamask.io/download/" target="_blank">here</a
               >. </span
-            ><span *ngIf="isMetaMaskInstalled">
+            ><span *ngIf="isMetaMaskInstalled === true">
               Connect your MetaMask to access the Tezos Wallet Explorer.
             </span>
           </ng-container>
@@ -70,7 +73,9 @@
         >
           Your version of MetaMask wallet does not support Snaps. Please update
           your MetaMask
-          <a href="https://metamask.io/download/" target="_blank">here</a>.
+          <a href="https://metamask.io/download/" target="_blank">here</a>. This
+          can also happen if you have other wallet extensions active that
+          overlap with MetaMask. Please disable them and try again.
         </div>
       </div>
 

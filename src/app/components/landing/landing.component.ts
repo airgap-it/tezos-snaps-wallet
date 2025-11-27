@@ -10,7 +10,7 @@ console.log('isMobile', isMobile());
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  isMetaMaskInstalled: boolean = isMetaMaskInstalled();
+  isMetaMaskInstalled: boolean | null = null; // null = loading
   isMobile: boolean = isMobile();
   isLoading: boolean = false;
   errorCode: number = 0;
@@ -20,7 +20,11 @@ export class LandingComponent implements OnInit {
     public readonly modalService: ModalService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    isMetaMaskInstalled().then((installed) => {
+      this.isMetaMaskInstalled = installed;
+    });
+  }
 
   async connect() {
     if (this.isLoading) {
