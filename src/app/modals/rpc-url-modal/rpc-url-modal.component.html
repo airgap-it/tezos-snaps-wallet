@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Set RPC URL</h4>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="alert alert-info mb-3">
+    <small>
+      <strong>Note:</strong> This feature requires MetaMask to be installed and
+      the Tezos snap to be enabled. Make sure you're connected to MetaMask
+      before setting the RPC URL.
+    </small>
+  </div>
+  <div class="pb-3">
+    <p class="text-muted mb-1">
+      <small>Select Network</small>
+    </p>
+    <div class="form-check" *ngFor="let network of networks">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="network"
+        [id]="network"
+        [value]="network"
+        [checked]="selectedNetwork === network"
+        (change)="onNetworkChange(network)"
+      />
+      <label class="form-check-label" [for]="network">
+        {{ network }}
+      </label>
+    </div>
+  </div>
+
+  <div class="pb-3">
+    <p class="text-muted mb-1">
+      <small>RPC URL</small>
+    </p>
+    <input
+      [(ngModel)]="rpcUrl"
+      type="text"
+      class="form-control"
+      placeholder="https://your-rpc-endpoint.com"
+      aria-label="RPC URL"
+    />
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="bsModalRef.hide()"
+    [disabled]="isLoading"
+  >
+    Cancel
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="setRpc()"
+    [disabled]="isLoading || !rpcUrl.trim()"
+  >
+    <span
+      *ngIf="isLoading"
+      class="spinner-border spinner-border-sm me-2"
+      role="status"
+    ></span>
+    {{ isLoading ? "Setting..." : "Set RPC URL" }}
+  </button>
+</div>

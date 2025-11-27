@@ -31,6 +31,9 @@ export class ApiService {
     [NetworkType.GHOSTNET]: { selected: string; all: string[] };
   } = defaultNodes;
 
+  public currentNetwork: NetworkType.MAINNET | NetworkType.GHOSTNET =
+    NetworkType.MAINNET;
+
   constructor(
     public readonly http: HttpClient,
     private readonly storage: StorageService,
@@ -94,18 +97,46 @@ export class ApiService {
     this.selectRpc(network, rpc);
   }
 
+  public setRpcFromSnap(network: 'mainnet' | 'ghostnet', rpcUrl: string) {
+    const networkType =
+      network === 'mainnet' ? NetworkType.MAINNET : NetworkType.GHOSTNET;
+
+    this.currentNetwork = networkType;
+
+    if (!this.RPCs[networkType].all.includes(rpcUrl)) {
+      this.RPCs[networkType].all.push(rpcUrl);
+    }
+    this.RPCs[networkType].selected = rpcUrl;
+
+    localStorage.setItem('nodes', JSON.stringify(this.RPCs));
+  }
+
+  public getCurrentRpc(): string {
+    return this.RPCs[this.currentNetwork].selected;
+  }
+
+  private getTzktApiBase(): string {
+    return this.currentNetwork === NetworkType.GHOSTNET
+      ? 'https://api.ghostnet.tzkt.io'
+      : 'https://api.tzkt.io';
+  }
+
+  private getTzktExplorerBase(): string {
+    return this.currentNetwork === NetworkType.GHOSTNET
+      ? 'https://ghostnet.tzkt.io'
+      : 'https://tzkt.io';
+  }
+
   public async getBalanceOfAddress(address: string) {
-    const client = new RpcClient(this.RPCs['mainnet'].selected);
+    const client = new RpcClient(this.getCurrentRpc());
 
     return client.getBalance(address);
   }
 
   public async getOperationHistory(address: string) {
-    // https://api.mainnet.tzkt.io/
-    // https://api.ghostnet.tzkt.io/
     const operations = await this.http
       .get<any[]>(
-        `https://api.tzkt.io/v1/accounts/${address}/operations?limit=10`,
+        `${this.getTzktApiBase()}/v1/accounts/${address}/operations?limit=10`,
       )
       .toPromise();
 
@@ -113,11 +144,9 @@ export class ApiService {
   }
 
   public async getTokenTransactionHistory(address: string) {
-    // https://api.mainnet.tzkt.io/
-    // https://api.ghostnet.tzkt.io/
     const operations = await this.http
       .get<any[]>(
-        `https://api.tzkt.io/v1/tokens/transfers?anyof.from.to=${address}&sort.desc=id&limit=10`,
+        `${this.getTzktApiBase()}/v1/tokens/transfers?anyof.from.to=${address}&sort.desc=id&limit=10`,
       )
       .toPromise();
 
@@ -125,13 +154,13 @@ export class ApiService {
   }
 
   public async getBlockexplorerAddressLink(address: string) {
-    return `https://tzkt.io/${address}`;
+    return `${this.getTzktExplorerBase()}/${address}`;
   }
 
   public async getTokenBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=5`,
+        `${this.getTzktApiBase()}/v1/tokens/balances?token.metadata.displayUri.null=true&balance.ne=0&account=${address}&sort.desc=balance&limit=5`,
       )
       .toPromise()
       .then((res) =>
@@ -158,7 +187,7 @@ export class ApiService {
   public async getNftBalances(address: string): Promise<Token[]> {
     return this.http
       .get<Token[]>(
-        `https://api.tzkt.io/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&balance.ne=0&account=${address}&limit=20`,
+        `${this.getTzktApiBase()}/v1/tokens/balances?token.standard=fa2&token.metadata.displayUri.null=false&balance.ne=0&account=${address}&limit=20`,
       )
       .toPromise()
       .then((res) =>
