@@ -29,6 +29,7 @@ export class SendTokenModalComponent implements OnInit {
   recipient: string = '';
   amount: string = '';
   fee?: string;
+  isSending: boolean = false;
 
   constructor(
     public readonly bsModalRef: BsModalRef,
@@ -41,6 +42,7 @@ export class SendTokenModalComponent implements OnInit {
   ngOnInit(): void {}
 
   async send() {
+    this.isSending = true;
     const FA2Transfer = (
       contract: string,
       from: string,
@@ -173,6 +175,7 @@ export class SendTokenModalComponent implements OnInit {
         console.error('Error sending token operation', e);
         this.toastService.showTxErrorToast();
       }
+      this.isSending = false;
       this.bsModalRef.hide();
     });
   }

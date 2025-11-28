@@ -28,6 +28,7 @@ export class SendTezModalComponent implements OnInit {
   usdAmount: string = '0.00';
   usdPrice: number = 0;
   fee?: string;
+  isSending: boolean = false;
 
   constructor(
     public readonly bsModalRef: BsModalRef,
@@ -42,6 +43,7 @@ export class SendTezModalComponent implements OnInit {
   ngOnInit(): void {}
 
   async send() {
+    this.isSending = true;
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       const account = accounts[0];
       const operations: PartialTezosOperation[] = [
@@ -74,6 +76,7 @@ export class SendTezModalComponent implements OnInit {
         console.error('Error sending operation', e);
         this.toastService.showTxErrorToast();
       }
+      this.isSending = false;
       this.bsModalRef.hide();
     });
   }
