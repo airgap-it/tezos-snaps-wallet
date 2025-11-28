@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { BeaconService } from 'src/app/services/beacon.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-connected-modal',
@@ -18,6 +19,7 @@ export class ConnectedModalComponent implements OnInit {
     public readonly bsModalRef: BsModalRef,
     private readonly accountService: AccountService,
     private readonly beaconService: BeaconService,
+    public readonly apiService: ApiService,
   ) {
     this.accountService.accounts$.pipe(first()).subscribe(async (accounts) => {
       if (accounts[0]) {

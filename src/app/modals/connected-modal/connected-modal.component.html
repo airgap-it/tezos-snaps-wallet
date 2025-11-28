@@ -13,7 +13,7 @@
   <div class="modal-body" style="padding: 20px">
     <p class="inputTitle">Network:</p>
     <div class="inputBox">
-      <p class="inputText">Mainnet</p>
+      <p class="inputText text-capitalize">{{ apiService.networkDisplayType === 'custom' ? 'Custom Network' : apiService.networkDisplayType }}</p>
     </div>
     <p class="inputTitleA">Account:</p>
     <div class="inputBox">

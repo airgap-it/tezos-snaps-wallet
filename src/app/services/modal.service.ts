@@ -17,6 +17,7 @@ import { ConnectedModalComponent } from '../modals/connected-modal/connected-mod
 import { AppMetadata } from '@airgap/beacon-wallet';
 import { NftModalComponent } from '../modals/nft-modal/nft-modal.component';
 import { SendTokenModalComponent } from '../modals/send-token-modal/send-token-modal.component';
+import { RpcUrlModalComponent } from '../modals/rpc-url-modal/rpc-url-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -296,6 +297,20 @@ export class ModalService {
 
     const bsModalRef = this.modalService.show(
       ConnectedModalComponent,
+      initialState,
+    );
+
+    return bsModalRef;
+  }
+
+  showRpcUrlModal() {
+    const initialState: ModalOptions<RpcUrlModalComponent> = {
+      ...this.modalOptions,
+      initialState: {},
+    };
+
+    const bsModalRef = this.modalService.show(
+      RpcUrlModalComponent,
       initialState,
     );
 

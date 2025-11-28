@@ -1,6 +1,6 @@
 {
   "name": "tezos-snaps-wallet",
-  "version": "0.0.0",
+  "version": "1.0.6",
   "scripts": {
     "actions:deploy": "ng deploy --name $GITHUB_ACTOR --email $GITHUB_ACTOR@users.noreply.github.com --no-silent",
     "actions:prettier": "prettier \"src/**/*.ts\" \"src/**/*.tsx\" \"src/**/*.scss\" \"src/**/*.html\" \"e2e/**/*.ts\" \"angular.json\" \"README.md\" --list-different",
@@ -17,8 +17,8 @@
   },
   "private": true,
   "dependencies": {
-    "@airgap/beacon-core": "4.0.12",
-    "@airgap/beacon-wallet": "4.0.12",
+    "@airgap/beacon-core": "4.6.3",
+    "@airgap/beacon-wallet": "4.6.3",
     "@angular/animations": "~13.4.0",
     "@angular/common": "~13.4.0",
     "@angular/compiler": "~13.4.0",
@@ -59,6 +59,7 @@
     "@angular/cli": "~13.3.11",
     "@angular/compiler-cli": "~13.4.0",
     "@types/bs58check": "^2.1.0",
+    "@types/chrome": "^0.1.31",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "*",

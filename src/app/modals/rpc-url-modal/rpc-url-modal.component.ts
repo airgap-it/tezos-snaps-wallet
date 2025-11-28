@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { NetworkType } from '@airgap/beacon-types';
 import { sendSetRpc } from '../../utils/snap';
 import { ToastService } from '../../services/toast.service';
+import {
+  ApiService,
+  NetworkDisplayType,
+  PREDEFINED_RPCS,
+} from '../../services/api.service';
 
 @Component({
   selector: 'app-rpc-url-modal',
@@ -10,24 +14,50 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./rpc-url-modal.component.scss'],
 })
 export class RpcUrlModalComponent implements OnInit {
-  public rpcUrl: string = '';
-  public selectedNetwork: NetworkType = NetworkType.MAINNET;
-  public networks: string[] = [NetworkType.MAINNET, NetworkType.GHOSTNET];
+  public customRpcUrl: string = '';
+  public customTzktUrl: string = '';
+  public selectedNetworkType: NetworkDisplayType = 'mainnet';
+  public networkTypes: NetworkDisplayType[] = [
+    'mainnet',
+    'ghostnet',
+    'shadownet',
+    'custom',
+  ];
   public isLoading: boolean = false;
 
   constructor(
     public readonly bsModalRef: BsModalRef,
     public readonly toastService: ToastService,
+    public readonly apiService: ApiService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Initialize with current values
+    this.selectedNetworkType = this.apiService.networkDisplayType;
+    this.customTzktUrl = this.apiService.customTzktUrl;
 
-  onNetworkChange(network: string) {
-    this.selectedNetwork = network as NetworkType;
+    // If custom network is selected, load the custom RPC URL
+    if (this.selectedNetworkType === 'custom') {
+      this.customRpcUrl = this.apiService.currentRpcUrl;
+    }
+  }
+
+  onNetworkTypeChange(networkType: NetworkDisplayType) {
+    this.selectedNetworkType = networkType;
+  }
+
+  getRpcUrlForNetwork(networkType: NetworkDisplayType): string {
+    if (networkType === 'custom') {
+      return this.customRpcUrl;
+    }
+    return PREDEFINED_RPCS[networkType];
   }
 
   async setRpc() {
-    if (!this.rpcUrl.trim()) {
+    if (
+      this.selectedNetworkType === 'custom' &&
+      !this.customRpcUrl.trim()
+    ) {
       this.toastService.showTxErrorToast();
       return;
     }
@@ -54,25 +84,30 @@ export class RpcUrlModalComponent implements OnInit {
 
       console.log('Installed snap:', installedSnap);
 
-      await sendSetRpc(
-        this.selectedNetwork as 'mainnet' | 'ghostnet',
-        this.rpcUrl.trim(),
-      );
-      this.toastService.showTxSuccessToast();
-      this.bsModalRef.hide();
-    } catch (error: any) {
-      console.error('Error setting RPC URL:', error);
+      const rpcUrl = this.getRpcUrlForNetwork(this.selectedNetworkType);
 
-      // Provide more specific error messages
-      let errorMessage = 'Failed to set RPC URL';
-      if (error?.code === -32603) {
-        errorMessage =
-          'MetaMask or Tezos snap is not properly connected. Please ensure MetaMask is installed and the Tezos snap is enabled.';
-      } else if (error?.message) {
-        errorMessage = error.message;
+      await sendSetRpc(this.selectedNetworkType, rpcUrl);
+
+      // Update API service with the new network type
+      this.apiService.setNetworkByDisplayType(
+        this.selectedNetworkType,
+        this.selectedNetworkType === 'custom' ? this.customRpcUrl.trim() : undefined,
+      );
+
+      // Save custom tzkt URL if custom network is selected
+      if (this.selectedNetworkType === 'custom') {
+        this.apiService.setCustomTzktUrl(this.customTzktUrl.trim());
       }
 
-      // For now, we'll use the existing toast service
+      this.toastService.showTxSuccessToast();
+      this.bsModalRef.hide();
+
+      // Reload the page to reflect the new network state
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } catch (error: any) {
+      console.error('Error setting RPC URL:', error);
       this.toastService.showTxErrorToast();
     } finally {
       this.isLoading = false;

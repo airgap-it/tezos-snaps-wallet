@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Set RPC URL</h4>
+  <h4 class="modal-title pull-left">Select Network</h4>
   <button
     type="button"
     class="btn-close close pull-right"
@@ -10,44 +10,53 @@
   </button>
 </div>
 <div class="modal-body">
-  <div class="alert alert-info mb-3">
-    <small>
-      <strong>Note:</strong> This feature requires MetaMask to be installed and
-      the Tezos snap to be enabled. Make sure you're connected to MetaMask
-      before setting the RPC URL.
-    </small>
-  </div>
   <div class="pb-3">
     <p class="text-muted mb-1">
       <small>Select Network</small>
     </p>
-    <div class="form-check" *ngFor="let network of networks">
+    <div class="form-check" *ngFor="let networkType of networkTypes">
       <input
         class="form-check-input"
         type="radio"
-        name="network"
-        [id]="network"
-        [value]="network"
-        [checked]="selectedNetwork === network"
-        (change)="onNetworkChange(network)"
+        name="networkType"
+        [id]="networkType"
+        [value]="networkType"
+        [checked]="selectedNetworkType === networkType"
+        (change)="onNetworkTypeChange(networkType)"
       />
-      <label class="form-check-label" [for]="network">
-        {{ network }}
+      <label class="form-check-label text-capitalize" [for]="networkType">
+        {{ networkType }}
       </label>
     </div>
   </div>
 
-  <div class="pb-3">
+  <div *ngIf="selectedNetworkType === 'custom'" class="pb-3">
     <p class="text-muted mb-1">
-      <small>RPC URL</small>
+      <small>Custom RPC URL</small>
     </p>
     <input
-      [(ngModel)]="rpcUrl"
+      [(ngModel)]="customRpcUrl"
       type="text"
       class="form-control"
       placeholder="https://your-rpc-endpoint.com"
-      aria-label="RPC URL"
+      aria-label="Custom RPC URL"
     />
+  </div>
+
+  <div *ngIf="selectedNetworkType === 'custom'" class="pb-3">
+    <p class="text-muted mb-1">
+      <small>Custom TzKT URL (optional)</small>
+    </p>
+    <input
+      [(ngModel)]="customTzktUrl"
+      type="text"
+      class="form-control"
+      placeholder="https://tzkt.io"
+      aria-label="Custom TzKT URL"
+    />
+    <small class="text-muted">
+      Used for fetching transaction history and token balances
+    </small>
   </div>
 </div>
 <div class="modal-footer">
@@ -63,13 +72,13 @@
     type="button"
     class="btn btn-primary"
     (click)="setRpc()"
-    [disabled]="isLoading || !rpcUrl.trim()"
+    [disabled]="isLoading || (selectedNetworkType === 'custom' && !customRpcUrl.trim())"
   >
     <span
       *ngIf="isLoading"
       class="spinner-border spinner-border-sm me-2"
       role="status"
     ></span>
-    {{ isLoading ? "Setting..." : "Set RPC URL" }}
+    {{ isLoading ? "Setting..." : "Save" }}
   </button>
 </div>

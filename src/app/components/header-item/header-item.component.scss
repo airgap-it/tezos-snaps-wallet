@@ -210,6 +210,39 @@
   cursor: pointer;
 }
 
+.rpc-button {
+  width: auto;
+  height: 40px;
+  padding: 11px 16px;
+  border-radius: 100px;
+  background-color: #f5f5f7;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #1d1d1f;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.rpc-button:hover {
+  background-color: #d2d2d7;
+}
+
+.rpc-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.rpc-button.warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.rpc-button.warning:hover {
+  background-color: #ffe69c;
+}
+
 @media (max-width: 768px) {
   .addressBoxConnect {
     margin-top: 10px;
@@ -222,6 +255,10 @@
   }
 
   .qr-button {
+    display: none;
+  }
+
+  .rpc-button {
     display: none;
   }
 }

@@ -23,14 +23,36 @@ export class MetamaskService {
     });
   }
 
-  async loadRpcConfig() {
+  async loadRpcConfig(): Promise<boolean> {
+    this.apiService.networkLoading = true;
+    this.apiService.networkLoadError = false;
+
     try {
       const rpcConfig = await sendGetRpc();
-      if (rpcConfig?.network && rpcConfig?.rpcUrl) {
-        this.apiService.setRpcFromSnap(rpcConfig.network, rpcConfig.rpcUrl);
+      console.log('[loadRpcConfig] Snap returned:', rpcConfig);
+
+      // The snap may return nodeUrl or rpcUrl
+      const rpcUrl = rpcConfig?.rpcUrl || rpcConfig?.nodeUrl;
+
+      if (rpcConfig?.network && rpcUrl) {
+        console.log('[loadRpcConfig] Calling setRpcFromSnap with:', {
+          network: rpcConfig.network,
+          rpcUrl,
+        });
+        this.apiService.setRpcFromSnap(rpcConfig.network, rpcUrl);
+        this.apiService.networkLoadError = false;
+        return true;
+      } else {
+        console.log('[loadRpcConfig] Missing network or rpcUrl, not updating');
+        this.apiService.networkLoadError = true;
+        return false;
       }
     } catch (error) {
       console.error('Failed to load RPC config from snap:', error);
+      this.apiService.networkLoadError = true;
+      return false;
+    } finally {
+      this.apiService.networkLoading = false;
     }
   }
 
@@ -49,18 +71,36 @@ export class MetamaskService {
 
     const res = await sendGetAccount();
     const rpcConfig = await sendGetRpc();
+    console.log('[connect] Snap returned RPC config:', rpcConfig);
 
     localStorage.removeItem(StorageKeys.METAMASK_BUSY);
 
-    // Update API service with the RPC from the snap
-    if (rpcConfig?.network && rpcConfig?.rpcUrl) {
-      this.apiService.setRpcFromSnap(rpcConfig.network, rpcConfig.rpcUrl);
+    // Update API service with the RPC from the snap (may be rpcUrl or nodeUrl)
+    const rpcUrl = rpcConfig?.rpcUrl || rpcConfig?.nodeUrl;
+    if (rpcConfig?.network && rpcUrl) {
+      this.apiService.setRpcFromSnap(rpcConfig.network, rpcUrl);
     }
 
-    const network =
-      rpcConfig?.network === 'ghostnet'
-        ? NetworkType.GHOSTNET
-        : NetworkType.MAINNET;
+    // Map snap network to NetworkType
+    let network: NetworkType;
+    switch (rpcConfig?.network) {
+      case 'ghostnet':
+        network = NetworkType.GHOSTNET;
+        break;
+      case 'shadownet':
+        network = NetworkType.SHADOWNET;
+        break;
+      case 'custom':
+        network = NetworkType.CUSTOM;
+        break;
+      default:
+        network = NetworkType.MAINNET;
+        break;
+    }
+
+    // Mark network loading as complete
+    this.apiService.networkLoading = false;
+    this.apiService.networkLoadError = false;
 
     this.accountService.addOrUpdateAccount({
       address: res.address,
