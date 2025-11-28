@@ -1,11 +1,17 @@
 <app-landing *ngIf="!accountService.hasAccounts"></app-landing>
 
+<!-- Toolbar - always show when user has accounts -->
+<app-header-item *ngIf="accountService.hasAccounts"></app-header-item>
+
 <!-- Network Loading Overlay -->
 <div *ngIf="accountService.hasAccounts && api.networkLoading" class="network-overlay">
   <div class="network-overlay-content">
     <div class="spinner-border text-primary mb-3" role="status"></div>
     <h5>Loading network configuration...</h5>
-    <p class="text-muted">Please approve the request in MetaMask</p>
+    <p class="text-muted">Connecting to MetaMask snap...</p>
+    <button class="btn btn-outline-secondary mt-3" (click)="retryLoadNetwork()">
+      Retry
+    </button>
   </div>
 </div>
 
@@ -19,17 +25,12 @@
     />
     <h4>Could not determine network</h4>
     <p class="text-muted">
-      Failed to get RPC configuration from MetaMask snap. Please approve the request and try again.
+      Failed to get RPC configuration from MetaMask snap. Please try again.
     </p>
     <button class="btn btn-primary" (click)="retryLoadNetwork()">
       Retry
     </button>
   </div>
-</div>
-
-<!-- Toolbar -->
-<div *ngIf="!api.networkLoading && !api.networkLoadError">
-  <app-header-item *ngIf="accountService.hasAccounts"></app-header-item>
 </div>
 
 <div *ngIf="accountService.hasAccounts && !api.networkLoading && !api.networkLoadError" class="container-fluid px-md-5 pb-3">

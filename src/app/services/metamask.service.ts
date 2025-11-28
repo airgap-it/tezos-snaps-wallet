@@ -15,12 +15,24 @@ export class MetamaskService {
     private readonly accountService: AccountService,
     private readonly apiService: ApiService,
   ) {
-    this.isSnapInstalled().then((isInstalled) => {
-      this.isConnected = isInstalled;
-      if (isInstalled) {
-        this.loadRpcConfig();
-      }
-    });
+    this.isSnapInstalled()
+      .then((isInstalled) => {
+        this.isConnected = isInstalled;
+        if (isInstalled) {
+          this.loadRpcConfig();
+        } else {
+          // Snap not installed, logout user since account is unusable
+          console.log('Snap not installed, logging out');
+          this.accountService.disconnect();
+          this.apiService.networkLoading = false;
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to check snap installation:', error);
+        // Can't access snap, logout user
+        this.accountService.disconnect();
+        this.apiService.networkLoading = false;
+      });
   }
 
   async loadRpcConfig(): Promise<boolean> {
