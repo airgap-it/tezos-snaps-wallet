@@ -42,6 +42,7 @@ import { ConfirmTxModalComponent } from './modals/confirm-tx-modal/confirm-tx-mo
 import { TxConfirmedModalComponent } from './modals/tx-confirmed-modal/tx-confirmed-modal.component';
 import { ShortenStringPipe } from './pipes/shorten-string.pipe';
 import { NftModalComponent } from './modals/nft-modal/nft-modal.component';
+import { RpcUrlModalComponent } from './modals/rpc-url-modal/rpc-url-modal.component';
 import { TimeagoModule } from 'ngx-timeago';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -74,6 +75,7 @@ import { ToastrModule } from 'ngx-toastr';
     TxConfirmedModalComponent,
     ShortenStringPipe,
     NftModalComponent,
+    RpcUrlModalComponent,
   ],
   imports: [
     BrowserModule,

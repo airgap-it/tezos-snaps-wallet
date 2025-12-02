@@ -5,6 +5,7 @@ import { AccountService } from '../../services/account.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { ClipboardService } from 'src/app/services/clipboard.service';
 import { BeaconService } from 'src/app/services/beacon.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header-item',
@@ -22,6 +23,7 @@ export class HeaderItemComponent implements OnInit {
     public readonly modalService: ModalService,
     public readonly clipboardService: ClipboardService,
     public readonly beaconService: BeaconService,
+    public readonly apiService: ApiService,
   ) {
     this.loadAccountInfo();
   }
@@ -63,5 +65,9 @@ export class HeaderItemComponent implements OnInit {
 
   copyToClipboard() {
     this.clipboardService.copy(this.address);
+  }
+
+  showRpcModal() {
+    this.modalService.showRpcUrlModal();
   }
 }

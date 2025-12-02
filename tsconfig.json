@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "resolveJsonModule": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -18,6 +19,8 @@
     "target": "es2017",
     "module": "es2020",
     "lib": ["es2018", "dom"],
+    "types": ["chrome"],
+    "skipLibCheck": true,
     "paths": {
       "path": ["./node_modules/path-browserify"],
       "stream": ["./node_modules/stream-browserify"],

@@ -1,4 +1,3 @@
-import { localForger } from '@taquito/local-forging';
 import BigNumber from 'bignumber.js';
 import { createRevealOperation } from './create-reveal-operation';
 import {

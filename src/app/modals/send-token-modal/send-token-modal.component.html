@@ -44,8 +44,9 @@
     (click)="send()"
     type="button"
     class="btn button btn-circle btn-block"
-    [disabled]="amount.length === 0 || recipient.length === 0"
+    [disabled]="amount.length === 0 || recipient.length === 0 || isSending"
   >
-    Send
+    <span *ngIf="isSending" class="spinner-border spinner-border-sm me-2" role="status"></span>
+    {{ isSending ? 'Sending...' : 'Send' }}
   </button>
 </div>

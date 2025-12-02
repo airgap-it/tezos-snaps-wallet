@@ -1,9 +1,12 @@
 import {
-  NetworkType,
-  PartialTezosTransactionOperation,
+  PartialTezosOperation,
   TezosOperationType,
-  TezosTransactionOperation,
+  type PartialTezosTransactionOperation,
 } from '@airgap/beacon-wallet';
+import {
+  TezosTransactionOperation,
+  type TezosOperation,
+} from 'src/app/utils/tezos/types';
 import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -26,6 +29,7 @@ export class SendTokenModalComponent implements OnInit {
   recipient: string = '';
   amount: string = '';
   fee?: string;
+  isSending: boolean = false;
 
   constructor(
     public readonly bsModalRef: BsModalRef,
@@ -38,6 +42,7 @@ export class SendTokenModalComponent implements OnInit {
   ngOnInit(): void {}
 
   async send() {
+    this.isSending = true;
     const FA2Transfer = (
       contract: string,
       from: string,
@@ -152,8 +157,8 @@ export class SendTokenModalComponent implements OnInit {
         const estimated = await prepareOperations(
           account.address,
           account.publicKey,
-          operations,
-          (this.apiService.RPCs as any)[NetworkType.MAINNET].selected + '/',
+          operations as TezosOperation[],
+          this.apiService.currentRpcUrl,
         );
 
         this.fee = new BigNumber(
@@ -170,6 +175,7 @@ export class SendTokenModalComponent implements OnInit {
         console.error('Error sending token operation', e);
         this.toastService.showTxErrorToast();
       }
+      this.isSending = false;
       this.bsModalRef.hide();
     });
   }

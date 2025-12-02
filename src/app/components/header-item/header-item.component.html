@@ -43,6 +43,15 @@
         </button>
       </li>
       <li class="ml-md-3">
+        <button
+          class="rpc-button"
+          [class.warning]="apiService.networkDisplayType === 'custom'"
+          (click)="showRpcModal()"
+        >
+          <span class="text-capitalize">{{ apiService.networkDisplayType === 'custom' ? 'Custom Network' : apiService.networkDisplayType }}</span>
+        </button>
+      </li>
+      <li class="ml-md-3">
         <div class="addressBoxConnect">
           <span class="d-flex align-items-center" (click)="disconnect()">
             <img src="./assets/icons/FiLogOut.svg" class="fa-icon" />

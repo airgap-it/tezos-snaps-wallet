@@ -4,9 +4,9 @@ import { PartialTezosOperation } from '@airgap/beacon-wallet';
  * The snap origin to use.
  * Will default to the local hosted snap if no value is provided in environment.
  */
-export const defaultSnapOrigin =
-  /* process.env.REACT_APP_SNAP_ORIGIN */ `npm:tezos-metamask-snap` ??
-  `local:http://localhost:8080`;
+export const defaultSnapOrigin = `npm:tezos-metamask-snap`;
+// export const defaultSnapOrigin = `local:http://localhost:8080`;
+// export const defaultSnapOrigin = process.env.REACT_APP_SNAP_ORIGIN;
 
 export type GetSnapsResponse = Record<string, Snap>;
 
@@ -261,7 +261,7 @@ export const sendGetRpc = async () => {
 };
 
 export const sendSetRpc = async (
-  network: 'mainnet' | 'ghostnet',
+  network: 'mainnet' | 'ghostnet' | 'shadownet' | 'custom',
   rpcUrl: string,
 ) => {
   const provider = await getMetaMaskProviderAsync();
@@ -273,7 +273,7 @@ export const sendSetRpc = async (
         method: 'tezos_setRpc',
         params: {
           network,
-          rpcUrl,
+          nodeUrl: rpcUrl,
         },
       },
     },

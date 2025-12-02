@@ -78,10 +78,28 @@ export class AppComponent implements OnInit {
       }
     });
 
-    setInterval(() => {
-      this.loadAccountInfo();
-    }, 10000);
-    this.loadAccountInfo();
+    // Wait for network to be loaded before fetching account data
+    this.waitForNetworkAndLoadData();
+  }
+
+  private async waitForNetworkAndLoadData() {
+    // Wait for network loading to complete
+    const checkNetwork = () => {
+      if (!this.api.networkLoading && !this.api.networkLoadError) {
+        this.loadAccountInfo();
+        // Set up periodic refresh only after initial load
+        setInterval(() => {
+          if (!this.api.networkLoading && !this.api.networkLoadError) {
+            this.loadAccountInfo();
+          }
+        }, 10000);
+      } else if (this.api.networkLoading) {
+        // Still loading, check again in 100ms
+        setTimeout(checkNetwork, 100);
+      }
+      // If networkLoadError, don't load account data
+    };
+    checkNetwork();
   }
 
   loadAccountInfo() {
@@ -228,6 +246,7 @@ export class AppComponent implements OnInit {
     const bsModalRef = this.modalService.showConfirmModal(async () => {
       await this.beacon.walletClient.removePermission(
         permission.accountIdentifier,
+        permission.senderId,
       );
       this.getPeers();
     });
@@ -248,5 +267,12 @@ export class AppComponent implements OnInit {
 
   openHowToModal() {
     this.modalService.showHowToModal();
+  }
+
+  async retryLoadNetwork() {
+    await this.metamaskService.loadRpcConfig();
+    if (!this.api.networkLoadError) {
+      this.loadAccountInfo();
+    }
   }
 }
