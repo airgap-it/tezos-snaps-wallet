@@ -1,6 +1,6 @@
 {
   "name": "tezos-snaps-wallet",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "scripts": {
     "actions:deploy": "ng deploy --name $GITHUB_ACTOR --email $GITHUB_ACTOR@users.noreply.github.com --no-silent",
     "actions:prettier": "prettier \"src/**/*.ts\" \"src/**/*.tsx\" \"src/**/*.scss\" \"src/**/*.html\" \"e2e/**/*.ts\" \"angular.json\" \"README.md\" --list-different",
